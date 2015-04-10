@@ -1,0 +1,17 @@
+# LaTeX
+tex/*.aux
+tex/*.log
+tex/*.out
+tex/*.txt
+tex/*.pdf
+informe.pdf
+
+# Bundle
+*.tar.gz
+
+# Python
+*.pyc
+
+# Vim
+*.swp
+*.vim
