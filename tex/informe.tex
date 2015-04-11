@@ -73,7 +73,7 @@
 %%%%%%%%%% Miscelánea - Fin %%%%%%%%%%
 
 
-%%%%%%%%%% User story - Inicio %%%%%%%%%%
+%%%%%%%%%% User stories y tareas - Inicio %%%%%%%%%%
 % Entorno dentro del cual se declaran las stories con el macro \story.
 \newenvironment{stories}{
   \begin{itemize}
@@ -86,7 +86,20 @@
   \item
   Como \emph{#1} quiero \emph{#2} para \emph{#3}.
 }
-%%%%%%%%%% User story - Fin %%%%%%%%%%
+
+% Entorno dentro del cual se declaran las tareas de un story con el macro \task.
+\newenvironment{tasks}{
+  Tareas:
+  \begin{itemize}
+}{
+  \end{itemize}
+}
+
+% Uso: \task{descripción de la tarea}
+\newcommand{\task}[1] {
+  \item #1
+}
+%%%%%%%%%% User stories y tareas - Fin %%%%%%%%%%
 
 
 \begin{document}
@@ -290,80 +303,64 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
   \story{director, secretario ó maestro}
         {ingresar la fecha y descripción de un evento}
         {darlo de alta en el sistema}
-  \begin{itemize}
-   \item ingresar la fecha del evento
-   \item ingresar la descripción del evento
-   \item cargar el evento en el sistema
-  \end{itemize}
 
-        
+  \begin{tasks}
+    \task{ingresar la fecha del evento}
+    \task{ingresar la descripción del evento}
+    \task{cargar el evento en el sistema}
+  \end{tasks}
+
   \story{director, secretario ó maestro}
         {seleccionar un evento}
         {crear una campaña asociada al evento seleccionado}
-  \begin{itemize}
-   \item mostrar todas los eventos que aún no hayan ocurrido.
-   \item seleccionar el evento deseado
-   \item crear nombre de la campaña
-   \item cargar la campaña en el sistema
-  \end{itemize}
 
+  \begin{tasks}
+    \task{mostrar todas los eventos que aún no hayan ocurrido.}
+    \task{seleccionar el evento deseado}
+    \task{crear nombre de la campaña}
+    \task{cargar la campaña en el sistema}
+  \end{tasks}
 
   \story{maestro}
         {seleccionar un subconjunto de mis alumnos}
         {asignarlos como destinatarios de una campaña que yo creé}
-  \begin{itemize}
-   \item mostrar todas las campañas que creé
-   \item seleccionar la campaña deseada
-   \item mostrar todos los alumnos que tengo a cargo
-   \item seleccionar un subconjunto de alumnos
-   \item cargar alumnos a la campaña
-  \end{itemize}
 
+  \begin{tasks}
+    \task{mostrar todas las campañas que creé}
+    \task{seleccionar la campaña deseada}
+    \task{mostrar todos los alumnos que tengo a cargo}
+    \task{seleccionar un subconjunto de alumnos}
+    \task{cargar alumnos a la campaña}
+  \end{tasks}
 
   \story{director ó secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
         {asignarlos como destinatarios de una campaña que yo creé}
-  \begin{itemize}
-   \item mostrar todas las campañas que creé
-   \item seleccionar la campaña deseada
-   \item mostrar todos los alumnos del colegio
-   \item seleccionar un subconjunto de alumnos
-   \item cargar alumnos a la campaña
-  \end{itemize}
+
+  \begin{tasks}
+    \task{mostrar todas las campañas que creé}
+    \task{seleccionar la campaña deseada}
+    \task{mostrar todos los alumnos del colegio}
+    \task{seleccionar un subconjunto de alumnos}
+    \task{cargar alumnos a la campaña}
+  \end{tasks}
 
   \story{director, secretario ó maestro}
         {ingresar un mensaje, fecha, hora y tipo}
         {agregar un nuevo mensaje a una campaña que yo creé}
-  \begin{itemize}
-   \item mostrar todas las campañas que creé
-   \item seleccionar la campaña deseada
-   \item ingresar el mensaje
-   \item ingresar fecha y hora en la que se desea enviar el mensaje
-   \item ingresar si el mensaje es del tipo anuncio/recordatorio/asignación/mensaje de aliento
-   \item cargar el mensaje en el sistema
-  \end{itemize}
 
+  \begin{tasks}
+    \task{mostrar todas las campañas que creé}
+    \task{seleccionar la campaña deseada}
+    \task{ingresar el mensaje}
+    \task{ingresar fecha y hora en la que se desea enviar el mensaje}
+    \task{ingresar si el mensaje es del tipo anuncio/recordatorio/asignación/mensaje de aliento}
+    \task{cargar el mensaje en el sistema}
+  \end{tasks}
 
   \story{director, secretario ó maestro}
         {ver los mensajes de una campaña que yo creé}
         {modificarlos o eliminarlos}
-  \begin{itemize}
-   \item mostrar todas las campañas que creé
-   \item seleccionar la campaña deseada
-   \item mostrar todos los mensajes que aún no se enviaron
-   \item seleccionar el mensaje deseado
-   \item si se desea eliminar:
-   \begin{itemize}
-    \item eliminar el mensaje del sistema
-   \end{itemize}
-   \item si se desea modificar:
-   \begin{itemize}
-    \item editar mensaje
-    \item editar fecha y hora en la que se desea enviar el mensaje
-    \item editar si el mensaje es del tipo anuncio/recordatorio/asignación/mensaje de aliento
-    \item cargar el mensaje en el sistema
-   \end{itemize}
-  \end{itemize} 
 
   \story{director, secretario ó maestro}
         {que se envíen automáticamente y en el momento correcto los mensajes de una campaña que yo creé}
