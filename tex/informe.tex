@@ -363,12 +363,12 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 \hline
 ID & Story points & Business value\\
 \hline
-1 & 123 & 9\\
-2 & 444 & 5\\
-3 & 111 & 4\\
-4 & 555 & 4\\
-5 & 123 & 9\\
-6 & 123 & 9\\
+1 & 123 & 1\\
+2 & 444 & 3\\
+3 & 111 & 3\\
+4 & 555 & 3\\
+5 & 123 & 3\\
+6 & 123 & 3\\
 7 & 123 & 9\\
 8 & 123 & 9\\
 \hline
@@ -392,9 +392,9 @@ ID & Story points & Business value\\
   \end{criterios} 
    
   \begin{tasks}
-    \task{Crear interfaz de creación de eventos}
-    \task{Crear tabla de eventos en la base de datos}
-    \task{Crear código de persistencia de nuevos eventos}
+    \task{Crear interfaz de creación de eventos} 4
+    \task{Crear tabla de eventos en la base de datos} 1
+    \task{Crear código de persistencia de nuevos eventos} 1
   \end{tasks}
 
 
@@ -409,9 +409,9 @@ ID & Story points & Business value\\
   \end{criterios} 
 
   \begin{tasks}
-    \task{Crear interfaz de creación de campaña}
-    \task{Crear tabla de campañas en la base de datos}
-    \task{Crear código de persistencia de nuevas campañas}
+    \task{Crear interfaz de creación de campaña} 4
+    \task{Crear tabla de campañas en la base de datos} 1
+    \task{Crear código de persistencia de nuevas campañas} 1
   \end{tasks}
 
 
@@ -426,9 +426,9 @@ ID & Story points & Business value\\
   \end{criterios} 
 
   \begin{tasks}
-    \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma}
-    \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios}
-    \task{Crear código de persistencia para la lista de destinatarios de la campaña}
+    \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma} 0.5
+    \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios} 1
+    \task{Crear código de persistencia para la lista de destinatarios de la campaña} 1
   \end{tasks}
 
 
@@ -445,7 +445,7 @@ ID & Story points & Business value\\
    
 
   \begin{tasks}
-    \task{Modificar componente de selección de destinatarios para sólo permitir seleccionar alumnos del maestro y/o sus padres cuando el usuario actual tenga el rol de maestro}
+    \task{Modificar componente de selección de destinatarios para sólo permitir seleccionar alumnos del maestro y/o sus padres cuando el usuario actual tenga el rol de maestro} 2
   \end{tasks}
 
 
@@ -463,9 +463,9 @@ ID & Story points & Business value\\
   \end{criterios} 
    
   \begin{tasks}
-    \task{Agregar componente tabular en el formulario de creación de campaña que permita ingresar uno a uno los mensajes y visualizar los ya ingresados}
-    \task{Crear tabla de mensajes en la base de datos}
-    \task{Crear codigo de persistencia de los mensajes ingresados}
+    \task{Agregar componente tabular en el formulario de creación de campaña que permita ingresar uno a uno los mensajes y visualizar los ya ingresados} 1
+    \task{Crear tabla de mensajes en la base de datos} 1
+    \task{Crear codigo de persistencia de los mensajes ingresados} 1
   \end{tasks}
 
 
@@ -485,10 +485,10 @@ ID & Story points & Business value\\
   \end{criterios} 
 
   \begin{tasks}
-    \task{Crear una interfaz que liste todas las campañas creadas por el usuario actual}
-    \task{Crear interacción que muestre el formulario de edición de la campaña cuando se la selecciona en la lista anterior}
-    \task{Modificar formulario de edición de campaña y sus componentes para que tenga precargados los datos de una campaña existente y permita modificarla}
-    \task{Modificar código de persistencia de campañas para que permita guardar cambios en una campaña existente}
+    \task{Crear una interfaz que liste todas las campañas creadas por el usuario actual} 3
+    \task{Crear interacción que muestre el formulario de edición de la campaña cuando se la selecciona en la lista anterior} 2
+    \task{Modificar formulario de edición de campaña y sus componentes para que tenga precargados los datos de una campaña existente y permita modificarla} 0.5
+    \task{Modificar código de persistencia de campañas para que permita guardar cambios en una campaña existente} 0.5
   \end{tasks}
 
 
@@ -502,8 +502,8 @@ ID & Story points & Business value\\
   \end{criterios} 
 
   \begin{tasks}
-    \task{Crear una API de envío de SMS que simule el envío guardando los mensajes enviados en una tabla en la base de datos}
-    \task{Crear un servicio que periódicamente envíe los mensajes cuyo horario fue alcanzado utilizando el API de envío de SMS}
+    \task{Crear una API de envío de SMS que simule el envío guardando los mensajes enviados en una tabla en la base de datos} 8
+    \task{Crear un servicio que periódicamente envíe los mensajes cuyo horario fue alcanzado utilizando el API de envío de SMS} 6
   \end{tasks}
 
 
@@ -519,10 +519,10 @@ ID & Story points & Business value\\
   \end{criterios} 
 
   \begin{tasks}
-    \task{Agregar un campo textual en el formulario de edición de campaña que permita especificar un criterio de eficacia en lenguaje natural}
-    \task{Agregar un campo numérico en el formulario de edición de campaña que permita ingresar el valor de eficacia medido}
-    \task{Agregar campos en la tabla de campaña para almacenar el criterio de eficacia y la eficacia medida}
-    \task{Modificar código de persistencia de campaña para guardar el criterio de eficacia y la eficacia medida}
+    \task{Agregar un campo textual en el formulario de edición de campaña que permita especificar un criterio de eficacia en lenguaje natural} 1
+    \task{Agregar un campo numérico en el formulario de edición de campaña que permita ingresar el valor de eficacia medido} 1
+    \task{Agregar campos en la tabla de campaña para almacenar el criterio de eficacia y la eficacia medida} 4
+    \task{Modificar código de persistencia de campaña para guardar el criterio de eficacia y la eficacia medida} 2
   \end{tasks}
 \end{stories}
 
