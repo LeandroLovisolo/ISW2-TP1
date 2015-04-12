@@ -80,10 +80,10 @@
   \end{itemize}
 }
 
-% Uso: \story{rol}{historia}{criterio de aceptación}.
-\newcommand{\story}[3]{
+% Uso: \story{id}{rol}{historia}{criterio de aceptación}.
+\newcommand{\story}[4]{
   \item
-  Como \emph{#1} quiero \emph{#2} para \emph{#3}.
+  \textbf{ID #1:} Como \emph{#2} quiero \emph{#3} para \emph{#4}.
 }
 
 % Uso: \storyid{id}{rol}{historia}{criterio de aceptación}.
@@ -255,97 +255,141 @@ Presentamos, a continuación, las user stories en el product backlog, agrupadas 
 \subsection{Gestión de alumnos, padres, cursos y maestros}
 
 \begin{stories}
-  \story{director}
+  \story{1}{director}
         {ingresar los datos de un alumno}
-        {inscribirlo en el colegio}
+        {inscribirlo en el colegio} 
 
-  \story{director}
+  \story{2}{director}
         {ver los datos de un alumno}
-        {actualizarlos o dar de baja al alumno}
+        {actualizarlos o dar de baja al alumno} 
 
-  \story{director}
+  \story{3}{director}
         {ingresar los datos de un padre}
-        {darlo de alta en el sistema}
+        {darlo de alta en el sistema} 
 
-  \story{director}
+  \story{4}{director}
         {ver los datos de un padre}
-        {actualizarlos o dar de baja al padre}
+        {actualizarlos o dar de baja al padre} 
 
-  \story{director}
+  \story{5}{director}
         {seleccionar un padre}
-        {asignarlo como padre de un alumno inscripto}
+        {asignarlo como padre de un alumno inscripto} 
 
-  \story{director}
+  \story{6}{director}
         {ingresar el grado, división, turno y aula de un curso}
-        {darlo de alta en el sistema}
+        {darlo de alta en el sistema} 
 
-  \story{director}
+  \story{7}{director}
         {ver los datos de un curso}
-        {actualizarlos o dar de baja el curso}
+        {actualizarlos o dar de baja el curso} 
 
-  \story{director}
+  \story{8}{director}
         {ingresar los datos de un maestro}
-        {darlo de alta en el sistema}
+        {darlo de alta en el sistema} 
 
-  \story{director}
+  \story{9}{director}
         {ver los datos de un maestro}
-        {actualizarlos o dar de baja al maestro}
+        {actualizarlos o dar de baja al maestro} 
 
-  \story{director}
+  \story{10}{director}
         {seleccionar un maestro}
-        {asignárselo a un curso}
+        {asignárselo a un curso} 
 
-  \story{director}
+  \story{11}{director}
         {seleccionar un conjunto de alumnos}
-        {asignarles un curso}
+        {asignarles un curso} 
 \end{stories}
 
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ID & Story points & Business value\\
+\hline
+1 & 3 & 3\\
+2 & 2 & 3\\
+3 & 3 & 3\\
+4 & 2 & 3\\
+5 & 2 & 3\\
+6 & 3 & 3\\
+7 & 2 & 3\\
+8 & 3 & 3\\
+9 & 2 & 3\\
+10 & 2 & 3\\
+11 & 2 & 3\\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{Gestión de eventos}
 
 \begin{stories}
-  \story{director, secretario o maestro}
+  \story{12}{director, secretario o maestro}
         {ingresar la fecha y descripción de un nuevo evento}
-        {darlo de alta en el sistema}
+        {darlo de alta en el sistema} 
 
-  \story{director, secretario o maestro}
+  \story{13}{director, secretario o maestro}
         {ver los datos de un evento}
-        {modificarlos o dar de baja el evento}
+        {modificarlos o dar de baja el evento} 
 \end{stories}
 
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ID & Story points & Business value\\
+\hline
+12 & 3 & 1\\
+13 & 2 & 3\\
+\hline
+\end{tabular}
+\end{center}
 
 \subsection{Gestión de campañas}
 
 \begin{stories}
-  \story{director, secretario o maestro}
+  \story{14}{director, secretario o maestro}
         {ingresar el título de una nueva campaña y seleccionar un evento existente}
-        {crear una campaña asociada al evento seleccionado}
+        {crear una campaña asociada al evento seleccionado} 
 
-  \story{maestro}
+  \story{15}{maestro}
         {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña creada por mí}
+        {asignarlos como destinatarios de una campaña creada por mí} 
 
-  \story{director o secretario}
+  \story{16}{director o secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña creada por mí}
+        {asignarlos como destinatarios de una campaña creada por mí} 
 
-  \story{director, secretario o maestro}
+  \story{17}{director, secretario o maestro}
         {ingresar un mensaje, fecha, hora y tipo}
-        {agregar un nuevo mensaje a una campaña creada por mí}
+        {agregar un nuevo mensaje a una campaña creada por mí} 
 
-  \story{director, secretario o maestro}
-        {ver los mensajes de una campaña creada por mí}
+  \story{18}{director, secretario o maestro}
+        {ver los mensajes de una campaña creada por mí} 
         {modificarlos o eliminarlos}
 
-  \story{director, secretario o maestro}
+  \story{19}{director, secretario o maestro}
         {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
-        {incrementar la eficacia de un evento}
+        {que sean recibidos en el momento adecuado por sus destinatarios} 
 
-  \story{director, secretario o maestro}
+  \story{20}{director, secretario o maestro}
         {ingresar la eficacia de una campaña luego de su terminación}
-        {compararla con otras campañas similares}
+        {compararla con otras campañas similares} 
 \end{stories}
 
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ID & Story points & Business value\\
+\hline
+14 & 3 & 1\\
+15 & 2 & 1\\
+16 & 2 & 1\\
+17 & 2 & 1\\
+18 & 5 & 1\\
+19 & 8 & 1\\
+20 & 5 & 1\\
+\hline
+\end{tabular}
+\end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Sprint backlog                                                            %%
@@ -358,29 +402,12 @@ Las user stories a continuación se toman del product backlog y corresponden al 
 
 Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requiriendo cierta funcionalidad pedida desde los responsables del proyecto. La misma deberá incluir la posibilidad de definir una campaña para un cierto evento, simular su seguimiento y envío de mensajes, y su posterior evaluación''}.
 
-\begin{center}
-\begin{tabular}{|c|l|c|c|}
-\hline
-ID & Story points & Business value\\
-\hline
-1 & 123 & 1\\
-2 & 444 & 3\\
-3 & 111 & 3\\
-4 & 555 & 3\\
-5 & 123 & 3\\
-6 & 123 & 3\\
-7 & 123 & 9\\
-8 & 123 & 9\\
-\hline
-\end{tabular}
-\end{center}
-
 
 \subsection{Descripción de user stories, criterios de aceptación y tareas}
 
 \begin{stories}
 
-  \storyid{1}
+  \storyid{12}
           {director, secretario o maestro}
           {ingresar la fecha y descripción de un nuevo evento}
           {darlo de alta en el sistema}
@@ -398,7 +425,7 @@ ID & Story points & Business value\\
   \end{tasks}
 
 
-  \storyid{2}
+  \storyid{14}
           {director, secretario o maestro}
           {ingresar el título de una nueva campaña y seleccionar un evento existente}
           {crear una campaña asociada al evento seleccionado}
@@ -415,24 +442,7 @@ ID & Story points & Business value\\
   \end{tasks}
 
 
-  \storyid{3}
-          {director o secretario}
-          {seleccionar un subconjunto de los alumnos del colegio}
-          {asignarlos como destinatarios de una campaña creada por mí}
-        
-   \begin{criterios}
-  	\criteria{El subconjunto de alumnos seleccionado no puede ser vacío.}
-    \criteria{El subconjunto de alumnos se asocia a una campaña existente.}
-  \end{criterios} 
-
-  \begin{tasks}
-    \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma} 0.5
-    \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios} 1
-    \task{Crear código de persistencia para la lista de destinatarios de la campaña} 1
-  \end{tasks}
-
-
-  \storyid{4}
+  \storyid{15}
           {maestro}
           {seleccionar un subconjunto de mis alumnos}
           {asignarlos como destinatarios de una campaña creada por mí}
@@ -449,7 +459,24 @@ ID & Story points & Business value\\
   \end{tasks}
 
 
-  \storyid{5}{director, secretario o maestro}
+  \storyid{16}
+          {director o secretario}
+          {seleccionar un subconjunto de los alumnos del colegio}
+          {asignarlos como destinatarios de una campaña creada por mí}
+        
+   \begin{criterios}
+  	\criteria{El subconjunto de alumnos seleccionado no puede ser vacío.}
+    \criteria{El subconjunto de alumnos se asocia a una campaña existente.}
+  \end{criterios} 
+
+  \begin{tasks}
+    \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma} 0.5
+    \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios} 1
+    \task{Crear código de persistencia para la lista de destinatarios de la campaña} 1
+  \end{tasks}
+  
+  
+  \storyid{17}{director, secretario o maestro}
              {ingresar un mensaje, fecha, hora y tipo}
              {agregar un nuevo mensaje a una campaña creada por mí}
 
@@ -469,7 +496,7 @@ ID & Story points & Business value\\
   \end{tasks}
 
 
-  \storyid{6}
+  \storyid{18}
           {director, secretario o maestro}
           {ver los mensajes de una campaña creada por mí}
           {modificarlos o eliminarlos}
@@ -492,7 +519,7 @@ ID & Story points & Business value\\
   \end{tasks}
 
 
-  \storyid{7}{director, secretario o maestro}
+  \storyid{19}{director, secretario o maestro}
              {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
              {que sean recibidos en el momento adecuado por sus destinatarios}
   
@@ -507,7 +534,7 @@ ID & Story points & Business value\\
   \end{tasks}
 
 
-  \storyid{8}{director, secretario o maestro}
+  \storyid{20}{director, secretario o maestro}
              {ingresar la eficacia de una campaña luego de su terminación}
              {compararla con otras campañas similares}
         
