@@ -210,7 +210,7 @@ Presentamos, a continuación, las user stories en el product backlog, agrupadas 
   \story{director}
         {ver los datos de un padre}
         {actualizarlos o dar de baja al padre}
-       
+
   \story{director}
         {seleccionar un padre}
         {asignarlo como padre de un alumno inscripto}
@@ -258,8 +258,8 @@ Presentamos, a continuación, las user stories en el product backlog, agrupadas 
 
 \begin{stories}
   \story{director, secretario o maestro}
-        {seleccionar un evento}
-        {crear una campaña asociada al mismo}
+        {ingresar el título de una nueva campaña y seleccionar un evento existente}
+        {crear una campaña asociada al evento seleccionado}
 
   \story{maestro}
         {seleccionar un subconjunto de mis alumnos}
@@ -324,11 +324,9 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
         {asignarlos como destinatarios de una campaña creada por mí}
 
   \begin{tasks}
-    \task{mostrar todas las campañas creadas por mí}
-    \task{seleccionar la campaña deseada}
-    \task{mostrar todos los alumnos que tengo a cargo}
-    \task{seleccionar un subconjunto de alumnos}
-    \task{cargar alumnos a la campaña}
+    \task{Agregar componente en el formulario de edición de campaña para seleccionar alumnos, padres o profesores.}
+    \task{Crear tabla de pertenencia de alumnos, padres o profesores a campañas.}
+    \task{Crear código de persistencia de las pertenencias a campañas.}
   \end{tasks}
 
   \story{director o secretario}
