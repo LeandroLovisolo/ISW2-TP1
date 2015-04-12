@@ -166,10 +166,9 @@ Vita, Sebastián        & 149/11 & sebastian\_vita@yahoo.com.ar\\
 
 En este trabajo se desarrolla una aplicación de envío de avisos, recordatorios y otros tipos de mensajes por medio de SMS a los padres y alumnos de un colegio primario.
 
-La aplicación se especifica y estima utilizando la metodología ágil Scrum, se realiza un diseño bajo el paradigma orientado a objetos respetando un conjunto de reglas de buenas prácticas de diseño, y finalmente se la implementa en el lenguaje Python.
+La aplicación se especifica y estima utilizando la metodología ágil Scrum, se realiza un diseño bajo el paradigma orientado a objetos respetando un conjunto de reglas de buenas prácticas de diseño y, finalmente, se la implementa en el lenguaje Python.
 
-Para más información, referirise al enunciado de este trabajo práctico.
-
+Para más información, referirse al enunciado de este trabajo práctico\footnote{http://cor.to/enunciadoISW2}.
 
 \subsection{Roles de usuario}
 
@@ -190,7 +189,7 @@ Por brevedad, se utilizan los siguientes roles en las user stories a lo largo de
 
 \section{Product backlog}
 
-Presentamos a continuación las user stories en el product backlog, agrupadas según el tipo de tarea que describen.
+Presentamos, a continuación, las user stories en el product backlog, agrupadas según el tipo de tarea que describen.
 
 
 \subsection{Gestión de alumnos, padres, cursos y maestros}
@@ -245,11 +244,11 @@ Presentamos a continuación las user stories en el product backlog, agrupadas se
 \subsection{Gestión de eventos}
 
 \begin{stories}
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ingresar la fecha y descripción de un evento}
         {darlo de alta en el sistema}
 
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ver los datos de un evento}
         {modificarlos o dar de baja el evento}
 \end{stories}
@@ -258,31 +257,31 @@ Presentamos a continuación las user stories en el product backlog, agrupadas se
 \subsection{Gestión de campañas}
 
 \begin{stories}
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {seleccionar un evento}
-        {crear una campaña asociada al evento seleccionado}
+        {crear una campaña asociada al mismo}
 
   \story{maestro}
         {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña que yo creé}
+        {asignarlos como destinatarios de una campaña creada por mí}
 
-  \story{director ó secretario}
+  \story{director o secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña que yo creé}
+        {asignarlos como destinatarios de una campaña creada por mí}
 
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ingresar un mensaje, fecha, hora y tipo}
-        {agregar un nuevo mensaje a una campaña que yo creé}
+        {agregar un nuevo mensaje a una campaña creada por mí}
 
-  \story{director, secretario ó maestro}
-        {ver los mensajes de una campaña que yo creé}
+  \story{director, secretario o maestro}
+        {ver los mensajes de una campaña creada por mí}
         {modificarlos o eliminarlos}
 
-  \story{director, secretario ó maestro}
-        {que se envíen automáticamente y en el momento correcto los mensajes de una campaña que yo creé}
+  \story{director, secretario o maestro}
+        {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
         {incrementar la eficacia de un evento}
 
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ingresar la eficacia de una campaña luego de su terminación}
         {compararla con otras campañas similares}
 \end{stories}
@@ -300,7 +299,7 @@ Las user stories a continuación se toman del product backlog y corresponden al 
 Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requiriendo cierta funcionalidad pedida desde los responsables del proyecto. La misma deberá incluir la posibilidad de definir una campaña para un cierto evento, simular su seguimiento y envío de mensajes, y su posterior evaluación''}.
 
 \begin{stories}
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ingresar la fecha y descripción de un nuevo evento}
         {darlo de alta en el sistema}
 
@@ -310,7 +309,7 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
     \task{Crear código de persistencia de nuevos eventos}
   \end{tasks}
 
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ingresar el título de una nueva campaña y seleccionar un evento existente}
         {crear una campaña asociada al evento seleccionado}
 
@@ -322,19 +321,19 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 
   \story{maestro}
         {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña que yo creé}
+        {asignarlos como destinatarios de una campaña creada por mí}
 
   \begin{tasks}
-    \task{mostrar todas las campañas que creé}
+    \task{mostrar todas las campañas creadas por mí}
     \task{seleccionar la campaña deseada}
     \task{mostrar todos los alumnos que tengo a cargo}
     \task{seleccionar un subconjunto de alumnos}
     \task{cargar alumnos a la campaña}
   \end{tasks}
 
-  \story{director ó secretario}
+  \story{director o secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña que yo creé}
+        {asignarlos como destinatarios de una campaña creada por mí}
 
   \begin{tasks}
     \task{mostrar todas las campañas que creé}
@@ -344,9 +343,9 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
     \task{cargar alumnos a la campaña}
   \end{tasks}
 
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ingresar un mensaje, fecha, hora y tipo}
-        {agregar un nuevo mensaje a una campaña que yo creé}
+        {agregar un nuevo mensaje a una campaña creada por mí}
 
   \begin{tasks}
     \task{mostrar todas las campañas que creé}
@@ -357,15 +356,15 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
     \task{cargar el mensaje en el sistema}
   \end{tasks}
 
-  \story{director, secretario ó maestro}
-        {ver los mensajes de una campaña que yo creé}
+  \story{director, secretario o maestro}
+        {ver los mensajes de una campaña creada por mí}
         {modificarlos o eliminarlos}
 
-  \story{director, secretario ó maestro}
-        {que se envíen automáticamente y en el momento correcto los mensajes de una campaña que yo creé}
+  \story{director, secretario o maestro}
+        {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
         {incrementar la eficacia de un evento}
 
-  \story{director, secretario ó maestro}
+  \story{director, secretario o maestro}
         {ingresar la eficacia de una campaña luego de su terminación}
         {compararla con otras campañas similares}
 \end{stories}
