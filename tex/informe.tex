@@ -358,17 +358,23 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 
   \story{director, secretario o maestro}
         {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
-        {comunicar a sus destinatarios los mensajes en el momento correcto}
+        {que sean recibidos en el momento adecuado por sus destinatarios}
 
   \begin{tasks}
     \task{Crear una API de envío de SMS que simule el envío guardando los mensajes enviados en una tabla en la base de datos}
     \task{Crear un servicio que periódicamente envíe los mensajes cuyo horario fue alcanzado utilizando el API de envío de SMS}
   \end{tasks}
 
-
   \story{director, secretario o maestro}
         {ingresar la eficacia de una campaña luego de su terminación}
         {compararla con otras campañas similares}
+
+  \begin{tasks}
+    \task{Agregar un campo textual en el formulario de edición de campaña que permita especificar un criterio de eficacia en lenguaje natural}
+    \task{Agregar un campo numérico en el formulario de edición de campaña que permita ingresar el valor de eficacia medido}
+    \task{Agregar campos en la tabla de campaña para almacenar el criterio de eficacia y la eficacia medida}
+    \task{Modificar código de persistencia de campaña para guardar el criterio de eficacia y la eficacia medida}
+  \end{tasks}
 \end{stories}
 
 \end{document}
