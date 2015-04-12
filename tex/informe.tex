@@ -1,4 +1,3 @@
-
 \documentclass[a4paper, 10pt, twoside]{article}
 
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
@@ -87,17 +86,50 @@
   Como \emph{#1} quiero \emph{#2} para \emph{#3}.
 }
 
+% Uso: \storyid{id}{rol}{historia}{criterio de aceptación}.
+\newcommand{\storyid}[4]{
+  \item
+  \textbf{ID #1:} Como \emph{#2} quiero \emph{#3} para \emph{#4}.
+}
+
 % Entorno dentro del cual se declaran las tareas de un story con el macro \task.
 \newenvironment{tasks}{
   Tareas:
+  \begin{enumerate}
+}{
+  \end{enumerate}
+}
+
+% Uso: \task{descripción de la story}
+\newcommand{\task}[1] {
+  \item #1.\\
+  \textbf{Horas estimadas:}
+}
+
+% Entorno dentro del cual se declaran las descripciones de un story con el macro \task.
+\newenvironment{details}{
+  Descripción:
   \begin{itemize}
 }{
   \end{itemize}
 }
 
-% Uso: \task{descripción de la tarea}
-\newcommand{\task}[1] {
+% Uso: \detail{descripción de la story}
+\newcommand{\detail}[1] {
   \item #1.
+}
+
+% Entorno dentro del cual se declaran los criterios de aceptación de un story con el macro \criteria.
+\newenvironment{criterios}{
+  Criterio de aceptación:
+  \begin{itemize}
+}{
+  \end{itemize}
+}
+
+% Uso: \detail{criterio de aceptación}
+\newcommand{\criteria}[1] {
+  \item #1
 }
 
 % Uso: \storydetails{id}{descripción}{detalles}{criterios de aceptación}{tareas}
@@ -329,48 +361,52 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 \begin{center}
 \begin{tabular}{|c|l|c|c|}
 \hline
-ID & User story & Story points & Valor de negocio\\
+ID & Story points & Business value\\
 \hline
-1 & xxx & 123 & 9\\
-2 & yyy & 444 & 5\\
-3 & zzz & 111 & 4\\
-4 & www & 555 & 4\\
+1 & 123 & 9\\
+2 & 444 & 5\\
+3 & 111 & 4\\
+4 & 555 & 4\\
+5 & 123 & 9\\
+6 & 123 & 9\\
+7 & 123 & 9\\
+8 & 123 & 9\\
 \hline
 \end{tabular}
 \end{center}
 
 
-\subsection{Detalles de los user stories y tareas}
-
-\storydetails{1}{Como xxx quiero yyy para zzz}{
-  \item detalle 1
-  \item detalle 2
-  \item detalle 3
-}{
-  \item criterio 1
-  \item criterio 2
-  \item criterio 3
-}{
-  \item tarea 1
-  \item tarea 2
-  \item tarea 3
-}
-
+\subsection{Descripción de user stories, criterios de aceptación y tareas}
 
 \begin{stories}
-  \story{director, secretario o maestro}
-        {ingresar la fecha y descripción de un nuevo evento}
-        {darlo de alta en el sistema}
 
+  \storyid{1}
+          {director, secretario o maestro}
+          {ingresar la fecha y descripción de un nuevo evento}
+          {darlo de alta en el sistema}
+        
+   \begin{criterios}
+    \criteria{La fecha ingresada es correcta.}
+  	\criteria{La fecha ingresada es mayor a la fecha actual.}
+    \criteria{No se puede validar el evento nuevo si el campo fecha no se encuentra configurado.}
+  \end{criterios} 
+   
   \begin{tasks}
     \task{Crear interfaz de creación de eventos}
     \task{Crear tabla de eventos en la base de datos}
     \task{Crear código de persistencia de nuevos eventos}
   \end{tasks}
 
-  \story{director, secretario o maestro}
-        {ingresar el título de una nueva campaña y seleccionar un evento existente}
-        {crear una campaña asociada al evento seleccionado}
+
+  \storyid{2}
+          {director, secretario o maestro}
+          {ingresar el título de una nueva campaña y seleccionar un evento existente}
+          {crear una campaña asociada al evento seleccionado}
+  
+   \begin{criterios}
+  	\criteria{El título de la campaña tiene más de tres caracteres.}
+    \criteria{No se puede crear un título ya existente.}
+  \end{criterios} 
 
   \begin{tasks}
     \task{Crear interfaz de creación de campaña}
@@ -378,9 +414,16 @@ ID & User story & Story points & Valor de negocio\\
     \task{Crear código de persistencia de nuevas campañas}
   \end{tasks}
 
-  \story{director o secretario}
-        {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña creada por mí}
+
+  \storyid{3}
+          {director o secretario}
+          {seleccionar un subconjunto de los alumnos del colegio}
+          {asignarlos como destinatarios de una campaña creada por mí}
+        
+   \begin{criterios}
+  	\criteria{El subconjunto de alumnos seleccionado no puede ser vacío.}
+    \criteria{El subconjunto de alumnos se asocia a una campaña existente.}
+  \end{criterios} 
 
   \begin{tasks}
     \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma}
@@ -388,27 +431,58 @@ ID & User story & Story points & Valor de negocio\\
     \task{Crear código de persistencia para la lista de destinatarios de la campaña}
   \end{tasks}
 
-  \story{maestro}
-        {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña creada por mí}
+
+  \storyid{4}
+          {maestro}
+          {seleccionar un subconjunto de mis alumnos}
+          {asignarlos como destinatarios de una campaña creada por mí}
+            
+   \begin{criterios}
+  	\criteria{El conjunto de alumnos de mi clase es visible por mí.}
+    \criteria{El subconjunto de alumnos seleccionado no es vacío.}
+    \criteria{El subconjunto de alumnos se asigna a una campaña existente.}
+  \end{criterios} 
+   
 
   \begin{tasks}
     \task{Modificar componente de selección de destinatarios para sólo permitir seleccionar alumnos del maestro y/o sus padres cuando el usuario actual tenga el rol de maestro}
   \end{tasks}
 
-  \story{director, secretario o maestro}
-        {ingresar un mensaje, fecha, hora y tipo}
-        {agregar un nuevo mensaje a una campaña creada por mí}
 
+  \storyid{5}{director, secretario o maestro}
+             {ingresar un mensaje, fecha, hora y tipo}
+             {agregar un nuevo mensaje a una campaña creada por mí}
+
+   \begin{criterios}
+  	\criteria{El mensaje nuevo es no vacío.}
+    \criteria{La fecha del mensaje es válida.}
+    \criteria{La hora del mensaje es válida.}
+    \criteria{La hora del mensaje es distinta de la del resto de los mensajes de la campaña de la misma fecha.}
+    \criteria{El tipo de mensaje es de alguno de los cuatro tipos permitidos.}
+    \criteria{No se puede aprobar la creación del nuevo mensaje si no se validaron la fecha, el tipo, el mensaje y la hora.}
+  \end{criterios} 
+   
   \begin{tasks}
     \task{Agregar componente tabular en el formulario de creación de campaña que permita ingresar uno a uno los mensajes y visualizar los ya ingresados}
     \task{Crear tabla de mensajes en la base de datos}
     \task{Crear codigo de persistencia de los mensajes ingresados}
   \end{tasks}
 
-  \story{director, secretario o maestro}
-        {ver los mensajes de una campaña creada por mí}
-        {modificarlos o eliminarlos}
+
+  \storyid{6}
+          {director, secretario o maestro}
+          {ver los mensajes de una campaña creada por mí}
+          {modificarlos o eliminarlos}
+
+   \begin{criterios}
+    \criteria{El conjunto de todas mis campañas debe ser visible.}
+    \criteria{El mensaje modificado pertenece a una de mis campañas.}
+  	\criteria{El mensaje modificado no puede ser vacío.}
+    \criteria{La hora del mensaje modificado es válida.}
+    \criteria{La hora del mensaje modificado es distinta a la del resto de los mensajes de la campaña de la misma fecha.}
+    \criteria{El tipo de mensaje modificado es de alguno de los cuatro tipos permitidos.}
+    \criteria{El mensaje eliminado debe pertenecer a una de mis campañas.}
+  \end{criterios} 
 
   \begin{tasks}
     \task{Crear una interfaz que liste todas las campañas creadas por el usuario actual}
@@ -417,18 +491,32 @@ ID & User story & Story points & Valor de negocio\\
     \task{Modificar código de persistencia de campañas para que permita guardar cambios en una campaña existente}
   \end{tasks}
 
-  \story{director, secretario o maestro}
-        {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
-        {que sean recibidos en el momento adecuado por sus destinatarios}
+
+  \storyid{7}{director, secretario o maestro}
+             {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
+             {que sean recibidos en el momento adecuado por sus destinatarios}
+  
+   \begin{criterios}
+  	\criteria{El mensaje debe salir a la hora estipulada en la base de datos.}
+    \criteria{El mensaje debe ser enviado a todos sus destinatarios previamente configurados.}
+  \end{criterios} 
 
   \begin{tasks}
     \task{Crear una API de envío de SMS que simule el envío guardando los mensajes enviados en una tabla en la base de datos}
     \task{Crear un servicio que periódicamente envíe los mensajes cuyo horario fue alcanzado utilizando el API de envío de SMS}
   \end{tasks}
 
-  \story{director, secretario o maestro}
-        {ingresar la eficacia de una campaña luego de su terminación}
-        {compararla con otras campañas similares}
+
+  \storyid{8}{director, secretario o maestro}
+             {ingresar la eficacia de una campaña luego de su terminación}
+             {compararla con otras campañas similares}
+        
+   \begin{criterios}
+  	\criteria{El criterio de eficacia en lenguaje natural debe permitir generar un valor de eficacia.}
+    \criteria{El sistema debe poder calcular un valor de eficacia a partir del criterio de eficacia en lenguaje natural.}
+    \criteria{El valor de eficacia debe ser positivo.}
+    \criteria{El criterio de eficacia ingresado en formato numérico debe ser positivo.}
+  \end{criterios} 
 
   \begin{tasks}
     \task{Agregar un campo textual en el formulario de edición de campaña que permita especificar un criterio de eficacia en lenguaje natural}
