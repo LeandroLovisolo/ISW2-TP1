@@ -342,17 +342,19 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
         {agregar un nuevo mensaje a una campaña creada por mí}
 
   \begin{tasks}
-    \task{mostrar todas las campañas que creé}
-    \task{seleccionar la campaña deseada}
-    \task{ingresar el mensaje}
-    \task{ingresar fecha y hora en la que se desea enviar el mensaje}
-    \task{ingresar si el mensaje es del tipo anuncio/recordatorio/asignación/mensaje de aliento}
-    \task{cargar el mensaje en el sistema}
+    \task{Crear componente tabular que permita ingresar uno a uno los mensajes y visualizar los ya ingresados}
+    \task{Crear tabla de mensajes en la base de datos}
+    \task{Crear codigo de persistencia de los mensajes ingresados}
   \end{tasks}
 
   \story{director, secretario o maestro}
         {ver los mensajes de una campaña creada por mí}
         {modificarlos o eliminarlos}
+
+  \begin{tasks}
+    \task{Crear una interfaz que liste todas las campañas creadas por el usuario actual}
+    \task{Crear interacción que muestre el formulario de edición de la campaña cuando se la selecciona en la lista anterior}
+  \end{tasks}
 
   \story{director, secretario o maestro}
         {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
