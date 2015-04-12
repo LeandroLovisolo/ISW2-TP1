@@ -99,6 +99,30 @@
 \newcommand{\task}[1] {
   \item #1.
 }
+
+% Uso: \storydetails{id}{descripción}{detalles}{criterios de aceptación}{tareas}
+\newcommand{\storydetails}[5]{
+  \noindent
+  \textbf{ID #1: #2}
+
+  \noindent
+  Detalles:
+  \begin{itemize}
+    #3
+  \end{itemize}
+
+  \noindent
+  Criterio de aceptación:
+  \begin{itemize}
+    #4
+  \end{itemize}
+
+  \noindent
+  Tareas:
+  \begin{itemize}
+    #5
+  \end{itemize}
+}
 %%%%%%%%%% User stories y tareas - Fin %%%%%%%%%%
 
 
@@ -297,6 +321,37 @@ Presentamos, a continuación, las user stories en el product backlog, agrupadas 
 Las user stories a continuación se toman del product backlog y corresponden al sprint luego del cual se realiza la demo mencionada en el enunciado.
 
 Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requiriendo cierta funcionalidad pedida desde los responsables del proyecto. La misma deberá incluir la posibilidad de definir una campaña para un cierto evento, simular su seguimiento y envío de mensajes, y su posterior evaluación''}.
+
+\begin{center}
+\begin{tabular}{|c|l|c|c|}
+\hline
+ID & User story & Story points & Valor de negocio\\
+\hline
+1 & xxx & 123 & 9\\
+2 & yyy & 444 & 5\\
+3 & zzz & 111 & 4\\
+4 & www & 555 & 4\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Detalles de los user stories y tareas}
+
+\storydetails{1}{Como xxx quiero yyy para zzz}{
+  \item detalle 1
+  \item detalle 2
+  \item detalle 3
+}{
+  \item criterio 1
+  \item criterio 2
+  \item criterio 3
+}{
+  \item tarea 1
+  \item tarea 2
+  \item tarea 3
+}
+
 
 \begin{stories}
   \story{director, secretario o maestro}
