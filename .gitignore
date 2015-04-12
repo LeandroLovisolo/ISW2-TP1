@@ -3,6 +3,7 @@ tex/*.aux
 tex/*.log
 tex/*.out
 tex/*.txt
+tex/*.toc
 tex/*.pdf
 informe.pdf
 
