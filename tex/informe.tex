@@ -301,7 +301,7 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 
 \begin{stories}
   \story{director, secretario ó maestro}
-        {ingresar la fecha y descripción de un evento}
+        {ingresar la fecha y descripción de un nuevo evento}
         {darlo de alta en el sistema}
 
   \begin{tasks}
@@ -311,14 +311,13 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
   \end{tasks}
 
   \story{director, secretario ó maestro}
-        {seleccionar un evento}
+        {ingresar el título de una nueva campaña y seleccionar un evento existente}
         {crear una campaña asociada al evento seleccionado}
 
   \begin{tasks}
-    \task{mostrar todas los eventos que aún no hayan ocurrido.}
-    \task{seleccionar el evento deseado}
-    \task{crear nombre de la campaña}
-    \task{cargar la campaña en el sistema}
+    \task{Crear interfaz de creación de campaña}
+    \task{Crear tabla de campañas en la base de datos}
+    \task{Crear código de persistencia de nuevas campañas}
   \end{tasks}
 
   \story{maestro}
