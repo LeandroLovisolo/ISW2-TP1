@@ -319,26 +319,22 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
     \task{Crear código de persistencia de nuevas campañas}
   \end{tasks}
 
-  \story{maestro}
-        {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña creada por mí}
+  \story{director ó secretario}
+        {seleccionar un subconjunto de los alumnos del colegio}
+        {asignarlos como destinatarios de una campaña que yo creé}
 
   \begin{tasks}
-    \task{Agregar componente en el formulario de edición de campaña para seleccionar alumnos, padres o profesores.}
-    \task{Crear tabla de pertenencia de alumnos, padres o profesores a campañas.}
-    \task{Crear código de persistencia de las pertenencias a campañas.}
+    \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma}
+    \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios}
+    \task{Crear código de persistencia para la lista de destinatarios de la campaña}
   \end{tasks}
 
-  \story{director o secretario}
-        {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña creada por mí}
+  \story{maestro}
+        {seleccionar un subconjunto de mis alumnos}
+        {asignarlos como destinatarios de una campaña que yo creé}
 
   \begin{tasks}
-    \task{mostrar todas las campañas que creé}
-    \task{seleccionar la campaña deseada}
-    \task{mostrar todos los alumnos del colegio}
-    \task{seleccionar un subconjunto de alumnos}
-    \task{cargar alumnos a la campaña}
+    \task{Modificar componente de selección de destinatarios para sólo permitir seleccionar alumnos del maestro y sus respectivos profesores cuando el usuario actual tenga el rol de maestro}
   \end{tasks}
 
   \story{director, secretario o maestro}
