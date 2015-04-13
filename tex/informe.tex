@@ -406,18 +406,16 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 \subsection{Descripción de user stories, criterios de aceptación y tareas}
 
 \begin{stories}
-
   \storyid{12}
           {director, secretario o maestro}
           {ingresar la fecha y descripción de un nuevo evento}
           {darlo de alta en el sistema}
-        
+
    \begin{criterios}
-    \criteria{La fecha ingresada es correcta.}
-  	\criteria{La fecha ingresada es mayor a la fecha actual.}
-    \criteria{No se puede validar el evento nuevo si el campo fecha no se encuentra configurado.}
-  \end{criterios} 
-   
+    \criteria{El formulario no se envía si los campos fecha y descripción se dejan en blanco o si se ingresa una fecha inválida.}
+    \criteria{Luego de enviarse el formulario, se crea un evento en la base de datos con la información ingresada.}
+  \end{criterios}
+
   \begin{tasks}
     \task{Crear interfaz de creación de eventos} 4
     \task{Crear tabla de eventos en la base de datos} 1
@@ -429,11 +427,11 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
           {director, secretario o maestro}
           {ingresar el título de una nueva campaña y seleccionar un evento existente}
           {crear una campaña asociada al evento seleccionado}
-  
+
    \begin{criterios}
-  	\criteria{El título de la campaña tiene más de tres caracteres.}
-    \criteria{No se puede crear un título ya existente.}
-  \end{criterios} 
+     \criteria{El formulario no se envía si el título ingresado es menor a tres caracteres o si no se selecciona un evento.}
+     \criteria{Luego de enviarse el formulario, se crea una campaña en la base de datos con la información ingresada.}
+  \end{criterios}
 
   \begin{tasks}
     \task{Crear interfaz de creación de campaña} 4
