@@ -516,7 +516,7 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
    \begin{criterios}
     \criteria{El envío de mensajes debe realizarse automáticamente a la hora y destinatarios estipulados.}
     \criteria{Los mensajes enviados deben guardarse en una tabla en la base de datos donde quedan registrados los envíos simulados de SMS.}
-    \criteria{Se debe actualizar una columna booleana ``fue\_enviado'' en la tabla de mensajes con valor \emph{true} para todos los mensajes cuyo envío fue simulado.}
+    \criteria{Todo mensaje cuyo envío es simulado debe ser marcado como enviado en la base de datos.}
   \end{criterios}
 
   \begin{tasks}
