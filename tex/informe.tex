@@ -451,7 +451,6 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
     \criteria{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
   \end{criterios}
 
-
   \begin{tasks}
     \task{Modificar componente de selección de destinatarios para sólo permitir seleccionar alumnos del maestro y/o sus padres cuando el usuario actual tenga el rol de maestro} 2
   \end{tasks}
@@ -461,32 +460,28 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
           {director o secretario}
           {seleccionar un subconjunto de los alumnos del colegio}
           {asignarlos como destinatarios de una campaña creada por mí}
-        
-   \begin{criterios}
-  	\criteria{El subconjunto de alumnos seleccionado no puede ser vacío.}
-    \criteria{El subconjunto de alumnos se asocia a una campaña existente.}
-  \end{criterios} 
+
+  \begin{criterios}
+    \criteria{El formulario no se envía si no se selecciona al menos un alumno.}
+    \criteria{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
+  \end{criterios}
 
   \begin{tasks}
     \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma} 0.5
     \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios} 1
     \task{Crear código de persistencia para la lista de destinatarios de la campaña} 1
   \end{tasks}
-  
-  
-  \storyid{17}{director, secretario o maestro}
-             {ingresar un mensaje, fecha, hora y tipo}
-             {agregar un nuevo mensaje a una campaña creada por mí}
 
-   \begin{criterios}
-  	\criteria{El mensaje nuevo es no vacío.}
-    \criteria{La fecha del mensaje es válida.}
-    \criteria{La hora del mensaje es válida.}
-    \criteria{La hora del mensaje es distinta de la del resto de los mensajes de la campaña de la misma fecha.}
-    \criteria{El tipo de mensaje es de alguno de los cuatro tipos permitidos.}
-    \criteria{No se puede aprobar la creación del nuevo mensaje si no se validaron la fecha, el tipo, el mensaje y la hora.}
-  \end{criterios} 
-   
+
+  \storyid{17}{director, secretario o maestro}
+              {ingresar un mensaje, fecha, hora y tipo}
+              {agregar un nuevo mensaje a una campaña creada por mí}
+
+  \begin{criterios}
+    \criteria{El formulario no se envía si no se completan todos los campos, o si la fecha/hora ingresada es inválida, o si ya hay otro mensaje con la misma fecha/hora ingresada.}
+    \criteria{Luego de enviado el formulario, se crea en la base de datos un nuevo mensaje asociado a la campaña desde la que se llegó al formulario, con la información ingresada en el formulario.}
+  \end{criterios}
+
   \begin{tasks}
     \task{Agregar componente tabular en el formulario de creación de campaña que permita ingresar uno a uno los mensajes y visualizar los ya ingresados} 1
     \task{Crear tabla de mensajes en la base de datos} 1
@@ -500,14 +495,11 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
           {modificarlos o eliminarlos}
 
    \begin{criterios}
-    \criteria{El conjunto de todas mis campañas debe ser visible.}
-    \criteria{El mensaje modificado pertenece a una de mis campañas.}
-  	\criteria{El mensaje modificado no puede ser vacío.}
-    \criteria{La hora del mensaje modificado es válida.}
-    \criteria{La hora del mensaje modificado es distinta a la del resto de los mensajes de la campaña de la misma fecha.}
-    \criteria{El tipo de mensaje modificado es de alguno de los cuatro tipos permitidos.}
-    \criteria{El mensaje eliminado debe pertenecer a una de mis campañas.}
-  \end{criterios} 
+    \criteria{En caso de modificar un mensaje, el formulario debe precargarse con los datos del mensaje original, no se envía si no se completan todos los campos, o si la fecha/hora ingresada es inválida, o si ya hay otro mensaje con la misma fecha/hora ingresada.}
+    \criteria{Luego de enviado el formulario, se actualiza el mensaje en la base de datos con la información ingresada en el formulario.}
+    \criteria{En caso de eliminar un mensaje, debe ofrecerse una confirmación antes de realizar la operación.}
+    \criteria{Luego de finalizada la operación, debe eliminarse el mensaje en la base de datos.}
+  \end{criterios}
 
   \begin{tasks}
     \task{Crear una interfaz que liste todas las campañas creadas por el usuario actual} 3
