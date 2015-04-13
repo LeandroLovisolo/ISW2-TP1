@@ -510,13 +510,14 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 
 
   \storyid{19}{director, secretario o maestro}
-             {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
-             {que sean recibidos en el momento adecuado por sus destinatarios}
-  
+              {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
+              {que sean recibidos en el momento adecuado por sus destinatarios}
+
    \begin{criterios}
     \criteria{El envío de mensajes debe realizarse automáticamente a la hora y destinatarios estipulados.}
-  	\criteria{Los mensajes enviados deben guardarse en la base de datos simulando su envío.}
-  \end{criterios} 
+    \criteria{Los mensajes enviados deben guardarse en una tabla en la base de datos donde quedan registrados los envíos simulados de SMS.}
+    \criteria{Se debe actualizar una columna booleana ``fue\_enviado'' en la tabla de mensajes con valor \emph{true} para todos los mensajes cuyo envío fue simulado.}
+  \end{criterios}
 
   \begin{tasks}
     \task{Crear una API de envío de SMS que simule el envío guardando los mensajes enviados en una tabla en la base de datos} 8
@@ -525,13 +526,13 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 
 
   \storyid{20}{director, secretario o maestro}
-             {ingresar la eficacia de una campaña luego de su terminación}
-             {compararla con otras campañas similares}
-        
-   \begin{criterios}
-    \criteria{Debe ser posible ingresar en el formulario, el nombre del criterio de eficacia y un valor entero para el mismo.}
-    \criteria{Los datos del formulario de eficacia deben ser guardados en la base de datos.}
-  \end{criterios} 
+              {ingresar la eficacia de una campaña luego de su terminación}
+              {compararla con otras campañas similares}
+
+  \begin{criterios}
+    \criteria{El formulario no se envía si no se completan todos los campos, o si el valor de la eficacia medida no es un valor numérico.}
+    \criteria{Luego de enviarse el formulario, se actualiza la campaña en la base de datos con la información de eficacia ingresada.}
+  \end{criterios}
 
   \begin{tasks}
     \task{Agregar un campo textual en el formulario de edición de campaña que permita especificar un criterio de eficacia en lenguaje natural} 1
