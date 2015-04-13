@@ -269,10 +269,6 @@ Presentamos, a continuación, las user stories en el product backlog, agrupadas 
   \story{9}{director}
         {seleccionar un maestro}
         {asignárselo a un curso} 
-
-  \story{10}{director}
-        {seleccionar un conjunto de alumnos}
-        {asignarles un curso} 
 \end{stories}
 
 \begin{center}
@@ -289,7 +285,6 @@ ID & Story points & Business value\\
 7 & 2 & 3\\
 8 & 3 & 3\\
 9 & 2 & 3\\
-10 & 2 & 3\\
 \hline
 \end{tabular}
 \end{center}
@@ -297,11 +292,11 @@ ID & Story points & Business value\\
 \subsection{Gestión de eventos}
 
 \begin{stories}
-  \story{11}{director, secretario o maestro}
+  \story{10}{director, secretario o maestro}
         {ingresar la fecha y descripción de un nuevo evento}
         {darlo de alta en el sistema} 
 
-  \story{12}{director, secretario o maestro}
+  \story{11}{director, secretario o maestro}
         {ver los datos de un evento}
         {modificarlos o dar de baja el evento} 
 \end{stories}
@@ -311,8 +306,8 @@ ID & Story points & Business value\\
 \hline
 ID & Story points & Business value\\
 \hline
-11 & 3 & 1\\
-12 & 2 & 3\\
+10 & 3 & 1\\
+11 & 2 & 3\\
 \hline
 \end{tabular}
 \end{center}
@@ -320,31 +315,31 @@ ID & Story points & Business value\\
 \subsection{Gestión de campañas}
 
 \begin{stories}
-  \story{13}{director, secretario o maestro}
+  \story{12}{director, secretario o maestro}
         {ingresar el título de una nueva campaña y seleccionar un evento existente}
         {crear una campaña asociada al evento seleccionado} 
 
-  \story{14}{maestro}
+  \story{13}{maestro}
         {seleccionar un subconjunto de mis alumnos}
         {asignarlos como destinatarios de una campaña al momento de su creación} 
 
-  \story{15}{director o secretario}
+  \story{14}{director o secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
         {asignarlos como destinatarios de una campaña al momento de su creación} 
 
-  \story{16}{director, secretario o maestro}
+  \story{15}{director, secretario o maestro}
         {ingresar un mensaje, fecha, hora y tipo}
         {agregar un nuevo mensaje a una campaña que yo creé} 
 
-  \story{17}{director, secretario o maestro}
+  \story{16}{director, secretario o maestro}
         {ver los mensajes de una campaña que yo creé} 
         {modificarlos o eliminarlos}
 
-  \story{18}{director, secretario o maestro}
+  \story{17}{director, secretario o maestro}
         {que se envíen automáticamente y en el momento programado los mensajes de una campaña que yo creé}
         {que sean recibidos en el momento adecuado por sus destinatarios} 
 
-  \story{19}{director, secretario o maestro}
+  \story{18}{director, secretario o maestro}
         {ingresar la eficacia de una campaña luego de su terminación}
         {compararla con otras campañas similares} 
 \end{stories}
@@ -354,13 +349,13 @@ ID & Story points & Business value\\
 \hline
 ID & Story points & Business value\\
 \hline
-13 & 3 & 1\\
+12 & 3 & 1\\
+13 & 2 & 1\\
 14 & 2 & 1\\
 15 & 2 & 1\\
-16 & 2 & 1\\
-17 & 5 & 1\\
-18 & 8 & 1\\
-19 & 5 & 1\\
+16 & 5 & 1\\
+17 & 8 & 1\\
+18 & 5 & 1\\
 \hline
 \end{tabular}
 \end{center}
@@ -411,7 +406,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \subsection{Descripción de user stories, criterios de aceptación y tareas}
 
-\sprintstory{13}
+\sprintstory{12}
             {director, secretario o maestro}
             {ingresar el título de una nueva campaña y seleccionar un evento existente}
             {crear una campaña asociada al evento seleccionado}
@@ -437,7 +432,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{tasks}
 
 
-\sprintstory{14}
+\sprintstory{13}
             {maestro}
             {seleccionar un subconjunto de mis alumnos}
             {asignarlos como destinatarios de una campaña al momento de su creación}
@@ -482,7 +477,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 % \end{tasks}
 
 
-\sprintstory{16}
+\sprintstory{15}
             {director, secretario o maestro}
             {ingresar un mensaje, fecha, hora y tipo}
             {agregar un nuevo mensaje a una campaña que yo creé}
@@ -537,7 +532,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 % \end{tasks}
 %
 
-\sprintstory{18}
+\sprintstory{17}
             {director, secretario o maestro}
             {que se envíen automáticamente y en el momento programado los mensajes de una campaña que yo creé}
             {que sean recibidos en el momento adecuado por sus destinatarios}
@@ -563,7 +558,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
   \task{Crear servicio EmisorDeMensajes}{2:00}
 \end{tasks}
 
-\sprintstory{19}
+\sprintstory{18}
             {director, secretario o maestro}
             {ingresar la eficacia de una campaña luego de su terminación}
             {compararla con otras campañas similares}
