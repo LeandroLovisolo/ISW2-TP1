@@ -73,7 +73,8 @@
 
 
 %%%%%%%%%% User stories y tareas - Inicio %%%%%%%%%%
-% Entorno dentro del cual se declaran las stories con el macro \story.
+% Entorno dentro del cual se declaran las stories del product backlog con el
+% macro \story.
 \newenvironment{stories}{
   \begin{itemize}
 }{
@@ -86,74 +87,52 @@
   \textbf{ID #1:} Como \emph{#2} quiero \emph{#3} para \emph{#4}.
 }
 
-% Uso: \storyid{id}{rol}{historia}{criterio de aceptación}.
-\newcommand{\storyid}[4]{
-  \item
+% Uso: \sprintstory{id}{rol}{historia}{criterio de aceptación}.
+\newcommand{\sprintstory}[4]{
+  \noindent
   \textbf{ID #1:} Como \emph{#2} quiero \emph{#3} para \emph{#4}.
+}
+
+% Entorno dentro del cual se declaran los detalles de un story con el macro
+% \detalle.
+\newenvironment{detalles}{
+  \textbf{Descripción:}
+  \begin{itemize}
+}{
+  \end{itemize}
+}
+
+% Uso: \detalle{descripción de la story}
+\newcommand{\detalle}[1] {
+  \item #1.
+}
+
+% Entorno dentro del cual se declaran los criterios de aceptación de un story
+% con el macro \criterio.
+\newenvironment{criterios}{
+  \textbf{Criterio de aceptación:}
+  \begin{itemize}
+}{
+  \end{itemize}
+}
+
+% Uso: \criterio{criterio de aceptación}
+\newcommand{\criterio}[1] {
+  \item #1
 }
 
 % Entorno dentro del cual se declaran las tareas de un story con el macro \task.
 \newenvironment{tasks}{
-  Tareas:
+  \textbf{Tareas:}
   \begin{enumerate}
 }{
   \end{enumerate}
 }
 
 % Uso: \task{descripción de la story}
-\newcommand{\task}[1] {
+\newcommand{\task}[2] {
   \item #1.\\
-  \textbf{Horas estimadas:}
-}
-
-% Entorno dentro del cual se declaran las descripciones de un story con el macro \task.
-\newenvironment{details}{
-  Descripción:
-  \begin{itemize}
-}{
-  \end{itemize}
-}
-
-% Uso: \detail{descripción de la story}
-\newcommand{\detail}[1] {
-  \item #1.
-}
-
-% Entorno dentro del cual se declaran los criterios de aceptación de un story con el macro \criteria.
-\newenvironment{criterios}{
-  Criterio de aceptación:
-  \begin{itemize}
-}{
-  \end{itemize}
-}
-
-% Uso: \detail{criterio de aceptación}
-\newcommand{\criteria}[1] {
-  \item #1
-}
-
-% Uso: \storydetails{id}{descripción}{detalles}{criterios de aceptación}{tareas}
-\newcommand{\storydetails}[5]{
-  \noindent
-  \textbf{ID #1: #2}
-
-  \noindent
-  Detalles:
-  \begin{itemize}
-    #3
-  \end{itemize}
-
-  \noindent
-  Criterio de aceptación:
-  \begin{itemize}
-    #4
-  \end{itemize}
-
-  \noindent
-  Tareas:
-  \begin{itemize}
-    #5
-  \end{itemize}
+  \emph{Estimación (hs): #2}
 }
 %%%%%%%%%% User stories y tareas - Fin %%%%%%%%%%
 
@@ -352,22 +331,22 @@ ID & Story points & Business value\\
 
   \story{15}{maestro}
         {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña creada por mí} 
+        {asignarlos como destinatarios de una campaña al momento de su creación} 
 
   \story{16}{director o secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña creada por mí} 
+        {asignarlos como destinatarios de una campaña al momento de su creación} 
 
   \story{17}{director, secretario o maestro}
         {ingresar un mensaje, fecha, hora y tipo}
-        {agregar un nuevo mensaje a una campaña creada por mí} 
+        {agregar un nuevo mensaje a una campaña que yo creé} 
 
   \story{18}{director, secretario o maestro}
-        {ver los mensajes de una campaña creada por mí} 
+        {ver los mensajes de una campaña que yo creé} 
         {modificarlos o eliminarlos}
 
   \story{19}{director, secretario o maestro}
-        {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
+        {que se envíen automáticamente y en el momento programado los mensajes de una campaña que yo creé}
         {que sean recibidos en el momento adecuado por sus destinatarios} 
 
   \story{20}{director, secretario o maestro}
@@ -391,145 +370,214 @@ ID & Story points & Business value\\
 \end{tabular}
 \end{center}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Sprint backlog                                                            %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \newpage
 \section{Sprint backlog}
 
-Las user stories a continuación se toman del product backlog y corresponden al sprint luego del cual se realiza la demo mencionada en el enunciado.
+Las user stories en esta sección se toman del product backlog y corresponden al sprint luego del cual se realiza la demo mencionada en el enunciado.
 
 Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requiriendo cierta funcionalidad pedida desde los responsables del proyecto. La misma deberá incluir la posibilidad de definir una campaña para un cierto evento, simular su seguimiento y envío de mensajes, y su posterior evaluación''}.
 
 
+\subsection{Alcance del sprint}
+
+Con el propósito de reducir la cantidad tareas a cubrir en el sprint, se decidió implementar únicamente stories pertinentes al rol de maestro. Además, se posterga para futuros sprints el soporte multiusuario. Es decir, el sistema efectivamente maneja un único usuario con el rol de maestro.
+
+Aprovechando dicha limitación a un único maestro, en esta etapa se asume que todos los alumnos en el sistema son alumnos de dicho maestro. Esto permite obviar el concepto de curso, que no se ve en todo el sprint.
+
+En concreto, al finalizar el sprint el sistema debería permitir realizar las siguientes tareas:
+
+\begin{itemize}
+  \item Creación de campañas y edición de detalles de las mismas.
+  \item Agregar mensajes a campañas.
+  \item Simular el envío automático de mensajes por SMS.
+  \item Ingresar manualmente la eficacia observada para cada campaña.
+  \item Comparar la eficacia entre campañas.
+\end{itemize}
+
+Las tareas que requieren datos extra para poder operar (como eventos para asociar a una campaña o alumnos para seleccionar como destinatarios de una campaña) se sirven de datos de prueba cargados manualmente en la base de datos subyacente. Dichas funcionalidades satisfacen los requerimientos de la demo.
+
+Entre las cosas postergadas para futuros sprints se incluyen:
+
+\begin{itemize}
+  \item Interfaces ABM para alumnos, cursos, maestros, eventos, etc.
+  \item Posibilidad de editar y eliminar mensajes existentes en una campaña.
+  \item Distinción de roles de usuario.
+  \item Autenticación con usuario y contraseña.
+\end{itemize}
+
+Sin más, presentamos a continuación los user stories seleccionados para este sprint.
+
+
 \subsection{Descripción de user stories, criterios de aceptación y tareas}
 
-\begin{stories}
-  \storyid{14}
-          {director, secretario o maestro}
-          {ingresar el título de una nueva campaña y seleccionar un evento existente}
-          {crear una campaña asociada al evento seleccionado}
+\sprintstory{14}
+            {director, secretario o maestro}
+            {ingresar el título de una nueva campaña y seleccionar un evento existente}
+            {crear una campaña asociada al evento seleccionado}
 
-   \begin{criterios}
-     \criteria{El formulario no se envía si el título ingresado es menor a tres caracteres o si no se selecciona un evento.}
-     \criteria{Luego de enviarse el formulario, se crea una campaña en la base de datos con la información ingresada.}
-  \end{criterios}
+\begin{criterios}
+  \criterio{El formulario no se envía si el título ingresado es menor a tres caracteres o si no se selecciona un evento.}
+  \criterio{Luego de enviarse el formulario, se crea una campaña en la base de datos con la información ingresada.}
+\end{criterios}
 
-  \begin{tasks}
-    \task{Diseño OO para entidades Evento y Campaña} ?
-    \task{Crear objeto de negocio Evento} ?
-    \task{Crear objeto de negocio Campaña} ?
-    \task{Crear tabla de campañas en la base de datos} 1
-    \task{Crear tabla de eventos en la base de datos} ?
-    \task{Poblar tabla de eventos con items dummy para poder realizar la demo} ?
-    \task{Crear pantalla \emph{Home} con un único botón al ABM de campañas} ?
-    \task{Crear pantalla ABM de campañas, con una lista de las campañas existentes y un botón para crear una campaña nueva}
-    \task{Crear pantalla con formulario de creación de campaña} 4
-    \task{Crear código de persistencia de nuevas campañas} 1
-  \end{tasks}
-
-
-  \storyid{15}
-          {maestro}
-          {seleccionar un subconjunto de mis alumnos}
-          {asignarlos como destinatarios de una campaña creada por mí}
-
-   \begin{criterios}
-    \criteria{El maestro sólo debe poder seleccionar alumnos de los cursos en los que él es maestro.}
-    \criteria{El formulario no se envía si no se selecciona al menos un alumno.}
-    \criteria{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
-  \end{criterios}
-
-  \begin{tasks}
-    \task{Modificar componente de selección de destinatarios para sólo permitir seleccionar alumnos del maestro y/o sus padres cuando el usuario actual tenga el rol de maestro} 2
-  \end{tasks}
+\begin{tasks}
+  \task{Diseño OO para entidades Evento y Campaña}{?}
+  \task{Crear objeto Evento}{?}
+  \task{Crear objeto Campaña}{?}
+  \task{Crear tabla de campañas en la base de datos}{1}
+  \task{Crear tabla de eventos en la base de datos}{?}
+  \task{Poblar tabla de eventos con eventos ficticios para poder realizar la demo}{?}
+  \task{Crear pantalla \emph{Home} con un único botón al ABM de campañas}{?}
+  \task{Crear pantalla ABM de campañas, con una lista de las campañas existentes y un botón para crear una campaña nueva}{?}
+  \task{Crear pantalla con formulario de creación de campaña}{4}
+  \task{Crear código de persistencia para el objeto Campaña}{1}
+\end{tasks}
 
 
-  \storyid{16}
-          {director o secretario}
-          {seleccionar un subconjunto de los alumnos del colegio}
-          {asignarlos como destinatarios de una campaña creada por mí}
+\sprintstory{15}
+            {maestro}
+            {seleccionar un subconjunto de mis alumnos}
+            {asignarlos como destinatarios de una campaña al momento de su creación}
 
-  \begin{criterios}
-    \criteria{El formulario no se envía si no se selecciona al menos un alumno.}
-    \criteria{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
-  \end{criterios}
+\begin{criterios}
+  \criterio{El maestro sólo debe poder seleccionar alumnos de los cursos en los que él es maestro.}
+  \criterio{El formulario no se envía si no se selecciona al menos un alumno.}
+  \criterio{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
+\end{criterios}
 
-  \begin{tasks}
-    \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma} 0.5
-    \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios} 1
-    \task{Crear código de persistencia para la lista de destinatarios de la campaña} 1
-  \end{tasks}
-
-
-  \storyid{17}{director, secretario o maestro}
-              {ingresar un mensaje, fecha, hora y tipo}
-              {agregar un nuevo mensaje a una campaña creada por mí}
-
-  \begin{criterios}
-    \criteria{El formulario no se envía si no se completan todos los campos, o si la fecha/hora ingresada es inválida, o si ya hay otro mensaje con la misma fecha/hora ingresada.}
-    \criteria{Luego de enviado el formulario, se crea en la base de datos un nuevo mensaje asociado a la campaña desde la que se llegó al formulario, con la información ingresada en el formulario.}
-  \end{criterios}
-
-  \begin{tasks}
-    \task{Agregar componente tabular en el formulario de creación de campaña que permita ingresar uno a uno los mensajes y visualizar los ya ingresados} 1
-    \task{Crear tabla de mensajes en la base de datos} 1
-    \task{Crear codigo de persistencia de los mensajes ingresados} 1
-  \end{tasks}
+\begin{tasks}
+  \task{Diseño OO para entidad Alumno y su colaboración con Campaña}{?}
+  \task{Crear objeto Alumno}{?}
+  \task{Modificar objeto de Campaña para que mantenga un conjunto de objetos Alumno destinatarios de la campaña}{?}
+  \task{Crear tabla de alumnos en la base de datos}{?}
+  \task{Poblar la tabla de alumnos con alumnos ficticios para poder realizar la demo}{?}
+  \task{Crear una tabla de relación many-to-many entre campaña y alumno en la base de datos}{?}
+  \task{Agregarle al formulario de creación de campaña una lista con los nombres de sus alumnos (es decir, todas las entradas en la tabla de alumnos), acompañado cada uno de un checkbox para incluirlo como destinatario en la campaña.}{?}
+  \task{Modificar código de persistencia para el objeto Campaña de manera que persista además su lista de destinatarios}{?}
+\end{tasks}
 
 
-  \storyid{18}
-          {director, secretario o maestro}
-          {ver los mensajes de una campaña creada por mí}
-          {modificarlos o eliminarlos}
-
-   \begin{criterios}
-    \criteria{En caso de modificar un mensaje, el formulario debe precargarse con los datos del mensaje original, no se envía si no se completan todos los campos, o si la fecha/hora ingresada es inválida, o si ya hay otro mensaje con la misma fecha/hora ingresada.}
-    \criteria{Luego de enviado el formulario, se actualiza el mensaje en la base de datos con la información ingresada en el formulario.}
-    \criteria{En caso de eliminar un mensaje, debe ofrecerse una confirmación antes de realizar la operación.}
-    \criteria{Luego de finalizada la operación, debe eliminarse el mensaje en la base de datos.}
-  \end{criterios}
-
-  \begin{tasks}
-    \task{Crear una interfaz que liste todas las campañas creadas por el usuario actual} 3
-    \task{Crear interacción que muestre el formulario de edición de la campaña cuando se la selecciona en la lista anterior} 2
-    \task{Modificar formulario de edición de campaña y sus componentes para que tenga precargados los datos de una campaña existente y permita modificarla} 0.5
-    \task{Modificar código de persistencia de campañas para que permita guardar cambios en una campaña existente} 0.5
-  \end{tasks}
-
-
-  \storyid{19}{director, secretario o maestro}
-              {que se envíen automáticamente y en el momento correcto los mensajes de una campaña creada por mí}
-              {que sean recibidos en el momento adecuado por sus destinatarios}
-
-   \begin{criterios}
-    \criteria{El envío de mensajes debe realizarse automáticamente a la hora y destinatarios estipulados.}
-    \criteria{Los mensajes enviados deben guardarse en una tabla en la base de datos donde quedan registrados los envíos simulados de SMS.}
-    \criteria{Todo mensaje cuyo envío es hsimulado debe ser marcado como enviado en la base de datos.}
-  \end{criterios}
-
-  \begin{tasks}
-    \task{Crear una API de envío de SMS que simule el envío guardando los mensajes enviados en una tabla en la base de datos} 8
-    \task{Crear un servicio que periódicamente envíe los mensajes cuyo horario fue alcanzado utilizando el API de envío de SMS} 6
-  \end{tasks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Si sólo implementamos el rol maestro en la demo, no tiene sentido incluir
+% esta story.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \sprintstory{16}
+%             {director o secretario}
+%             {seleccionar un subconjunto de los alumnos del colegio}
+%             {asignarlos como destinatarios de una campaña al momento de su creación}
+%
+% \begin{criterios}
+%   \criterio{El formulario no se envía si no se selecciona al menos un alumno.}
+%   \criterio{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
+% \end{criterios}
+%
+% \begin{tasks}
+%   \task{Agregar componente en el formulario de creación de campaña para seleccionar los destinatarios de la misma}{0.5}
+%   \task{Crear tablas de relación entre las campañas y los distintos tipos de destinatarios}{1}
+%   \task{Crear código de persistencia para la lista de destinatarios de la campaña}{1}
+% \end{tasks}
 
 
-  \storyid{20}{director, secretario o maestro}
-              {ingresar la eficacia de una campaña luego de su terminación}
-              {compararla con otras campañas similares}
+\sprintstory{17}
+            {director, secretario o maestro}
+            {ingresar un mensaje, fecha, hora y tipo}
+            {agregar un nuevo mensaje a una campaña que yo creé}
 
-  \begin{criterios}
-    \criteria{El formulario no se envía si no se completan todos los campos, o si el valor de la eficacia medida no es un valor numérico.}
-    \criteria{Luego de enviarse el formulario, se actualiza la campaña en la base de datos con la información de eficacia ingresada.}
-  \end{criterios}
+\begin{criterios}
+  \criterio{El formulario no se envía si no se completan todos los campos, o si la fecha/hora ingresada es inválida, o si ya hay otro mensaje con la misma fecha/hora ingresada.}
+  \criterio{Luego de enviado el formulario, se crea en la base de datos un nuevo mensaje asociado a la campaña desde la que se llegó al formulario, con la información ingresada en el formulario.}
+\end{criterios}
 
-  \begin{tasks}
-    \task{Agregar un campo textual en el formulario de edición de campaña que permita especificar un criterio de eficacia en lenguaje natural} 1
-    \task{Agregar un campo numérico en el formulario de edición de campaña que permita ingresar el valor de eficacia medido} 1
-    \task{Agregar campos en la tabla de campaña para almacenar el criterio de eficacia y la eficacia medida} 4
-    \task{Modificar código de persistencia de campaña para guardar el criterio de eficacia y la eficacia medida} 2
-  \end{tasks}
-\end{stories}
+\begin{tasks}
+  \task{Diseño OO para entidad Mensaje y su colaboración con Campaña.}{?}
+  \task{Crear objeto Mensaje.}{?}
+  \task{Modificar campaña para que mantenga un conjunto de objetos Mensaje.}{?}
+  \task{Crear tabla de mensajes en la base de datos.}{?}
+  \task{Crear pantalla ABM de mensajes para una campaña determinada, con una lista de mensajes existentes y un botón para crear un mensaje nuevo.}{?}
+  \task{Crear pantalla con formulario de creación de mensaje.}{?}
+  \task{Crear código de persistencia para el objeto Mensaje.}{?}
+  \task{Modificar formulario de creación de campaña de manera que, al guardar una nueva campaña, el usuario sea redirigido al ABM de mensajes para la campaña recién creada.}{?}
+\end{tasks}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Podríamos dejar la *edición* de mensajes existentes para después de la demo,
+% y que en la demo sólo se puedan crear mensajes y campañas, pero no editar ni
+% borrar.
+%
+% Recordar que lo único que dice el enunciado sobre la demo es que la misma
+% "deberá incluir la posibilidad de definir una campaña para un cierto evento,
+% simular su seguimiento y envío de mensajes, y su posterior evaluación."
+%
+% Para satisfacer lo que pide el enunciado no hace falta poder editar campañas
+% existentes, sólo es necesario poder definirlas.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \sprintstory{18}
+%             {director, secretario o maestro}
+%             {ver los mensajes de una campaña que yo creé}
+%             {modificarlos o eliminarlos}
+%
+%  \begin{criterios}
+%   \criterio{En caso de modificar un mensaje, el formulario debe precargarse con los datos del mensaje original, no se envía si no se completan todos los campos, o si la fecha/hora ingresada es inválida, o si ya hay otro mensaje con la misma fecha/hora ingresada.}
+%   \criterio{Luego de enviado el formulario, se actualiza el mensaje en la base de datos con la información ingresada en el formulario.}
+%   \criterio{En caso de eliminar un mensaje, debe ofrecerse una confirmación antes de realizar la operación.}
+%   \criterio{Luego de finalizada la operación, debe eliminarse el mensaje en la base de datos.}
+% \end{criterios}
+%
+% \begin{tasks}
+%   \task{Crear una interfaz que liste todas las campañas creadas por el usuario actual}{3}
+%   \task{Crear interacción que muestre el formulario de edición de la campaña cuando se la selecciona en la lista anterior}{2}
+%   \task{Modificar formulario de edición de campaña y sus componentes para que tenga precargados los datos de una campaña existente y permita modificarla}{0.5}
+%   \task{Modificar código de persistencia de campañas para que permita guardar cambios en una campaña existente}{0.5}
+% \end{tasks}
+%
+
+\sprintstory{19}
+            {director, secretario o maestro}
+            {que se envíen automáticamente y en el momento programado los mensajes de una campaña que yo creé}
+            {que sean recibidos en el momento adecuado por sus destinatarios}
+
+\begin{criterios}
+  \criterio{Los mensajes se deben enviar por SMS a sus destinatarios correspondientes automáticamente en la fecha y hora programada.}
+  \criterio{El envío por SMS se debe simular almacenando el mensaje, número de celular y fecha y hora de envío en una tabla en la base de datos.}
+  \criterio{Todo mensaje enviado debe ser marcado como enviado en la base de datos.}
+\end{criterios}
+
+\begin{tasks}
+  \task{Diseño OO para servicios EmisorDeMensajes y EmisorDeSms y colaboraciones entre EmisorDeMensajes y Campaña, y EmisorDeMensajes y EmisorDeSms}{?}
+  \task{Crear tabla en la base de datos para almacenar los SMS cuyo envío es simulado}{?}
+  \task{Crear servicio EmisorDeSms}{?}
+  \task{Modificar tabla de mensajes agregando un campo booleano que indique si el mensaje ya fue enviado}{?}
+  \task{Modificar objeto Mensaje y su código de persistencia reflejando la existencia de este nuevo campo}{?}
+  \task{Crear servicio EmisorDeMensajes}{?}
+\end{tasks}
+
+\sprintstory{20}
+            {director, secretario o maestro}
+            {ingresar la eficacia de una campaña luego de su terminación}
+            {compararla con otras campañas similares}
+
+\begin{criterios}
+  \criterio{El formulario no se envía si no se completan todos los campos, o si el valor de la eficacia medida no es un valor numérico.}
+  \criterio{Luego de enviarse el formulario, se actualiza la campaña en la base de datos con la información de eficacia ingresada.}
+\end{criterios}
+
+\begin{tasks}
+  \task{Modificar formulario de creación de campaña para soportar edición de campañas existentes}{?}
+  \task{Crear pantalla con formulario de edición de campaña existente}{?}
+  \task{Modificar pantalla ABM de campañas mostrando título, criterio de eficacia y eficacia medida para cada item de la lista de campañas.}{?}
+  \task{Modificar pantalla ABM de campañas, de manera que al hacer click sobre una campaña existente, el usuario sea redirigido a la pantalla de edición de dicha campaña}{?}
+  \task{Modificar formulario de creación/edición de campaña agregando dos nuevos campos para el criterio de eficacia en lenguaje natural y el valor de eficacia observado, respectivamente}{?}
+  \task{Modificar tabla de campaña agregando un campo de texto para almacenar el criterio de eficacia en lenguaje natural y un campo numérico para almacenar el valor de eficacia observado}{?}
+  \task{Modificar objeto Campaña y su código de persistencia reflejando la existencia de estos dos nuevos campos}{?}
+\end{tasks}
 
 \end{document}
