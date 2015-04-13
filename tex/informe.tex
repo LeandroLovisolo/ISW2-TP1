@@ -444,13 +444,13 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
           {maestro}
           {seleccionar un subconjunto de mis alumnos}
           {asignarlos como destinatarios de una campaña creada por mí}
-            
+
    \begin{criterios}
-  	\criteria{El conjunto de alumnos de mi clase es visible por mí.}
-    \criteria{El subconjunto de alumnos seleccionado no es vacío.}
-    \criteria{El subconjunto de alumnos se asigna a una campaña existente.}
-  \end{criterios} 
-   
+    \criteria{El maestro sólo debe poder seleccionar alumnos de los cursos en los que él es maestro.}
+    \criteria{El formulario no se envía si no se selecciona al menos un alumno.}
+    \criteria{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
+  \end{criterios}
+
 
   \begin{tasks}
     \task{Modificar componente de selección de destinatarios para sólo permitir seleccionar alumnos del maestro y/o sus padres cuando el usuario actual tenga el rol de maestro} 2
