@@ -406,23 +406,6 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 \subsection{Descripción de user stories, criterios de aceptación y tareas}
 
 \begin{stories}
-  \storyid{12}
-          {director, secretario o maestro}
-          {ingresar la fecha y descripción de un nuevo evento}
-          {darlo de alta en el sistema}
-
-   \begin{criterios}
-    \criteria{El formulario no se envía si los campos fecha y descripción se dejan en blanco o si se ingresa una fecha inválida.}
-    \criteria{Luego de enviarse el formulario, se crea un evento en la base de datos con la información ingresada.}
-  \end{criterios}
-
-  \begin{tasks}
-    \task{Crear interfaz de creación de eventos} 4
-    \task{Crear tabla de eventos en la base de datos} 1
-    \task{Crear código de persistencia de nuevos eventos} 1
-  \end{tasks}
-
-
   \storyid{14}
           {director, secretario o maestro}
           {ingresar el título de una nueva campaña y seleccionar un evento existente}
@@ -516,7 +499,7 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
    \begin{criterios}
     \criteria{El envío de mensajes debe realizarse automáticamente a la hora y destinatarios estipulados.}
     \criteria{Los mensajes enviados deben guardarse en una tabla en la base de datos donde quedan registrados los envíos simulados de SMS.}
-    \criteria{Todo mensaje cuyo envío es simulado debe ser marcado como enviado en la base de datos.}
+    \criteria{Todo mensaje cuyo envío es hsimulado debe ser marcado como enviado en la base de datos.}
   \end{criterios}
 
   \begin{tasks}
