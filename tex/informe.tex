@@ -201,6 +201,7 @@ Vita, Sebastián        & 149/11 & sebastian\_vita@yahoo.com.ar\\
 %% Introducción                                                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \section{Introducción}
 
 En este trabajo se desarrolla una aplicación de envío de avisos, recordatorios y otros tipos de mensajes por medio de SMS a los padres y alumnos de un colegio primario.
@@ -209,11 +210,14 @@ La aplicación se especifica y estima utilizando la metodología ágil Scrum, se
 
 Para más información, referirse al enunciado de este trabajo práctico\footnote{http://cor.to/enunciadoISW2}.
 
+
 \subsection{Roles de usuario}
 
 Por brevedad, se utilizan los siguientes roles en las user stories a lo largo de este trabajo:
 
 \begin{description}
+  \item[Desarrollador] para referirse a los miembros del equipo de desarrollo que implementará el sistema.
+
   \item[Director] para referirse al director, vicedirector y otros miembros de la dirección del colegio.
 
   \item[Secretario] para referirse a los miembros de la secretaría del colegio.
@@ -221,58 +225,24 @@ Por brevedad, se utilizan los siguientes roles en las user stories a lo largo de
   \item[Maestro] para referirse a cualquier maestro del colegio.
 \end{description}
 
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Product backlog                                                           %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\newpage
 \section{Product backlog}
 
 Presentamos, a continuación, las user stories en el product backlog, agrupadas según el tipo de tarea que describen.
 
 
-\subsection{Gestión de alumnos, padres, cursos y maestros}
+\subsection{Preliminares}
 
 \begin{stories}
-  \story{1}{director}
-        {ingresar los datos de un alumno}
-        {darlo de alta en el sistema} 
-
-  \story{2}{director}
-        {ver los datos de un alumno}
-        {actualizarlos o dar de baja al alumno} 
-
-  \story{3}{director}
-        {ingresar los datos de un padre}
-        {darlo de alta en el sistema} 
-
-  \story{4}{director}
-        {ver los datos de un padre}
-        {actualizarlos o dar de baja al padre} 
-
-  \story{5}{director}
-        {ingresar el grado, división, turno y aula de un curso}
-        {darlo de alta en el sistema} 
-
-  \story{6}{director}
-        {ver los datos de un curso}
-        {actualizarlos o dar de baja el curso} 
-
-  \story{7}{director}
-        {ingresar los datos de un maestro}
-        {darlo de alta en el sistema} 
-
-  \story{8}{director}
-        {ver los datos de un maestro}
-        {actualizarlos o dar de baja al maestro} 
-
-  \story{9}{director}
-        {seleccionar un maestro}
-        {asignárselo a un curso} 
-
-  \story{10}{director}
-        {seleccionar un alumno}
-        {asignárselo a un curso} 
+  \story{0}{desarrollador}
+        {contar con un entorno de desarrollo}
+        {poder realizar mis tareas}
 \end{stories}
 
 \begin{center}
@@ -280,30 +250,86 @@ Presentamos, a continuación, las user stories en el product backlog, agrupadas 
 \hline
 ID & Story points\\
 \hline
-1 & 3\\
-2 & 1\\
-3 & 3\\
-4 & 1\\
-5 & 3\\
-6 & 1\\
-7 & 3\\
-8 & 1\\
-9 & 1\\
+0  & 3\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Gestión de alumnos, padres, cursos y maestros}
+
+\begin{stories}
+  \story{1}{director}
+        {ingresar los datos de un alumno}
+        {darlo de alta en el sistema}
+
+  \story{2}{director}
+        {ver los datos de un alumno}
+        {actualizarlos o dar de baja al alumno}
+
+  \story{3}{director}
+        {ingresar los datos de un padre}
+        {darlo de alta en el sistema}
+
+  \story{4}{director}
+        {ver los datos de un padre}
+        {actualizarlos o dar de baja al padre}
+
+  \story{5}{director}
+        {ingresar el grado, división, turno y aula de un curso}
+        {darlo de alta en el sistema}
+
+  \story{6}{director}
+        {ver los datos de un curso}
+        {actualizarlos o dar de baja el curso}
+
+  \story{7}{director}
+        {ingresar los datos de un maestro}
+        {darlo de alta en el sistema}
+
+  \story{8}{director}
+        {ver los datos de un maestro}
+        {actualizarlos o dar de baja al maestro}
+
+  \story{9}{director}
+        {seleccionar un maestro}
+        {asignárselo a un curso}
+
+  \story{10}{director}
+        {seleccionar un alumno}
+        {asignárselo a un curso}
+\end{stories}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ID & Story points\\
+\hline
+1  & 3\\
+2  & 1\\
+3  & 3\\
+4  & 1\\
+5  & 3\\
+6  & 1\\
+7  & 3\\
+8  & 1\\
+9  & 1\\
 10 & 1\\
 \hline
 \end{tabular}
 \end{center}
+
 
 \subsection{Gestión de eventos}
 
 \begin{stories}
   \story{11}{director, secretario o maestro}
         {ingresar la fecha y descripción de un nuevo evento}
-        {darlo de alta en el sistema} 
+        {darlo de alta en el sistema}
 
   \story{12}{director, secretario o maestro}
         {ver los datos de un evento}
-        {modificarlos o dar de baja el evento} 
+        {modificarlos o dar de baja el evento}
 \end{stories}
 
 \begin{center}
@@ -317,36 +343,37 @@ ID & Story points\\
 \end{tabular}
 \end{center}
 
+
 \subsection{Gestión de campañas}
 
 \begin{stories}
   \story{13}{director, secretario o maestro}
         {ingresar el título de una nueva campaña y seleccionar un evento existente}
-        {crear una campaña asociada al evento seleccionado} 
+        {crear una campaña asociada al evento seleccionado}
 
   \story{14}{maestro}
         {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña al momento de su creación} 
+        {asignarlos como destinatarios de una campaña al momento de su creación}
 
   \story{15}{director o secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña al momento de su creación} 
+        {asignarlos como destinatarios de una campaña al momento de su creación}
 
   \story{16}{director, secretario o maestro}
         {ingresar un mensaje, fecha, hora y tipo}
-        {agregar un nuevo mensaje a una campaña que yo creé} 
+        {agregar un nuevo mensaje a una campaña que yo creé}
 
   \story{17}{director, secretario o maestro}
-        {ver los mensajes de una campaña que yo creé} 
+        {ver los mensajes de una campaña que yo creé}
         {modificarlos o eliminarlos}
 
   \story{18}{director, secretario o maestro}
         {que se envíen automáticamente y en el momento programado los mensajes de una campaña que yo creé}
-        {que sean recibidos en el momento adecuado por sus destinatarios} 
+        {que sean recibidos en el momento adecuado por sus destinatarios}
 
   \story{19}{director, secretario o maestro}
         {ingresar la eficacia de una campaña luego de su terminación}
-        {compararla con otras campañas similares} 
+        {compararla con otras campañas similares}
 \end{stories}
 
 \begin{center}
@@ -410,6 +437,24 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 
 \subsection{Descripción de user stories, criterios de aceptación y tareas}
+
+\sprintstory{0}
+            {desarrollador}
+            {contar con un entorno de desarrollo}
+            {poder realizar mis tareas}
+
+\begin{criterios}
+  \criterio{Un desarrollador debe tener preinstalado todo software necesario al momento de comenzar a realizar una tarea.}
+  \criterio{Debe existir un repositorio de código compartido entre los desarrolladores por medio del cual puedan colaborar en el desarrollo del sistema.}
+  \criterio{Debe contarse con una herramienta donde se lleve registro de las tareas del sprint, quién tiene asignada qué tarea, el estado de cada tarea, el tiempo estimado y tiempo real que requirió cada tarea, etc.}
+\end{criterios}
+
+\begin{tasks}
+  \task{Crear repositorio \textit{git} para el proyecto}{0:15}
+  \task{Decidir el editor de texto, IDE, etc. que cada desarrollador prefiera e instalar dicho software en su computadora}{1:00}
+  \task{Cargar stories y tareas en la herramienta \textit{RallyDev}}{2:00}
+\end{tasks}
+
 
 \sprintstory{13}
             {director, secretario o maestro}
@@ -495,6 +540,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
   \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:30}
   \task{Implementar persistencia de dicho campo en el objeto Mensaje}{0:30}
 \end{tasks}
+
 
 \sprintstory{19}
             {director, secretario o maestro}
