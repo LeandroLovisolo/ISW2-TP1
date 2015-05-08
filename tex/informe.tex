@@ -381,7 +381,7 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 
 \subsection{Alcance del sprint}
 
-Con el propósito de reducir la cantidad tareas a cubrir en el sprint, se decidió implementar únicamente stories pertinentes al rol de maestro. Además, se posterga para futuros sprints el soporte multiusuario. Es decir, el sistema efectivamente maneja un único usuario con el rol de maestro.
+Con el propósito de reducir la cantidad de tareas a cubrir en el sprint, se decidió implementar únicamente stories pertinentes al rol de maestro. Además, se posterga para futuros sprints el soporte multiusuario. Es decir, el sistema efectivamente maneja un único usuario con el rol de maestro.
 
 Aprovechando dicha limitación a un único maestro, en esta etapa se asume que todos los alumnos en el sistema son alumnos de dicho maestro. Esto permite obviar el concepto de curso, que no se ve en todo el sprint.
 
@@ -417,23 +417,20 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
             {crear una campaña asociada al evento seleccionado}
 
 \begin{criterios}
-  \criterio{El formulario no se envía si el título ingresado es menor a tres caracteres o si no se selecciona un evento.}
-  \criterio{Luego de enviarse el formulario, se crea una campaña en la base de datos con la información ingresada.}
+  \criterio{La campaña no se crea si el título ingresado es menor a tres caracteres o si no se selecciona un evento.}
+  \criterio{Luego de ingresar y validar los datos necesarios, la nueva campaña aparece en el listado de campañas existentes.}
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO para entidades Evento y Campaña}{2:00}
   \task{Investigar librerías y herramientas}{8:00}
+  \task{Instalación y creación de base de datos relacional}{0:30}
   \task{Crear esqueleto de la aplicación}{5:00}
-  \task{Crear objeto Evento}{0:30}
-  \task{Crear objeto Campaña}{0:30}
-  \task{Crear tabla de campañas en la base de datos}{0:15}
-  \task{Crear tabla de eventos en la base de datos}{0:15}
-  \task{Poblar tabla de eventos con eventos ficticios para poder realizar la demo}{0:15}
+  \task{Diseño OO y creación de entidades Evento y Campaña}{3:00}
+  \task{Script para crear las tablas correspondientes en la base de datos y prepoblarlas con datos de prueba}{0:45}
   \task{Crear pantalla \emph{Home} con un único botón al ABM de campañas}{0:30}
   \task{Crear pantalla ABM de campañas, con una lista de las campañas existentes y un botón para crear una campaña nueva}{2:00}
-  \task{Crear pantalla con formulario de creación de campaña}{1:00}
-  \task{Crear código de persistencia para el objeto Campaña}{1:00}
+  \task{Crear pantalla de creación de campaña}{1:00}
+  \task{Implementar persistencia del objeto Campaña}{1:00}
 \end{tasks}
 
 
