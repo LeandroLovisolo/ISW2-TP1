@@ -478,9 +478,9 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
             {que sean recibidos en el momento adecuado por sus destinatarios}
 
 \begin{detalles}
-  \detalle{Se implementa un servicio EmisorDeMensajes, que en intervalos de tiempo regulares pide a la base de datos cualquier mensaje aún no enviado que estén programados para ser enviados en ese momento.}
-  \detalle{EmisorDeMensajes colabora con otro servicio, EmisorDeSms, enviándole un mensaje (en el sentido OO) con los parámetros del SMS a enviar.}
-  \detalle{El servicio EmisorDeSms se implementa de manera que almacene en una tabla de la base de datos la fecha y hora, número de celular y contenido de cada mensaje que se simular enviar.}
+  \detalle{Se implementa un servicio EmisorDeMensajes, que en intervalos de tiempo regulares pide a la base de datos cualquier mensaje aún no enviado que estén programados para ser enviados en ese momento}
+  \detalle{EmisorDeMensajes colabora con otro servicio, EmisorDeSms, enviándole un mensaje (en el sentido OO) con los parámetros del SMS a enviar}
+  \detalle{El servicio EmisorDeSms se implementa de manera que almacene en una tabla de la base de datos la fecha y hora, número de celular y contenido de cada mensaje que se simula enviar}
 \end{detalles}
 
 \begin{criterios}
@@ -490,12 +490,10 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO para servicios EmisorDeMensajes y EmisorDeSms y colaboraciones entre EmisorDeMensajes y Campaña, y EmisorDeMensajes y EmisorDeSms}{2:00}
-  \task{Crear tabla en la base de datos para almacenar los SMS cuyo envío es simulado}{0:15}
-  \task{Crear servicio EmisorDeSms}{1:00}
-  \task{Modificar tabla de mensajes agregando un campo booleano que indique si el mensaje ya fue enviado}{1:00}
-  \task{Modificar objeto Mensaje y su código de persistencia reflejando la existencia de este nuevo campo}{1:00}
-  \task{Crear servicio EmisorDeMensajes}{2:00}
+  \task{Diseño OO y creación de servicios EmisorDeMensajes y EmisorDeSms y colaboraciones entre EmisorDeMensajes y Campaña, y EmisorDeMensajes y EmisorDeSms}{5:00}
+  \task{Agregar campo a objeto Mensaje para indicar si el mensaje fue enviado o no}{0:30}
+  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:30}
+  \task{Implementar persistencia de dicho campo en el objeto Mensaje}{0:30}
 \end{tasks}
 
 \sprintstory{19}
