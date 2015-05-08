@@ -201,19 +201,30 @@ Vita, Sebastián        & 149/11 & sebastian\_vita@yahoo.com.ar\\
 %% Introducción                                                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \section{Introducción}
 
-En este trabajo se desarrolla una aplicación de envío de avisos, recordatorios y otros tipos de mensajes por medio de SMS a los padres y alumnos de un colegio primario.
+En este trabajo se desarrolla una aplicación de envío de avisos, recordatorios y otros tipos de mensajes por medio de SMS a los padres y alumnos de un colegio primario. El objetivo de la aplicación es mejorar los resultados obtenidos en diversos eventos escolares. Por ejemplo:
+
+\begin{itemize}
+  \item incrementar la cantidad de alumnos aprobados en cada instancia de evaluación,
+  \item mejorar el promedio de notas de un curso,
+  \item incrementar la cantidad de chicos que traen autorizaciones firmadas por sus padres para realizar actividades por fuera del colegio,
+  \item etc.
+\end{itemize}
 
 La aplicación se especifica y estima utilizando la metodología ágil Scrum, se realiza un diseño bajo el paradigma orientado a objetos respetando un conjunto de reglas de buenas prácticas de diseño y, finalmente, se la implementa en el lenguaje Python.
 
 Para más información, referirse al enunciado de este trabajo práctico\footnote{http://cor.to/enunciadoISW2}.
+
 
 \subsection{Roles de usuario}
 
 Por brevedad, se utilizan los siguientes roles en las user stories a lo largo de este trabajo:
 
 \begin{description}
+  \item[Desarrollador] para referirse a los miembros del equipo de desarrollo que implementará el sistema.
+
   \item[Director] para referirse al director, vicedirector y otros miembros de la dirección del colegio.
 
   \item[Secretario] para referirse a los miembros de la secretaría del colegio.
@@ -221,58 +232,24 @@ Por brevedad, se utilizan los siguientes roles en las user stories a lo largo de
   \item[Maestro] para referirse a cualquier maestro del colegio.
 \end{description}
 
-\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Product backlog                                                           %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\newpage
 \section{Product backlog}
 
 Presentamos, a continuación, las user stories en el product backlog, agrupadas según el tipo de tarea que describen.
 
 
-\subsection{Gestión de alumnos, padres, cursos y maestros}
+\subsection{Preliminares}
 
 \begin{stories}
-  \story{1}{director}
-        {ingresar los datos de un alumno}
-        {darlo de alta en el sistema} 
-
-  \story{2}{director}
-        {ver los datos de un alumno}
-        {actualizarlos o dar de baja al alumno} 
-
-  \story{3}{director}
-        {ingresar los datos de un padre}
-        {darlo de alta en el sistema} 
-
-  \story{4}{director}
-        {ver los datos de un padre}
-        {actualizarlos o dar de baja al padre} 
-
-  \story{5}{director}
-        {ingresar el grado, división, turno y aula de un curso}
-        {darlo de alta en el sistema} 
-
-  \story{6}{director}
-        {ver los datos de un curso}
-        {actualizarlos o dar de baja el curso} 
-
-  \story{7}{director}
-        {ingresar los datos de un maestro}
-        {darlo de alta en el sistema} 
-
-  \story{8}{director}
-        {ver los datos de un maestro}
-        {actualizarlos o dar de baja al maestro} 
-
-  \story{9}{director}
-        {seleccionar un maestro}
-        {asignárselo a un curso} 
-
-  \story{10}{director}
-        {seleccionar un alumno}
-        {asignárselo a un curso} 
+  \story{0}{desarrollador}
+        {contar con un entorno de desarrollo}
+        {poder realizar mis tareas}
 \end{stories}
 
 \begin{center}
@@ -280,30 +257,86 @@ Presentamos, a continuación, las user stories en el product backlog, agrupadas 
 \hline
 ID & Story points\\
 \hline
-1 & 3\\
-2 & 1\\
-3 & 3\\
-4 & 1\\
-5 & 3\\
-6 & 1\\
-7 & 3\\
-8 & 1\\
-9 & 1\\
+0  & 3\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Gestión de alumnos, padres, cursos y maestros}
+
+\begin{stories}
+  \story{1}{director}
+        {ingresar los datos de un alumno}
+        {darlo de alta en el sistema}
+
+  \story{2}{director}
+        {ver los datos de un alumno}
+        {actualizarlos o dar de baja al alumno}
+
+  \story{3}{director}
+        {ingresar los datos de un padre}
+        {darlo de alta en el sistema}
+
+  \story{4}{director}
+        {ver los datos de un padre}
+        {actualizarlos o dar de baja al padre}
+
+  \story{5}{director}
+        {ingresar el grado, división, turno y aula de un curso}
+        {darlo de alta en el sistema}
+
+  \story{6}{director}
+        {ver los datos de un curso}
+        {actualizarlos o dar de baja el curso}
+
+  \story{7}{director}
+        {ingresar los datos de un maestro}
+        {darlo de alta en el sistema}
+
+  \story{8}{director}
+        {ver los datos de un maestro}
+        {actualizarlos o dar de baja al maestro}
+
+  \story{9}{director}
+        {seleccionar un maestro}
+        {asignárselo a un curso}
+
+  \story{10}{director}
+        {seleccionar un alumno}
+        {asignárselo a un curso}
+\end{stories}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ID & Story points\\
+\hline
+1  & 3\\
+2  & 1\\
+3  & 3\\
+4  & 1\\
+5  & 3\\
+6  & 1\\
+7  & 3\\
+8  & 1\\
+9  & 1\\
 10 & 1\\
 \hline
 \end{tabular}
 \end{center}
+
 
 \subsection{Gestión de eventos}
 
 \begin{stories}
   \story{11}{director, secretario o maestro}
         {ingresar la fecha y descripción de un nuevo evento}
-        {darlo de alta en el sistema} 
+        {darlo de alta en el sistema}
 
   \story{12}{director, secretario o maestro}
         {ver los datos de un evento}
-        {modificarlos o dar de baja el evento} 
+        {modificarlos o dar de baja el evento}
 \end{stories}
 
 \begin{center}
@@ -317,36 +350,37 @@ ID & Story points\\
 \end{tabular}
 \end{center}
 
+
 \subsection{Gestión de campañas}
 
 \begin{stories}
   \story{13}{director, secretario o maestro}
         {ingresar el título de una nueva campaña y seleccionar un evento existente}
-        {crear una campaña asociada al evento seleccionado} 
+        {crear una campaña asociada al evento seleccionado}
 
   \story{14}{maestro}
         {seleccionar un subconjunto de mis alumnos}
-        {asignarlos como destinatarios de una campaña al momento de su creación} 
+        {asignarlos como destinatarios de una campaña al momento de su creación}
 
   \story{15}{director o secretario}
         {seleccionar un subconjunto de los alumnos del colegio}
-        {asignarlos como destinatarios de una campaña al momento de su creación} 
+        {asignarlos como destinatarios de una campaña al momento de su creación}
 
   \story{16}{director, secretario o maestro}
         {ingresar un mensaje, fecha, hora y tipo}
-        {agregar un nuevo mensaje a una campaña que yo creé} 
+        {agregar un nuevo mensaje a una campaña que yo creé}
 
   \story{17}{director, secretario o maestro}
-        {ver los mensajes de una campaña que yo creé} 
+        {ver los mensajes de una campaña que yo creé}
         {modificarlos o eliminarlos}
 
   \story{18}{director, secretario o maestro}
         {que se envíen automáticamente y en el momento programado los mensajes de una campaña que yo creé}
-        {que sean recibidos en el momento adecuado por sus destinatarios} 
+        {que sean recibidos en el momento adecuado por sus destinatarios}
 
   \story{19}{director, secretario o maestro}
         {ingresar la eficacia de una campaña luego de su terminación}
-        {compararla con otras campañas similares} 
+        {compararla con otras campañas similares}
 \end{stories}
 
 \begin{center}
@@ -381,7 +415,7 @@ Recordamos los requerimientos de la demo: \emph{``Se presentará una demo requir
 
 \subsection{Alcance del sprint}
 
-Con el propósito de reducir la cantidad tareas a cubrir en el sprint, se decidió implementar únicamente stories pertinentes al rol de maestro. Además, se posterga para futuros sprints el soporte multiusuario. Es decir, el sistema efectivamente maneja un único usuario con el rol de maestro.
+Con el propósito de reducir la cantidad de tareas a cubrir en el sprint, se decidió implementar únicamente stories pertinentes al rol de maestro. Además, se posterga para futuros sprints el soporte multiusuario. Es decir, el sistema efectivamente maneja un único usuario con el rol de maestro.
 
 Aprovechando dicha limitación a un único maestro, en esta etapa se asume que todos los alumnos en el sistema son alumnos de dicho maestro. Esto permite obviar el concepto de curso, que no se ve en todo el sprint.
 
@@ -411,29 +445,44 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \subsection{Descripción de user stories, criterios de aceptación y tareas}
 
+\sprintstory{0}
+            {desarrollador}
+            {contar con un entorno de desarrollo}
+            {poder realizar mis tareas}
+
+\begin{criterios}
+  \criterio{Un desarrollador debe tener preinstalado todo software necesario al momento de comenzar a realizar una tarea.}
+  \criterio{Debe existir un repositorio de código compartido entre los desarrolladores por medio del cual puedan colaborar en el desarrollo del sistema.}
+  \criterio{Debe contarse con una herramienta donde se lleve registro de las tareas del sprint, quién tiene asignada qué tarea, el estado de cada tarea, el tiempo estimado y tiempo real que requirió cada tarea, etc.}
+\end{criterios}
+
+\begin{tasks}
+  \task{Crear repositorio \textit{git} para el proyecto}{0:15}
+  \task{Decidir el editor de texto, IDE, etc. que cada desarrollador prefiera e instalar dicho software en su computadora}{1:00}
+  \task{Cargar stories y tareas en la herramienta \textit{RallyDev}}{2:00}
+\end{tasks}
+
+
 \sprintstory{13}
             {director, secretario o maestro}
             {ingresar el título de una nueva campaña y seleccionar un evento existente}
             {crear una campaña asociada al evento seleccionado}
 
 \begin{criterios}
-  \criterio{El formulario no se envía si el título ingresado es menor a tres caracteres o si no se selecciona un evento.}
-  \criterio{Luego de enviarse el formulario, se crea una campaña en la base de datos con la información ingresada.}
+  \criterio{La campaña no se crea si el título ingresado es menor a tres caracteres o si no se selecciona un evento.}
+  \criterio{Luego de ingresar y validar los datos necesarios, la nueva campaña aparece en el listado de campañas existentes.}
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO para entidades Evento y Campaña}{2:00}
   \task{Investigar librerías y herramientas}{8:00}
+  \task{Instalación y creación de base de datos relacional}{0:30}
   \task{Crear esqueleto de la aplicación}{5:00}
-  \task{Crear objeto Evento}{0:30}
-  \task{Crear objeto Campaña}{0:30}
-  \task{Crear tabla de campañas en la base de datos}{0:15}
-  \task{Crear tabla de eventos en la base de datos}{0:15}
-  \task{Poblar tabla de eventos con eventos ficticios para poder realizar la demo}{0:15}
+  \task{Diseño OO y creación de entidades Evento y Campaña}{3:00}
+  \task{Script para crear las tablas correspondientes en la base de datos y prepoblarlas con datos de prueba}{0:45}
   \task{Crear pantalla \emph{Home} con un único botón al ABM de campañas}{0:30}
   \task{Crear pantalla ABM de campañas, con una lista de las campañas existentes y un botón para crear una campaña nueva}{2:00}
   \task{Implementar UI de creación de campaña}{1:00}
-  \task{Implementación de persistencia para el objeto Campaña}{1:00}
+  \task{Implementar persistencia del objeto Campaña}{1:00}
 \end{tasks}
 
 
@@ -449,14 +498,10 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO para entidad Alumno y su colaboración con Campaña}{2:00}
-  \task{Crear objeto Alumno}{0:30}
-  \task{Modificar objeto de Campaña para que mantenga un conjunto de objetos Alumno destinatarios de la campaña}{1:00}
-  \task{Crear tabla de alumnos en la base de datos}{0:15}
-  \task{Poblar la tabla de alumnos con alumnos ficticios para poder realizar la demo}{0:15}
-  \task{Crear una tabla de relación many-to-many entre campaña y alumno en la base de datos}{0:15}
-  \task{Agregarle al formulario de creación de campaña una lista con los nombres de sus alumnos (es decir, todas las entradas en la tabla de alumnos), acompañado cada uno de un checkbox para incluirlo como destinatario en la campaña}{2:00}
-  \task{Modificar código de persistencia para el objeto Campaña de manera que persista además su lista de destinatarios}{1:00}
+  \task{Diseño OO y creación de entidad Alumno y su colaboración con Campaña}{3:30}
+  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos y prepoblarlas con datos de prueba}{0:45}
+  \task{Agregarle a la  pantalla de creación de campaña una lista con los nombres de sus alumnos (es decir, todas las entradas en la tabla de alumnos), que permita marcar alumnos para incluirlos como destinatario en la campaña}{2:00}
+  \task{Implementar persistencia de la lista de destinatarios del objeto Campaña}{1:00}
 \end{tasks}
 
 
@@ -471,14 +516,12 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO para entidad Mensaje y su colaboración con Campaña}{2:00}
-  \task{Crear objeto Mensaje}{0:30}
-  \task{Modificar campaña para que mantenga un conjunto de objetos Mensaje}{1:00}
-  \task{Crear tabla de mensajes en la base de datos}{0:15}
+  \task{Diseño OO y creación de entidad Mensaje y su colaboración con Campaña}{3:30}
+  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:30}
   \task{Crear pantalla ABM de mensajes para una campaña determinada, con una lista de mensajes existentes y un botón para crear un mensaje nuevo}{3}
-  \task{Crear pantalla con formulario de creación de mensaje}{1:00}
-  \task{Crear código de persistencia para el objeto Mensaje}{1:00}
-  \task{Modificar formulario de creación de campaña de manera que, al guardar una nueva campaña, el usuario sea redirigido al ABM de mensajes para la campaña recién creada}{0:30}
+  \task{Crear pantalla de creación de mensaje}{1:00}
+  \task{Implementar persistencia del objeto Mensaje}{1:00}
+  \task{Modificar pantalla de creación de campaña de manera que, al guardar una nueva campaña, el usuario sea redirigido al ABM de mensajes para la campaña recién creada}{0:30}
 \end{tasks}
 
 \sprintstory{18}
@@ -487,9 +530,9 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
             {que sean recibidos en el momento adecuado por sus destinatarios}
 
 \begin{detalles}
-  \detalle{Se implementa un servicio EmisorDeMensajes, que en intervalos de tiempo regulares pide a la base de datos cualquier mensaje aún no enviado que estén programados para ser enviados en ese momento.}
-  \detalle{EmisorDeMensajes colabora con otro servicio, EmisorDeSms, enviándole un mensaje (en el sentido OO) con los parámetros del SMS a enviar.}
-  \detalle{El servicio EmisorDeSms se implementa de manera que almacene en una tabla de la base de datos la fecha y hora, número de celular y contenido de cada mensaje que se simular enviar.}
+  \detalle{Se implementa un servicio EmisorDeMensajes, que en intervalos de tiempo regulares pide a la base de datos cualquier mensaje aún no enviado que estén programados para ser enviados en ese momento}
+  \detalle{EmisorDeMensajes colabora con otro servicio, EmisorDeSms, enviándole un mensaje (en el sentido OO) con los parámetros del SMS a enviar}
+  \detalle{El servicio EmisorDeSms se implementa de manera que almacene en una tabla de la base de datos la fecha y hora, número de celular y contenido de cada mensaje que se simula enviar}
 \end{detalles}
 
 \begin{criterios}
@@ -499,13 +542,12 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO para servicios EmisorDeMensajes y EmisorDeSms y colaboraciones entre EmisorDeMensajes y Campaña, y EmisorDeMensajes y EmisorDeSms}{2:00}
-  \task{Crear tabla en la base de datos para almacenar los SMS cuyo envío es simulado}{0:15}
-  \task{Crear servicio EmisorDeSms}{1:00}
-  \task{Modificar tabla de mensajes agregando un campo booleano que indique si el mensaje ya fue enviado}{1:00}
-  \task{Modificar objeto Mensaje y su código de persistencia reflejando la existencia de este nuevo campo}{1:00}
-  \task{Crear servicio EmisorDeMensajes}{2:00}
+  \task{Diseño OO y creación de servicios EmisorDeMensajes y EmisorDeSms y colaboraciones entre EmisorDeMensajes y Campaña, y EmisorDeMensajes y EmisorDeSms}{5:00}
+  \task{Agregar campo a objeto Mensaje para indicar si el mensaje fue enviado o no}{0:30}
+  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:30}
+  \task{Implementar persistencia de dicho campo en el objeto Mensaje}{0:30}
 \end{tasks}
+
 
 \sprintstory{19}
             {director, secretario o maestro}
@@ -518,13 +560,13 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Modificar formulario de creación de campaña para soportar edición de campañas existentes}{1:00}
-  \task{Crear pantalla con formulario de edición de campaña existente}{1:00}
+  \task{Modificar pantalla de creación de campaña para soportar edición de campañas existentes}{1:00}
+  \task{Crear pantalla de edición de campaña existente}{1:00}
   \task{Modificar pantalla ABM de campañas mostrando título, criterio de eficacia y eficacia medida para cada item de la lista de campañas.}{1:00}
   \task{Modificar pantalla ABM de campañas, de manera que al hacer click sobre una campaña existente, el usuario sea redirigido a la pantalla de edición de dicha campaña}{0:30}
-  \task{Modificar formulario de creación/edición de campaña agregando dos nuevos campos para el criterio de eficacia en lenguaje natural y el valor de eficacia observado, respectivamente}{0:30}
-  \task{Modificar tabla de campaña agregando un campo de texto para almacenar el criterio de eficacia en lenguaje natural y un campo numérico para almacenar el valor de eficacia observado}{0:15}
+  \task{Modificar pantalla de creación/edición de campaña agregando dos nuevos campos para el criterio de eficacia en lenguaje natural y el valor de eficacia observado, respectivamente}{0:30}
   \task{Modificar objeto Campaña y su código de persistencia reflejando la existencia de estos dos nuevos campos}{1:00}
+  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:15}
 \end{tasks}
 
 \end{document}
