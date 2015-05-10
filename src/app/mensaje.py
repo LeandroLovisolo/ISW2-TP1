@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Mensaje:
   def __init__(self, unaCampania, unaFecha, unContenido):
     self._campania = unaCampania
@@ -21,7 +23,7 @@ class Mensaje:
       self._contenido = unContenido
 
   def marcarComoEnviado(self):
-    self._estado = new MensajeEnviado(self)
+    self._estado = MensajeEnviado(self)
 
   def aceptar(unVisitadorDeMensajes):
     self._estado.aceptar(unVisitadorDeMensajes)
