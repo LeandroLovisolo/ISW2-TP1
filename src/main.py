@@ -51,7 +51,7 @@ def crear_campania():
       if str(evento) == request.form['idEvento']:
         evento.agregarCampania(campania)
         break
-    return redirect(url_for('campanias'))
+    return redirect(url_for('mensajes', id=str(campania)))
 
 @app.route('/campanias/<id>', methods=['GET', 'POST'])
 def editar_campania(id):
