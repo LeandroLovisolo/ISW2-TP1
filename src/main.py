@@ -19,7 +19,6 @@ def campaigns():
   lista_de_campanias = []
   for evento in repositorio_de_eventos.eventos():
     for campania in evento.campanias():
-      print campania
       lista_de_campanias += [{'nombre' : campania.nombre(), 
                             'fechaInicio' : campania.fechaInicio(),
                             'fechaFinal' : campania.fechaFinal(),
