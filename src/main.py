@@ -1,8 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from flask import Flask, request
-from flask import render_template
+from flask import Flask, request, redirect, url_for, render_template
 from app.campania import Campania
 from app.evento import Evento
 from app.repositorio_de_eventos import RepositorioDeEventos
@@ -52,11 +51,11 @@ def campaign_add():
     campania = Campania(request.form['nombre'],
                         request.form['fechaInicio'],
                         request.form['fechaFinal'])
-
     for evento in RepositorioDeEventos.obtenerInstancia().eventos():
       if str(evento) == request.form['idEvento']:
         evento.agregarCampania(campania)
-    return 'Campaña creada'
+        break
+    return redirect(url_for('campaigns'))
 
 @app.route('/campaigns/<campaign_number>/messages/')
 def messages(campaign_number):
