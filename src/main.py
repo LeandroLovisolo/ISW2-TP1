@@ -3,10 +3,10 @@
 
 from flask import Flask, request, redirect, url_for, render_template
 from app.evento import Evento
-from app.repositorio_de_eventos import RepositorioDeEventos
 from app.campania import Campania
 from app.mensaje import Mensaje
 from app.repositorio_de_mensajes import RepositorioDeMensajes
+from app.repositorio_de_eventos import RepositorioDeEventos
 
 app = Flask(__name__)
 
@@ -51,7 +51,7 @@ def crear_campania():
       if str(evento) == request.form['idEvento']:
         evento.agregarCampania(campania)
         break
-    return redirect(url_for('campanias'))
+    return redirect(url_for('mensajes', id=str(campania)))
 
 @app.route('/campanias/<id>', methods=['GET', 'POST'])
 def editar_campania(id):
@@ -68,9 +68,22 @@ def editar_campania(id):
 
 @app.route('/campanias/<id>/mensajes/')
 def mensajes(id):
-  #Conseguir lista de mensajes de la campaña
-  #Pasar como parámetro lista de mensajes
-  return render_template('mensajes.html')
+  lista_de_mensajes = []
+  nombre_campania = None
+  repositorio_de_mensajes = RepositorioDeMensajes.obtenerInstancia()
+  repositorio_de_eventos = RepositorioDeEventos.obtenerInstancia()
+  for evento in repositorio_de_eventos.eventos():
+    for campania in evento.campanias():
+      if str(campania) == id:
+        nombre_campania = campania.nombre()
+
+  for mensaje in repositorio_de_mensajes.mensajes():
+    if str(mensaje.campania()) == id:
+      lista_de_mensajes += [{'fecha' : mensaje.fecha(),
+                            'contenido' : mensaje.contenido()}]
+  
+  return render_template('mensajes.html', mensajes=lista_de_mensajes, id=id, 
+    nombre_campania=nombre_campania)
 
 @app.route('/campanias/<id>/mensajes/crear', methods=['GET', 'POST'])
 def crear_mensaje(id):
