@@ -1,4 +1,4 @@
-class Mensajes:
+class Mensaje:
   def __init__(self, unaCampania, unaFecha, unContenido):
     self._campania = unaCampania
     self._fecha = unaFecha

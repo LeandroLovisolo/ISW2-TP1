@@ -2,9 +2,11 @@
 # coding: utf-8
 
 from flask import Flask, request, redirect, url_for, render_template
-from app.campania import Campania
 from app.evento import Evento
 from app.repositorio_de_eventos import RepositorioDeEventos
+from app.campania import Campania
+from app.mensaje import Mensaje
+from app.repositorio_de_mensajes import RepositorioDeMensajes
 
 app = Flask(__name__)
 
@@ -72,12 +74,30 @@ def mensajes(id):
 
 @app.route('/campanias/<id>/mensajes/crear', methods=['GET', 'POST'])
 def crear_mensaje(id):
-  if request.method == 'POST':
-    #Creo el mensaje y lo agrego al repositorio
-    return 'Mensaje agregado'
+  # Mostrar formulario
+  if request.method == 'GET':
+    return render_template('crear_mensaje.html', idCampania=id)
+
+  # Guardar nuevo mensaje
   else:
-    #Le tengo que pasar el número de la campaña
-    return render_template('crear_mensaje.html')
+    # Obtener campaña correspondiente
+    campania = None
+    for evento in RepositorioDeEventos.obtenerInstancia().eventos():
+      for _campania in evento.campanias():
+        if str(_campania) == request.form['idCampania']:
+          campania = _campania
+          break
+
+    if campania is None:
+        raise Exception('Campaña inexistente')
+
+    # Crear nuevo mensaje
+    mensaje = Mensaje(campania,
+                      request.form['fecha'],
+                      request.form['contenido'])
+    RepositorioDeMensajes.obtenerInstancia().agregarMensaje(mensaje)
+
+    return redirect(url_for('mensajes', id=str(campania)))
 
 def cargarDatosDePrueba():
   # Eventos y campañas
