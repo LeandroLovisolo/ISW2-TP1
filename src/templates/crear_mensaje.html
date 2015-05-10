@@ -8,6 +8,8 @@
   <body>
     <h1>Crear mensaje</h1>
     <form method="post">
+      <input type="hidden" name="idCampania" value="{{ idCampania }}"/>
+
       <p>Fecha y hora de envío: <input type="text" name="fecha"/></p>
       <p>Contenido: <input type="text" name="contenido"/></p>
       <input type="submit"/>
