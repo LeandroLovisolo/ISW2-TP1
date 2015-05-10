@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
     <title>Campañas</title>
+    <style type="text/css">
+      table, td, th {
+          border: 1px solid green;
+      }
+
+      th {
+          background-color: green;
+          color: white;
+      }
+    </style>
   </head>
   <body>
     <table>
       <thead>
       <tr>
         <th>Nombre</th>
+        <th>Evento</th>
         <th>Fecha inicio</th>
         <th>Fecha final</th>
-        <th></th>
         <th></th>
       </tr>
       </thead>
@@ -20,14 +30,18 @@
         {% for campania in campanias %}
           <tr>
             <td>{{campania['nombre']}}</td>
+            <td>{{campania['evento']}}</td>
             <td>{{campania['fechaInicio']}}</td>
             <td>{{campania['fechaFinal']}}</td>
             <td><a href="campaigns/{{campania['codificacion']}}">Editar</a></td>
-            <td><a href="campaigns/delete/{{campania['codificacion']}}">Borrar</a></td>
           </tr>
         {% endfor %}
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5"><a href="campaigns/add"> Agregar campaña </a></td>
+        </tr>
+      </tfoot>
     </table>
-    <a href="campaigns/add"> Agregar campaña </a>
   </body>
 </html>

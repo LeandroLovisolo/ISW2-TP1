@@ -22,7 +22,8 @@ def campaigns():
       lista_de_campanias += [{'nombre' : campania.nombre(), 
                             'fechaInicio' : campania.fechaInicio(),
                             'fechaFinal' : campania.fechaFinal(),
-                            'codificacion' : str(campania)}]
+                            'codificacion' : str(campania),
+                            'evento' : evento.nombre()}]
   
   return render_template('campaigns.html', campanias=lista_de_campanias)
 
