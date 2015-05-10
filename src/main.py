@@ -65,29 +65,19 @@ def editar_campania(id):
 ################################################################################
 
 @app.route('/campanias/<id>/mensajes/')
-def messages(id):
+def mensajes(id):
   #Conseguir lista de mensajes de la campaña
   #Pasar como parámetro lista de mensajes
   return render_template('mensajes.html')
 
 @app.route('/campanias/<id>/mensajes/crear', methods=['GET', 'POST'])
-def messages_add(id):
+def crear_mensaje(id):
   if request.method == 'POST':
     #Creo el mensaje y lo agrego al repositorio
     return 'Mensaje agregado'
   else:
     #Le tengo que pasar el número de la campaña
     return render_template('crear_mensaje.html')
-
-@app.route('/campanias/<campania_id>/messages/<mensaje_id>',
-           methods=['GET', 'POST'])
-def message_edit(campania_id, mensaje_id):
-  if request.method == 'POST':
-    #Pedir el mensaje del repositorio y editarlo
-    return 'Mensaje editado'
-  else:
-    #Pasar datos del mensaje
-    return render_template('editar_mensaje.html')
 
 def cargarDatosDePrueba():
   # Eventos y campañas
