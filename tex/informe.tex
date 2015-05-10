@@ -429,7 +429,7 @@ En concreto, al finalizar el sprint el sistema debería permitir realizar las si
   \item Comparar la eficacia entre campañas.
 \end{itemize}
 
-Las tareas que requieren datos extra para poder operar (como eventos para asociar a una campaña o alumnos para seleccionar como destinatarios de una campaña) se sirven de datos de prueba cargados manualmente en la base de datos subyacente. Dichas funcionalidades satisfacen los requerimientos de la demo.
+Las tareas que requieren datos extra para poder operar (como eventos para asociar a una campaña o alumnos para seleccionar como destinatarios de una campaña) se sirven de datos de prueba hardcodeados en la aplicación. Dichas funcionalidades satisfacen los requerimientos de la demo.
 
 Entre las cosas postergadas para futuros sprints se incluyen:
 
@@ -475,14 +475,12 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \begin{tasks}
   \task{Investigar librerías y herramientas}{8:00}
-  \task{Instalación y creación de base de datos relacional}{0:30}
   \task{Crear esqueleto de la aplicación}{5:00}
-  \task{Diseño OO y creación de entidades Evento y Campaña}{3:00}
-  \task{Script para crear las tablas correspondientes en la base de datos y prepoblarlas con datos de prueba}{0:45}
+  \task{Diseño OO y creación de entidades Evento y Campaña y objetos auxiliares}{3:00}
+  \task{Prepoblado de la aplicación con eventos y campañas de prueba}{0:45}
   \task{Crear pantalla \emph{Home} con un único botón al ABM de campañas}{0:30}
   \task{Crear pantalla ABM de campañas, con una lista de las campañas existentes y un botón para crear una campaña nueva}{2:00}
   \task{Implementar UI de creación de campaña}{1:00}
-  \task{Implementar persistencia del objeto Campaña}{1:00}
 \end{tasks}
 
 
@@ -498,10 +496,9 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO y creación de entidad Alumno y su colaboración con Campaña}{3:30}
-  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos y prepoblarlas con datos de prueba}{0:45}
-  \task{Agregarle a la  pantalla de creación de campaña una lista con los nombres de sus alumnos (es decir, todas las entradas en la tabla de alumnos), que permita marcar alumnos para incluirlos como destinatario en la campaña}{2:00}
-  \task{Implementar persistencia de la lista de destinatarios del objeto Campaña}{1:00}
+  \task{Diseño OO y creación de entidad Alumno, su colaboración con Campaña y objetos auxiliares}{3:30}
+  \task{Prepoblado de laa plicación con alumnos de prueba}{0:45}
+  \task{Agregarle a la pantalla de creación de campaña una lista con los nombres de los alumnos del maestro (es decir, todos los alumnos en el sistema, ya que todavía el sistema no sabe de maestros), que permita marcar alumnos para incluirlos como destinatarios en la campaña}{2:00}
 \end{tasks}
 
 
@@ -516,13 +513,12 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO y creación de entidad Mensaje y su colaboración con Campaña}{3:30}
-  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:30}
+  \task{Diseño OO y creación de entidad Mensaje, su colaboración con Campaña y objetos auxiliares}{3:30}
   \task{Crear pantalla ABM de mensajes para una campaña determinada, con una lista de mensajes existentes y un botón para crear un mensaje nuevo}{3}
   \task{Crear pantalla de creación de mensaje}{1:00}
-  \task{Implementar persistencia del objeto Mensaje}{1:00}
   \task{Modificar pantalla de creación de campaña de manera que, al guardar una nueva campaña, el usuario sea redirigido al ABM de mensajes para la campaña recién creada}{0:30}
 \end{tasks}
+
 
 \sprintstory{18}
             {director, secretario o maestro}
@@ -530,9 +526,9 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
             {que sean recibidos en el momento adecuado por sus destinatarios}
 
 \begin{detalles}
-  \detalle{Se implementa un servicio EmisorDeMensajes, que en intervalos de tiempo regulares pide a la base de datos cualquier mensaje aún no enviado que estén programados para ser enviados en ese momento}
+  \detalle{Se implementa un servicio EmisorDeMensajes, que en intervalos de tiempo regulares obtiene mensaje aún no enviado que estén programados para ser enviados en ese momento}
   \detalle{EmisorDeMensajes colabora con otro servicio, EmisorDeSms, enviándole un mensaje (en el sentido OO) con los parámetros del SMS a enviar}
-  \detalle{El servicio EmisorDeSms se implementa de manera que almacene en una tabla de la base de datos la fecha y hora, número de celular y contenido de cada mensaje que se simula enviar}
+  \detalle{El servicio EmisorDeSms se implementa de manera que imprime por salida estándar la fecha y hora, número de celular y contenido de cada mensaje que se simula enviar}
 \end{detalles}
 
 \begin{criterios}
@@ -542,10 +538,8 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \end{criterios}
 
 \begin{tasks}
-  \task{Diseño OO y creación de servicios EmisorDeMensajes y EmisorDeSms y colaboraciones entre EmisorDeMensajes y Campaña, y EmisorDeMensajes y EmisorDeSms}{5:00}
-  \task{Agregar campo a objeto Mensaje para indicar si el mensaje fue enviado o no}{0:30}
-  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:30}
-  \task{Implementar persistencia de dicho campo en el objeto Mensaje}{0:30}
+  \task{Diseño OO y creación de servicios EmisorDeMensajes y EmisorDeSms, objetos auxiliares y colaboraciones entre EmisorDeMensajes y Campaña, y EmisorDeMensajes y EmisorDeSms}{5:00}
+  \task{Modificar Mensaje para poder distinguir si un mensaje fue enviado o no}{1:00}
 \end{tasks}
 
 
@@ -565,8 +559,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
   \task{Modificar pantalla ABM de campañas mostrando título, criterio de eficacia y eficacia medida para cada item de la lista de campañas.}{1:00}
   \task{Modificar pantalla ABM de campañas, de manera que al hacer click sobre una campaña existente, el usuario sea redirigido a la pantalla de edición de dicha campaña}{0:30}
   \task{Modificar pantalla de creación/edición de campaña agregando dos nuevos campos para el criterio de eficacia en lenguaje natural y el valor de eficacia observado, respectivamente}{0:30}
-  \task{Modificar objeto Campaña y su código de persistencia reflejando la existencia de estos dos nuevos campos}{1:00}
-  \task{Script para crear y/o modificar las tablas correspondientes en la base de datos}{0:15}
+  \task{Modificar objeto Campaña reflejando la existencia de estos dos nuevos campos}{1:00}
 \end{tasks}
 
 \end{document}
