@@ -492,7 +492,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \begin{criterios}
   \criterio{El maestro sólo debe poder seleccionar alumnos de los cursos en los que él es maestro.}
   \criterio{El formulario no se envía si no se selecciona al menos un alumno.}
-  \criterio{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña en la base de datos con los alumnos seleccionados.}
+  \criterio{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña con los alumnos seleccionados.}
 \end{criterios}
 
 \begin{tasks}
@@ -509,7 +509,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \begin{criterios}
   \criterio{El formulario no se envía si no se completan todos los campos, o si la fecha/hora ingresada es inválida, o si ya hay otro mensaje con la misma fecha/hora ingresada.}
-  \criterio{Luego de enviado el formulario, se crea en la base de datos un nuevo mensaje asociado a la campaña desde la que se llegó al formulario, con la información ingresada en el formulario.}
+  \criterio{Luego de enviado el formulario, se crea un nuevo mensaje asociado a la campaña desde la que se llegó al formulario, con la información ingresada en el formulario.}
 \end{criterios}
 
 \begin{tasks}
@@ -533,8 +533,8 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \begin{criterios}
   \criterio{Los mensajes se deben enviar por SMS a sus destinatarios correspondientes automáticamente en la fecha y hora programada.}
-  \criterio{El envío por SMS se debe simular almacenando el mensaje, número de celular y fecha y hora de envío en una tabla en la base de datos.}
-  \criterio{Todo mensaje enviado debe ser marcado como enviado en la base de datos.}
+  \criterio{El envío por SMS se debe simular imprimiendo por salida estándar el mensaje, número de celular y fecha y hora de envío del SMS.}
+  \criterio{Todo mensaje enviado debe quedar marcado como enviado en el sistema.}
 \end{criterios}
 
 \begin{tasks}
@@ -550,7 +550,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \begin{criterios}
   \criterio{El formulario no se envía si no se completan todos los campos, o si el valor de la eficacia medida no es un valor numérico.}
-  \criterio{Luego de enviarse el formulario, se actualiza la campaña en la base de datos con la información de eficacia ingresada.}
+  \criterio{Luego de enviarse el formulario, se actualiza la campaña con la información de eficacia ingresada.}
 \end{criterios}
 
 \begin{tasks}
