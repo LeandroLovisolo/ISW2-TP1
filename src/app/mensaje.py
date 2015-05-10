@@ -15,6 +15,6 @@ class Mensaje:
 
   def contenido(self, unContenido = None):
     if unContenido is None:
-      return _contenido
+      return self._contenido
     else:
       self._contenido = unContenido
