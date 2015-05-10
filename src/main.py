@@ -15,9 +15,17 @@ def home():
 
 @app.route('/campaigns')
 def campaigns():
-  #Conseguir lista de campañas
-  #Pasar como parámetro lista de campañas
-  return render_template('campaigns.html')
+  repositorio_de_eventos = RepositorioDeEventos.obtenerInstancia()
+  lista_de_campanias = []
+  for evento in repositorio_de_eventos.eventos():
+    for campania in evento.campanias():
+      print campania
+      lista_de_campanias += [{'nombre' : campania.nombre(), 
+                            'fechaInicio' : campania.fechaInicio(),
+                            'fechaFinal' : campania.fechaFinal(),
+                            'codificacion' : str(campania)}]
+  
+  return render_template('campaigns.html', campanias=lista_de_campanias)
 
 @app.route('/campaigns/<campaign_number>', methods=['GET', 'POST'])
 def campaign_edit(campaign_number):
@@ -27,6 +35,7 @@ def campaign_edit(campaign_number):
   else:
     #Pasar como parametro campaña
     return render_template('campaing_edit.html')
+
 
 @app.route('/campaigns/add', methods=['GET', 'POST'])
 def campaign_add():

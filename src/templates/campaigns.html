@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
-		<title>Campañas</title>
-	</head>
-	<body>
-	</body>
+  <head> 
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
+    <title>Campañas</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha inicio</th>
+        <th>Fecha final</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for campania in campanias %}
+          <tr>
+            <td>{{campania['nombre']}}</td>
+            <td>{{campania['fechaInicio']}}</td>
+            <td>{{campania['fechaFinal']}}</td>
+            <td><a href="campaigns/{{campania['codificacion']}}">Editar</a></td>
+            <td><a href="campaigns/delete/{{campania['codificacion']}}">Borrar</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="campaigns/add"> Agregar campaña </a>
+  </body>
 </html>
