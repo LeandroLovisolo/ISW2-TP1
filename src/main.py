@@ -70,7 +70,7 @@ def messages(id):
   #Pasar como parámetro lista de mensajes
   return render_template('mensajes.html')
 
-@app.route('/campanias/<id>/messages/add', methods=['GET', 'POST'])
+@app.route('/campanias/<id>/mensajes/crear', methods=['GET', 'POST'])
 def messages_add(id):
   if request.method == 'POST':
     #Creo el mensaje y lo agrego al repositorio
