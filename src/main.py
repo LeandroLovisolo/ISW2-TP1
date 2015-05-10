@@ -12,7 +12,7 @@ def home():
 def campaigns():
 	#Conseguir lista de campañas
 	#Pasar como parámetro lista de campañas
-    return render_template('campaings.html')
+    return render_template('campaigns.html')
 
 @app.route('/campaigns/<campaign_number>', methods=['GET', 'POST'])
 def campaign_edit(campaign_number):
