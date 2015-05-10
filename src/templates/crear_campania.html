@@ -19,6 +19,14 @@
       </p>
       <p>Fecha de inicio: <input type="text" name="fechaInicio"/></p>
       <p>Fecha de finalización: <input type="text" name="fechaFinal"/></p>
+      <p>Alumnos</p>
+      <p>
+        <select name="alumnos" multiple>
+        {% for alumno in alumnos %}
+          <option value="{{alumno['id']}}">{{alumno['nombre']}}</option>
+        {% endfor %}
+        </select>
+      </p>
       <input type="submit"/>
     </form>
   </body>

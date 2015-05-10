@@ -38,18 +38,30 @@ def campanias():
 def crear_campania():
   # Mostrar formulario
   if request.method == 'GET':
+    alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
     eventos = RepositorioDeEventos.obtenerInstancia().eventos()
+    lista_de_alumnos = []
+    for alumno in alumnos:
+      lista_de_alumnos += [{'nombre' : alumno.nombre(),
+                            'id' : str(alumno)}]
     eventosStr = []
     for evento in eventos:
       eventosStr.append({'nombre': evento.nombre(), 'id': str(evento)})
     return render_template('crear_campania.html', eventos=eventosStr, 
-      alumnos=lista_de_mensajes)
+      alumnos=lista_de_alumnos)
 
   # Guardar nueva campaña
   else:
     campania = Campania(request.form['nombre'],
                         request.form['fechaInicio'],
                         request.form['fechaFinal'])
+
+    alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
+    select_alumnos = request.form.getlist('alumnos')
+    for alumno in alumnos:
+      if str(alumno) in select_alumnos:
+        campania.agregarAlumno(alumno)
+
     for evento in RepositorioDeEventos.obtenerInstancia().eventos():
       if str(evento) == request.form['idEvento']:
         evento.agregarCampania(campania)
