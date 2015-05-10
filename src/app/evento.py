@@ -1,22 +1,21 @@
 from campania import Campania
 
-class Evento():
-  def __init__(self, unNombre, unAutor):
+class Evento:
+  def __init__(self, unNombre):
     self._nombre = unNombre
-    self._autor = unAutor
     self._campanias = list()
 
-  def nombre():
+  def nombre(self):
     return self._nombre
 
-  def nombre(unNombre):
+  def nombre(self, unNombre):
     self._nombre = unNombre
 
-  def agregarCampania(unaCampania):
+  def agregarCampania(self, unaCampania):
     self._campanias.append(unaCampania)
 
-  def quitarCampania(unaCampania):
+  def quitarCampania(self, unaCampania):
     self._campanias.remove(unaCampania)
 
-  def campanias():
+  def campanias(self):
     return self._campanias

@@ -13,7 +13,7 @@ class RepositorioDeEventos:
   def eventos(self):
     return self._eventos
 
-  def agregarEventos(self, unEvento):
+  def agregarEvento(self, unEvento):
     self._eventos.append(unEvento)
 
   def quitarEvento(self, unEvento):
