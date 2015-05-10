@@ -7,16 +7,16 @@ class Evento():
     self._campanias = list()
 
   def nombre():
-    return _nombre
+    return self._nombre
 
   def nombre(unNombre):
-    _nombre = unNombre
+    self._nombre = unNombre
 
   def agregarCampania(unaCampania):
-    _campanias.append(unaCampania)
+    self._campanias.append(unaCampania)
 
   def quitarCampania(unaCampania):
-    _campanias.remove(unaCampania)
+    self._campanias.remove(unaCampania)
 
   def campanias():
-    return _campanias
+    return self._campanias
