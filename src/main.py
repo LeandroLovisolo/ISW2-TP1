@@ -2,13 +2,10 @@
 # coding: utf-8
 
 from flask import Flask, request, redirect, url_for, render_template
-from app.evento import Evento
-from app.repositorio_de_eventos import RepositorioDeEventos
+from app.evento import Evento, RepositorioDeEventos
 from app.campania import Campania
-from app.mensaje import Mensaje
-from app.repositorio_de_mensajes import RepositorioDeMensajes
-from app.alumno import Alumno
-from app.repositorio_de_alumnos import RepositorioDeAlumnos
+from app.mensaje import Mensaje, RepositorioDeMensajes
+from app.alumno import Alumno, RepositorioDeAlumnos
 
 app = Flask(__name__)
 
