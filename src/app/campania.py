@@ -1,3 +1,5 @@
+from repositorio_de_mensajes import RepositorioDeMensajes
+
 class Campania:
   def __init__(self, unNombre, unaFechaInicio, unaFechaFinal):
     self._nombre = unNombre
@@ -21,3 +23,6 @@ class Campania:
       return self._fechaFinal
     else:
       self._fechaFinal = unaFechaFinal
+
+  def mensajes(self):
+    return RepositorioDeMensajes.obtenerInstancia().mensajesAsignadosA(self)
