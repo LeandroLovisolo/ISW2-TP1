@@ -3,10 +3,12 @@
 
 from flask import Flask, request, redirect, url_for, render_template
 from app.evento import Evento
+from app.repositorio_de_eventos import RepositorioDeEventos
 from app.campania import Campania
 from app.mensaje import Mensaje
 from app.repositorio_de_mensajes import RepositorioDeMensajes
-from app.repositorio_de_eventos import RepositorioDeEventos
+from app.alumno import Alumno
+from app.repositorio_de_alumnos import RepositorioDeAlumnos
 
 app = Flask(__name__)
 
@@ -114,6 +116,12 @@ def crear_mensaje(id):
     return redirect(url_for('mensajes', id=str(campania)))
 
 def cargarDatosDePrueba():
+  # Alumnos
+  r = RepositorioDeAlumnos.obtenerInstancia()
+  r.agregarAlumno(Alumno(11111111, 'Juancito', '15-0000-0000'))
+  r.agregarAlumno(Alumno(22222222, 'Pepito',   '15-1111-1111'))
+  r.agregarAlumno(Alumno(33333333, 'Anita',    '15-0303-456'))
+
   # Eventos y campañas
   e = Evento('Prueba de historia')
   RepositorioDeEventos.obtenerInstancia().agregarEvento(e)
