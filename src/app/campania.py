@@ -5,6 +5,7 @@ class Campania:
     self._nombre = unNombre
     self._fechaInicio = unaFechaInicio
     self._fechaFinal = unaFechaFinal
+    self._alumnos = []
 
   def nombre(self, unNombre = None):
     if unNombre is None:
@@ -26,3 +27,12 @@ class Campania:
 
   def mensajes(self):
     return RepositorioDeMensajes.obtenerInstancia().mensajesAsignadosA(self)
+
+  def alumnos(self):
+    return self._alumnos
+
+  def agregarAlumno(self, unAlumno):
+    self._alumnos.append(unAlumno)
+
+  def quitarAlumno(self, unAlumno):
+    self._alumnos.remove(unAlumno)
