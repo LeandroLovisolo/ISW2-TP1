@@ -5,11 +5,11 @@ class Evento:
     self._nombre = unNombre
     self._campanias = list()
 
-  def nombre(self):
-    return self._nombre
-
-  def nombre(self, unNombre):
-    self._nombre = unNombre
+  def nombre(self, unNombre = None):
+    if unNombre == None:
+      return self._nombre
+    else:
+      self._nombre = unNombre
 
   def agregarCampania(self, unaCampania):
     self._campanias.append(unaCampania)
