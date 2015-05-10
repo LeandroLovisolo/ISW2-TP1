@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
-		<title>Agregar campaña</title>
-	</head>
-	<body>
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
+    <title>Agregar campaña</title>
+  </head>
+  <body>
+    <h1>Crear campaña</h1>
+    <form method="post">
+      <p>Nombre: <input type="text" name="nombre"/></p>
+      <p>
+        Evento asociado:
+        <select name="idEvento">
+          {% for evento in eventos %}
+            <option value="{{ evento.id }}">{{ evento.nombre }}</li>
+          {% endfor %}
+        </select>
+      </p>
+      <p>Fecha de inicio: <input type="text" name="fechaInicio"/></p>
+      <p>Fecha de finalización: <input type="text" name="fechaFinal"/></p>
+      <input type="submit"/>
+    </form>
+  </body>
 </html>

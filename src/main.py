@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from flask import Flask
+from flask import Flask, request
 from flask import render_template
 from app.campania import Campania
 from app.evento import Evento
@@ -39,13 +39,24 @@ def campaign_edit(campaign_number):
 
 @app.route('/campaigns/add', methods=['GET', 'POST'])
 def campaign_add():
-  if request.method == 'POST':
-    #Crear campaña poniendolé su autor
-    #Agregar campaña al repositorio
-    return 'Campaña creada'
+  # Mostrar formulario
+  if request.method == 'GET':
+    eventos = RepositorioDeEventos.obtenerInstancia().eventos()
+    eventosStr = []
+    for evento in eventos:
+      eventosStr.append({'nombre': evento.nombre(), 'id': str(evento)})
+    return render_template('campaign_add.html', eventos=eventosStr)
+
+  # Guardar nueva campaña
   else:
-    #Pasar como parametro el maestro? o nombre del maestro o algo?
-    return render_template('campaing_add.html')
+    campania = Campania(request.form['nombre'],
+                        request.form['fechaInicio'],
+                        request.form['fechaFinal'])
+
+    for evento in RepositorioDeEventos.obtenerInstancia().eventos():
+      if str(evento) == request.form['idEvento']:
+        evento.agregarCampania(campania)
+    return 'Campaña creada'
 
 @app.route('/campaigns/<campaign_number>/messages/')
 def messages(campaign_number):
@@ -53,8 +64,7 @@ def messages(campaign_number):
   #Pasar como parámetro lista de mensajes
   return render_template('messages.html')
 
-@app.route('/campaigns/<campaign_number>/messages/add', 
-  methods=['GET', 'POST'])
+@app.route('/campaigns/<campaign_number>/messages/add', methods=['GET', 'POST'])
 def messages_add(campaign_number):
   if request.method == 'POST':
     #Creo el mensaje y lo agrego al repositorio
@@ -80,7 +90,7 @@ def cargarDatosDePrueba():
   e.agregarCampania(Campania('Recordatorios v1', '2015-05-01', '2015-06-01'))
   e.agregarCampania(Campania('Recordatorios v2', '2015-05-01', '2015-06-01'))
   RepositorioDeEventos.obtenerInstancia().agregarEvento(
-      Evento('Excursión a museo'))
+      Evento(u'Excursión a museo'))
 
 def lanzarWebapp():
   app.debug = True
