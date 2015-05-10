@@ -1,5 +1,4 @@
 class RepositorioDeEventos:
-
   _instancia = None
 
   @classmethod
