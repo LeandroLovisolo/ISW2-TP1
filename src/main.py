@@ -40,7 +40,8 @@ def crear_campania():
     eventosStr = []
     for evento in eventos:
       eventosStr.append({'nombre': evento.nombre(), 'id': str(evento)})
-    return render_template('crear_campania.html', eventos=eventosStr)
+    return render_template('crear_campania.html', eventos=eventosStr, 
+      alumnos=lista_de_mensajes)
 
   # Guardar nueva campaña
   else:
