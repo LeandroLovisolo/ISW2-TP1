@@ -12,12 +12,12 @@ class Alumno:
 
   def nombre(self, unNombre = None):
     if unNombre is None:
-      return _nombre
+      return self._nombre
     else:
       self._nombre = unNombre
 
   def telefono(self, unTelefono = None):
     if unTelefono is None:
-      return _telefono
+      return self._telefono
     else:
       self._telefono = unTelefono
