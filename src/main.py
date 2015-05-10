@@ -12,8 +12,12 @@ app = Flask(__name__)
 def home():
   return render_template('home.html')
 
-@app.route('/campaigns')
-def campaigns():
+################################################################################
+# Campañas                                                                     #
+################################################################################
+
+@app.route('/campanias')
+def campanias():
   repositorio_de_eventos = RepositorioDeEventos.obtenerInstancia()
   lista_de_campanias = []
   for evento in repositorio_de_eventos.eventos():
@@ -23,28 +27,18 @@ def campaigns():
                             'fechaFinal' : campania.fechaFinal(),
                             'codificacion' : str(campania),
                             'evento' : evento.nombre()}]
-  
-  return render_template('campaigns.html', campanias=lista_de_campanias)
 
-@app.route('/campaigns/<campaign_number>', methods=['GET', 'POST'])
-def campaign_edit(campaign_number):
-  if request.method == 'POST':
-    #Conseguir campaña y editarla
-    return 'Campaña editada'
-  else:
-    #Pasar como parametro campaña
-    return render_template('campaing_edit.html')
+  return render_template('campanias.html', campanias=lista_de_campanias)
 
-
-@app.route('/campaigns/add', methods=['GET', 'POST'])
-def campaign_add():
+@app.route('/campanias/crear', methods=['GET', 'POST'])
+def crear_campania():
   # Mostrar formulario
   if request.method == 'GET':
     eventos = RepositorioDeEventos.obtenerInstancia().eventos()
     eventosStr = []
     for evento in eventos:
       eventosStr.append({'nombre': evento.nombre(), 'id': str(evento)})
-    return render_template('campaign_add.html', eventos=eventosStr)
+    return render_template('crear_campania.html', eventos=eventosStr)
 
   # Guardar nueva campaña
   else:
@@ -55,32 +49,45 @@ def campaign_add():
       if str(evento) == request.form['idEvento']:
         evento.agregarCampania(campania)
         break
-    return redirect(url_for('campaigns'))
+    return redirect(url_for('campanias'))
 
-@app.route('/campaigns/<campaign_number>/messages/')
-def messages(campaign_number):
+@app.route('/campanias/<id>', methods=['GET', 'POST'])
+def editar_campania(id):
+  if request.method == 'POST':
+    #Conseguir campaña y editarla
+    return 'Campaña editada'
+  else:
+    #Pasar como parametro campaña
+    return render_template('editar_campania.html')
+
+################################################################################
+# Mensajes                                                                     #
+################################################################################
+
+@app.route('/campanias/<id>/mensajes/')
+def messages(id):
   #Conseguir lista de mensajes de la campaña
   #Pasar como parámetro lista de mensajes
-  return render_template('messages.html')
+  return render_template('mensajes.html')
 
-@app.route('/campaigns/<campaign_number>/messages/add', methods=['GET', 'POST'])
-def messages_add(campaign_number):
+@app.route('/campanias/<id>/messages/add', methods=['GET', 'POST'])
+def messages_add(id):
   if request.method == 'POST':
     #Creo el mensaje y lo agrego al repositorio
     return 'Mensaje agregado'
   else:
     #Le tengo que pasar el número de la campaña
-    return render_template('message_add.html')
+    return render_template('crear_mensaje.html')
 
-@app.route('/campaigns/<campaign_number>/messages/<message_number>', 
-  methods=['GET', 'POST'])
-def message_edit(campaign_number, message_number):
+@app.route('/campanias/<campania_id>/messages/<mensaje_id>',
+           methods=['GET', 'POST'])
+def message_edit(campania_id, mensaje_id):
   if request.method == 'POST':
     #Pedir el mensaje del repositorio y editarlo
     return 'Mensaje editado'
   else:
     #Pasar datos del mensaje
-    return render_template('message_edit.html')
+    return render_template('editar_mensaje.html')
 
 def cargarDatosDePrueba():
   # Eventos y campañas
