@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
-		<title>Mensajes</title>
-	</head>
-	<body>
-	</body>
+  <head> 
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
+    <title>Mensajes</title>
+    <style type="text/css">
+      table, td, th {
+          border: 1px solid green;
+      }
+
+      th {
+          background-color: green;
+          color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mensajes de la campaña {{nombre_campania}}</h1>
+
+    <p>
+      <a href="/campanias/{{id}}/mensajes/crear">Crear nuevo mensaje</a>
+    </p>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Contenido</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for mensaje in mensajes %}
+          <tr>
+            <td>{{mensaje['fecha']}}</td>
+			<td>{{mensaje['contenido']}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
 </html>
