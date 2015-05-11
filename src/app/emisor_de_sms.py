@@ -19,3 +19,4 @@ class EmisorDeSms:
     print 'Contenido:'
     print unContenido
     print '=================================================='
+    print ''
