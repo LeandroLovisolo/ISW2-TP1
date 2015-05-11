@@ -5,6 +5,7 @@ class Campania:
     self._nombre = unNombre
     self._fechaInicio = unaFechaInicio
     self._fechaFinal = unaFechaFinal
+    self._eficacia = Eficacia("", 0)
     self._alumnos = []
 
   def nombre(self, unNombre = None):
@@ -36,6 +37,9 @@ class Campania:
 
   def quitarAlumno(self, unAlumno):
     self._alumnos.remove(unAlumno)
+
+  def eficacia(self):
+    return self._eficacia
 
 
 class Eficacia:
