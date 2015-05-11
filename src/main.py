@@ -40,17 +40,24 @@ def campanias():
 @app.route('/campanias/comparar/<id_una>/<id_otra>', methods=['GET'])
 def comparar_campanias(id_una, id_otra):
   una = None
+  evento_una = None
   otra = None
+  evento_otra = None
 
   for evento in RepositorioDeEventos.obtenerInstancia().eventos():
     for campania in evento.campanias():
       if str(campania) == id_una:
         una = campania
+        evento_una = evento
       if str(campania) == id_otra:
         otra = campania
+        evento_otra = evento
 
   if una is None: return 'La primera campaña no existe.'
   if otra is None: return 'La segunda campaña no existe.'
+
+  if evento_una != evento_otra:
+    return 'No se pueden comparar campañas de eventos diferentes.'
 
   try:
     resultado = una.criterioDeEficacia().compararCon(otra.criterioDeEficacia())
