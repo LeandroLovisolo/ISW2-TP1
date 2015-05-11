@@ -36,3 +36,53 @@ class Campania:
 
   def quitarAlumno(self, unAlumno):
     self._alumnos.remove(unAlumno)
+
+
+class Eficacia:
+    def __init__(self, unCriterio, unaMedicion):
+      self._criterio = unCriterio
+      self._medicion = unaMedicion
+
+    def compararCon(self, unResultado):
+      raise NotImplementedError()
+
+    def criterio(self, unCriterio = None):
+      if unCriterio is None:
+        return self._criterio
+      else:
+        self._criterio = unCriterio
+
+    def medicion(self, unaMedicion = None):
+      if unaMedicion is None:
+        return self._medicion
+      else:
+        self._medicion = unaMedicion
+
+class PorcentajeDeAprobacion(Eficacia):
+  def __init__(self, unCriterio, unaMedicion):
+    super().__init__(unCriterio, unaMedicion)
+
+  def compararCon(self, unResultado):
+    if type(unResultado) != type(self):
+      raise TypeError()
+
+    if self._medicion > unResultado._medicion:
+      return 1
+    elif self._medicion == unResultado._medicion:
+      return 0
+    else:
+      return -1
+
+class CantidadDeDesaprobados(Eficacia):
+  def __init__(self, unCriterio, unaMedicion):
+    super().__init__(unCriterio, unaMedicion)
+  def compararCon(self, unResultado):
+    if type(unResultado) != type(self):
+      raise TypeError()
+
+    if self._medicion < unResultado._medicion:
+      return 1
+    elif self._medicion == unResultado._medicion:
+      return 0
+    else:
+      return -1
