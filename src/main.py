@@ -27,7 +27,9 @@ def campanias():
                             'fechaInicio' : campania.fechaInicio(),
                             'fechaFinal' : campania.fechaFinal(),
                             'codificacion' : str(campania),
-                            'evento' : evento.nombre()}]
+                            'evento' : evento.nombre(),
+                            'criterioEficacia' : campania.eficacia().criterio(),
+                            'medicionEficacia' : campania.eficacia().medicion()}]
 
   return render_template('campanias.html', campanias=lista_de_campanias)
 
@@ -52,6 +54,9 @@ def crear_campania():
     campania = Campania(request.form['nombre'],
                         request.form['fechaInicio'],
                         request.form['fechaFinal'])
+    eficacia = campania.eficacia()
+    eficacia.criterio(request.form['criterio'])
+    eficacia.medicion(0)
 
     alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
     select_alumnos = request.form.getlist('alumnos')
@@ -84,6 +89,10 @@ def editar_campania(id):
           for alumno in alumnos:
             if str(alumno) in select_alumnos:
               campania.agregarAlumno(alumno)
+          eficacia = campania.eficacia()
+          eficacia.criterio(request.form['criterio'])
+          eficacia.medicion(request.form['medicion'])
+
     return redirect(url_for('campanias'))
     
   else:
