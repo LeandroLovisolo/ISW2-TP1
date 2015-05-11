@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<meta charset="UTF-8">
-		<link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
-		<title>Editar campaña</title>
-	</head>
-	<body>
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="static/favicon.gif" type="image/x-icon" />
+    <title>Agregar campaña</title>
+  </head>
+  <body>
+    <h1>Crear campaña</h1>
+    <form method="post">
+      <p>Nombre: <input type="text" name="nombre" value="{{campania.nombre}}"/></p>
+      <p>
+        Evento asociado: {{campania.nombreEvento}}
+      </p>
+      <p>Fecha de inicio: <input type="text" name="fechaInicio" value="{{campania.fechaInicio}}"/></p>
+      <p>Fecha de finalización: <input type="text" name="fechaFinal" value="{{campania.fechaFinal}}"/></p>
+      <p>Alumnos</p>
+      <p>
+        <select name="alumnos" multiple>
+        {% for alumno in alumnos %}
+          {% if alumno.id in campania.alumnos %}
+            <option value="{{alumno['id']}}" selected>{{alumno['nombre']}}</option>
+          {% else %}
+            <option value="{{alumno['id']}}">{{alumno['nombre']}}</option>
+          {% endif %}
+        {% endfor %}
+        </select>
+      </p>
+      <input type="submit"/>
+    </form>
+  </body>
 </html>
