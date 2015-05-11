@@ -4,8 +4,7 @@
 from flask import Flask, request, redirect, url_for, render_template
 from datetime import datetime, timedelta
 from app.evento import Evento, RepositorioDeEventos
-from app.campania import Campania
-from app.campania import Eficacia
+from app.campania import Campania, PorcentajeDeAprobacion, CriterioDeEficacia
 from app.mensaje import Mensaje, RepositorioDeMensajes
 from app.alumno import Alumno, RepositorioDeAlumnos
 from app.emisor_de_mensajes import EmisorDeMensajes
@@ -51,18 +50,19 @@ def crear_campania():
       eventosStr.append({'nombre': evento.nombre(), 'id': str(evento)})
 
     criteriosStr = []
-    subclases = Eficacia.__subclasses__()
-    for subclase in subclases():
-      criteriosStr.append({'nombre' : subclase.__name__, 'descripcion' : subclase__doc__})
+    subclases = CriterioDeEficacia.__subclasses__()
+    for subclase in subclases:
+      criteriosStr.append({'nombre' : subclase.__name__.decode('utf-8'), 
+        'descripcion' : subclase.__doc__.decode('utf-8')})
 
     return render_template('crear_campania.html', eventos=eventosStr, 
       alumnos=lista_de_alumnos, criterios=criteriosStr)
 
   # Guardar nueva campaña
   else:
-    subclases = Eficacia.__subclasses__()
-    for subclase in subclases():
-      if subclase.__name__ == criterio:
+    subclases = CriterioDeEficacia.__subclasses__()
+    for subclase in subclases:
+      if subclase.__name__ == request.form['criterio']:
         eficacia = subclase(0)
 
     campania = Campania(request.form['nombre'],
@@ -101,8 +101,8 @@ def editar_campania(id):
           for alumno in alumnos:
             if str(alumno) in select_alumnos:
               campania.agregarAlumno(alumno)
-          eficacia = campania.eficacia()
-          eficacia.criterio(request.form['criterio'])
+
+          eficacia = campania.criterioDeEficacia()
           eficacia.medicion(request.form['medicion'])
 
     return redirect(url_for('campanias'))
@@ -120,7 +120,9 @@ def editar_campania(id):
                         'fechaInicio' : campania.fechaInicio(),
                         'fechaFinal' : campania.fechaFinal(),
                         'nombreEvento' : evento.nombre(),
-                        'alumnos' : idAlumnosCampania}
+                        'alumnos' : idAlumnosCampania,
+                        'nombreCriterio' : 
+                        campania.criterioDeEficacia().__class__.__name__}
           break
     alumnosSrt = []
     alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
@@ -202,11 +204,13 @@ def cargarDatosDePrueba():
       Evento(u'Excursión a museo'))
 
   # Campañas
-  c = Campania('Recordatorios v1', '2015-05-01', '2015-06-01')
+  c = Campania('Recordatorios v1', '2015-05-01', '2015-06-01',
+               PorcentajeDeAprobacion(0))
   c.agregarAlumno(a1)
   c.agregarAlumno(a2)
   e.agregarCampania(c)
-  e.agregarCampania(Campania('Recordatorios v2', '2015-05-01', '2015-06-01'))
+  e.agregarCampania(Campania('Recordatorios v2', '2015-05-01', '2015-06-01',
+                             PorcentajeDeAprobacion(0)))
 
   # Mensajes
   RepositorioDeMensajes.obtenerInstancia().agregarMensaje(
@@ -217,9 +221,10 @@ def cargarDatosDePrueba():
       Mensaje(c, datetime.now() + timedelta(seconds=15), 'Tercer mensaje'))
 
 def lanzarWebapp():
-  app.run()
+  app.run(debug=True, use_debugger=True, use_reloader=False)
 
 if __name__ == '__main__':
+  print 'Sistema de recordatorios escolares por SMS'
   cargarDatosDePrueba()
   EmisorDeMensajes.obtenerInstancia() # Se crea tras la primera solicitud
   lanzarWebapp()

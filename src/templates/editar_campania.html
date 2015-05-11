@@ -26,8 +26,8 @@
         {% endfor %}
         </select>
       </p>
-      <p>Criterio de eficacia: <input type="text" name="criterio" value="{{campania.criterioEficacia}}"/></p>
-      <p>Medición: <input type="text" name="medicion" value="{{campania.medicionEficacia}}"/></p>
+      <p>Criterio de eficacia: {{campania.nombreCriterio}}</p>
+      <p>Medición: <input type="text" name="medicion"/></p>
       <input type="submit"/>
     </form>
   </body>

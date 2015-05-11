@@ -27,7 +27,12 @@
         {% endfor %}
         </select>
       </p>
-      <p>Criterio de eficacia: <input type="text" name="criterio"/></p>
+      <p>Criterio de eficacia:</p>
+        <select name="criterio">
+          {% for criterio in criterios %}
+            <option value="{{criterio.nombre}}">{{criterio.descripcion}}</option>
+          {% endfor %}
+        </select>
       <p>Medición: <input type="text" name="medicion" disabled/></p>
       <input type="submit"/>
     </form>
