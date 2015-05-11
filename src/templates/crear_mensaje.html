@@ -10,7 +10,13 @@
     <form method="post">
       <input type="hidden" name="idCampania" value="{{ idCampania }}"/>
 
-      <p>Fecha y hora de envío: <input type="text" name="fecha"/></p>
+      <p>
+        Fecha y hora de envío: <input type="text" name="fecha"/> <br>
+        <small>
+          Formato: <em>YY-MM-DD HH:MM:SS</em>.
+          Ejemplo: 2015-12-24 23:59:59.
+        </small>
+      </p>
       <p>Contenido: <input type="text" name="contenido"/></p>
       <input type="submit"/>
     </form>

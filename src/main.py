@@ -163,9 +163,11 @@ def crear_mensaje(id):
         raise Exception('Campaña inexistente')
 
     # Crear nuevo mensaje
-    mensaje = Mensaje(campania,
-                      request.form['fecha'],
-                      request.form['contenido'])
+    try:
+      fecha = datetime.strptime(request.form['fecha'], '%Y-%m-%d %H:%M:%S')
+    except ValueError:
+      return 'Fecha inválida.'
+    mensaje = Mensaje(campania, fecha, request.form['contenido'])
     RepositorioDeMensajes.obtenerInstancia().agregarMensaje(mensaje)
 
     return redirect(url_for('mensajes', id=str(campania)))
