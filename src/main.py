@@ -37,17 +37,30 @@ def campanias():
 def crear_campania():
   # Mostrar formulario
   if request.method == 'GET':
+    alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
     eventos = RepositorioDeEventos.obtenerInstancia().eventos()
+    lista_de_alumnos = []
+    for alumno in alumnos:
+      lista_de_alumnos += [{'nombre' : alumno.nombre(),
+                            'id' : str(alumno)}]
     eventosStr = []
     for evento in eventos:
       eventosStr.append({'nombre': evento.nombre(), 'id': str(evento)})
-    return render_template('crear_campania.html', eventos=eventosStr)
+    return render_template('crear_campania.html', eventos=eventosStr, 
+      alumnos=lista_de_alumnos)
 
   # Guardar nueva campaña
   else:
     campania = Campania(request.form['nombre'],
                         request.form['fechaInicio'],
                         request.form['fechaFinal'])
+
+    alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
+    select_alumnos = request.form.getlist('alumnos')
+    for alumno in alumnos:
+      if str(alumno) in select_alumnos:
+        campania.agregarAlumno(alumno)
+
     for evento in RepositorioDeEventos.obtenerInstancia().eventos():
       if str(evento) == request.form['idEvento']:
         evento.agregarCampania(campania)
@@ -56,12 +69,47 @@ def crear_campania():
 
 @app.route('/campanias/<id>', methods=['GET', 'POST'])
 def editar_campania(id):
+  eventos = RepositorioDeEventos.obtenerInstancia().eventos()
+  alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
   if request.method == 'POST':
-    #Conseguir campaña y editarla
-    return 'Campaña editada'
+    for evento in eventos:
+      for campania in evento.campanias():
+        if str(campania) == id:
+          campania.nombre(request.form['nombre'])
+          campania.fechaInicio(request.form['fechaInicio'])
+          campania.fechaFinal(request.form['fechaFinal'])
+          # Quito todos los alumnos
+          for alumno in campania.alumnos():
+            campania.quitarAlumno(alumno)
+          # Agrego todos los alumnos seleccionados
+          select_alumnos = request.form.getlist('alumnos')
+          for alumno in alumnos:
+            if str(alumno) in select_alumnos:
+              campania.agregarAlumno(alumno)
+    return redirect(url_for('campanias'))
+    
   else:
-    #Pasar como parametro campaña
-    return render_template('editar_campania.html')
+    campaniaStr = None
+    for evento in eventos:
+      for campania in evento.campanias():
+        if str(campania) == id:
+          idAlumnosCampania = []
+          for alumno in campania.alumnos():
+            idAlumnosCampania.append(str(alumno))
+
+          campaniaStr = {'nombre' : campania.nombre(),
+                        'fechaInicio' : campania.fechaInicio(),
+                        'fechaFinal' : campania.fechaFinal(),
+                        'nombreEvento' : evento.nombre(),
+                        'alumnos' : idAlumnosCampania}
+          break
+    alumnosSrt = []
+    alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
+    for alumno in alumnos:
+      alumnosSrt.append({'id' : str(alumno), 'nombre' : alumno.nombre()})
+
+    return render_template('editar_campania.html',
+      campania=campaniaStr, alumnos=alumnosSrt)
 
 ################################################################################
 # Mensajes                                                                     #

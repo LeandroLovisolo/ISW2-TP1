@@ -12,7 +12,7 @@ class Alumno:
 
   def nombre(self, unNombre = None):
     if unNombre is None:
-      return _nombre
+      return self._nombre
     else:
       self._nombre = unNombre
 
