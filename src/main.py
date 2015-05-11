@@ -151,7 +151,8 @@ def editar_campania(id):
                         'nombreEvento' : evento.nombre(),
                         'alumnos' : idAlumnosCampania,
                         'nombreCriterio' : 
-                        campania.criterioDeEficacia().__class__.__doc__}
+                        campania.criterioDeEficacia().__class__.__doc__.decode('utf-8'),
+                        'medicionCriterio' : campania.criterioDeEficacia().medicion()}
           break
     alumnosSrt = []
     alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()

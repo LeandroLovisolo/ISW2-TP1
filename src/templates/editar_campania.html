@@ -6,7 +6,7 @@
     <title>Editar campaña</title>
   </head>
   <body>
-    <h1>Crear campaña</h1>
+    <h1>Editar campaña</h1>
     <form method="post">
       <p>Nombre: <input type="text" name="nombre" value="{{campania.nombre}}"/></p>
       <p>
@@ -27,7 +27,7 @@
         </select>
       </p>
       <p>Criterio de eficacia: {{campania.nombreCriterio}}</p>
-      <p>Medición: <input type="text" name="medicion"/></p>
+      <p>Medición: <input type="text" name="medicion" value="{{campania.medicionCriterio}}"/></p>
       <input type="submit"/>
     </form>
   </body>
