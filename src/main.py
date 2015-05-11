@@ -25,13 +25,15 @@ def campanias():
   lista_de_campanias = []
   for evento in repositorio_de_eventos.eventos():
     for campania in evento.campanias():
-      lista_de_campanias += [{'nombre' : campania.nombre(), 
-                            'fechaInicio' : campania.fechaInicio(),
-                            'fechaFinal' : campania.fechaFinal(),
-                            'codificacion' : str(campania),
-                            'evento' : evento.nombre(),
-                            'criterioEficacia' : campania.eficacia().criterio(),
-                            'medicionEficacia' : campania.eficacia().medicion()}]
+      lista_de_campanias.append({
+        'nombre': campania.nombre(),
+        'fechaInicio': campania.fechaInicio(),
+        'fechaFinal': campania.fechaFinal(),
+        'codificacion': str(campania),
+        'evento': evento.nombre(),
+        'criterioEficacia': campania.criterioDeEficacia()
+                                    .__doc__.decode('utf-8'),
+        'medicionEficacia': campania.criterioDeEficacia().medicion()})
 
   return render_template('campanias.html', campanias=lista_de_campanias)
 
