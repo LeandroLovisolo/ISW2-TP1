@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from repositorio_de_mensajes import RepositorioDeMensajes
 
 class Campania:
@@ -41,52 +43,43 @@ class Campania:
   def eficacia(self):
     return self._eficacia
 
+################################################################################
 
-class Eficacia:
-    def __init__(self, unCriterio, unaMedicion):
-      self._criterio = unCriterio
+class CriterioDeEficacia(object):
+  def __init__(self, unaMedicion):
+    self._medicion = unaMedicion
+
+  def medicion(self, unaMedicion = None):
+    if unaMedicion is None:
+      return self._medicion
+    else:
       self._medicion = unaMedicion
 
-    def compararCon(self, unResultado):
-      raise NotImplementedError()
+  def compararCon(self, otroCriterio):
+    raise NotImplementedError()
 
-    def criterio(self, unCriterio = None):
-      if unCriterio is None:
-        return self._criterio
-      else:
-        self._criterio = unCriterio
+class PorcentajeDeAprobacion(CriterioDeEficacia):
+  '''Porcentaje de aprobación'''
 
-    def medicion(self, unaMedicion = None):
-      if unaMedicion is None:
-        return self._medicion
-      else:
-        self._medicion = unaMedicion
-
-class PorcentajeDeAprobacion(Eficacia):
-  def __init__(self, unCriterio, unaMedicion):
-    super().__init__(unCriterio, unaMedicion)
-
-  def compararCon(self, unResultado):
-    if type(unResultado) != type(self):
+  def compararCon(self, otroCriterio):
+    if not isinstance(otroCriterio, PorcentajeDeAprobacion):
       raise TypeError()
 
-    if self._medicion > unResultado._medicion:
-      return 1
-    elif self._medicion == unResultado._medicion:
-      return 0
-    else:
+    if self._medicion < otroCriterio.medicion():
       return -1
+    if self._medicion == otroCriterio.medicion():
+      return 0
+    return 1
 
-class CantidadDeDesaprobados(Eficacia):
-  def __init__(self, unCriterio, unaMedicion):
-    super().__init__(unCriterio, unaMedicion)
-  def compararCon(self, unResultado):
-    if type(unResultado) != type(self):
+class CantidadDeDesaprobados(CriterioDeEficacia):
+  '''Cantidad de desaprobados'''
+
+  def compararCon(self, otroCriterio):
+    if not isinstance(otroCriterio, CantidadDeDesaprobados):
       raise TypeError()
 
-    if self._medicion < unResultado._medicion:
-      return 1
-    elif self._medicion == unResultado._medicion:
-      return 0
-    else:
+    if self._medicion < otroCriterio.medicion():
       return -1
+    if self._medicion == otroCriterio.medicion():
+      return 0
+    return 1
