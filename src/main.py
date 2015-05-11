@@ -4,7 +4,7 @@
 from flask import Flask, request, redirect, url_for, render_template
 from datetime import datetime, timedelta
 from app.evento import Evento, RepositorioDeEventos
-from app.campania import Campania
+from app.campania import Campania, PorcentajeDeAprobacion
 from app.mensaje import Mensaje, RepositorioDeMensajes
 from app.alumno import Alumno, RepositorioDeAlumnos
 from app.emisor_de_mensajes import EmisorDeMensajes
@@ -192,11 +192,13 @@ def cargarDatosDePrueba():
       Evento(u'Excursión a museo'))
 
   # Campañas
-  c = Campania('Recordatorios v1', '2015-05-01', '2015-06-01')
+  c = Campania('Recordatorios v1', '2015-05-01', '2015-06-01',
+               PorcentajeDeAprobacion(0))
   c.agregarAlumno(a1)
   c.agregarAlumno(a2)
   e.agregarCampania(c)
-  e.agregarCampania(Campania('Recordatorios v2', '2015-05-01', '2015-06-01'))
+  e.agregarCampania(Campania('Recordatorios v2', '2015-05-01', '2015-06-01',
+                             PorcentajeDeAprobacion(0)))
 
   # Mensajes
   RepositorioDeMensajes.obtenerInstancia().agregarMensaje(
@@ -207,9 +209,10 @@ def cargarDatosDePrueba():
       Mensaje(c, datetime.now() + timedelta(seconds=15), 'Tercer mensaje'))
 
 def lanzarWebapp():
-  app.run()
+  app.run(debug=True, use_debugger=True, use_reloader=False)
 
 if __name__ == '__main__':
+  print 'Sistema de recordatorios escolares por SMS'
   cargarDatosDePrueba()
   EmisorDeMensajes.obtenerInstancia() # Se crea tras la primera solicitud
   lanzarWebapp()
