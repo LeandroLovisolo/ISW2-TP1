@@ -14,6 +14,26 @@
           color: white;
       }
     </style>
+    <script src="/static/jquery-1.11.3.js"></script>
+    <script>
+      $(function() {
+        $('#comparar').click(function() {
+          var checkboxes = $("input[type='checkbox']:checked");
+          if(checkboxes.length != 2) {
+            alert("Tenés que elegir 2 campañas para comparar.");
+          } else {
+            var una = $(checkboxes[0]).attr('name');
+            var otra = $(checkboxes[1]).attr('name');
+            $.ajax({
+              url: '/campanias/comparar/' + encodeURIComponent(una) +
+                   '/' + encodeURIComponent(otra)
+            }).then(function(data) {
+              alert(data);
+            });
+          }
+        });
+      });
+    </script>
   </head>
   <body>
     <h1>Campañas</h1>
@@ -25,6 +45,7 @@
     <table>
       <thead>
       <tr>
+        <th></th>
         <th>Nombre</th>
         <th>Evento</th>
         <th>Fecha inicio</th>
@@ -37,19 +58,25 @@
       <tbody>
         {% for campania in campanias %}
           <tr>
-            <td>{{campania['nombre']}}</td>
-            <td>{{campania['evento']}}</td>
-            <td>{{campania['fechaInicio']}}</td>
-            <td>{{campania['fechaFinal']}}</td>
-            <td>{{campania['criterioEficacia']}}</td>
-            <td>{{campania['medicionEficacia']}}</td>
             <td>
-              <a href="/campanias/{{ campania['codificacion'] }}">Editar</a> 
-              <a href="/campanias/{{ campania['codificacion'] }}/mensajes">Mensajes</a>
+              <input type="checkbox" name="{{ campania.codificacion }}"/>
+            </td>
+            <td>{{ campania.nombre }}</td>
+            <td>{{ campania.evento }}</td>
+            <td>{{ campania.fechaInicio }}</td>
+            <td>{{ campania.fechaFinal }}</td>
+            <td>{{ campania.criterioEficacia }}</td>
+            <td>{{ campania.medicionEficacia }}</td>
+            <td>
+              <a href="/campanias/{{ campania.codificacion }}">Editar</a> 
+              <a href="/campanias/{{ campania.codificacion }}/mensajes">Mensajes</a>
             </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    <p>
+      <button id="comparar">Comparar campañas seleccionadas</button>
+    </p>
   </body>
 </html>
