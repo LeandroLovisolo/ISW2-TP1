@@ -37,6 +37,33 @@ def campanias():
 
   return render_template('campanias.html', campanias=lista_de_campanias)
 
+@app.route('/campanias/comparar/<id_una>/<id_otra>', methods=['GET'])
+def comparar_campanias(id_una, id_otra):
+  una = None
+  otra = None
+
+  for evento in RepositorioDeEventos.obtenerInstancia().eventos():
+    for campania in evento.campanias():
+      if str(campania) == id_una:
+        una = campania
+      if str(campania) == id_otra:
+        otra = campania
+
+  if una is None: return 'La primera campaña no existe.'
+  if otra is None: return 'La segunda campaña no existe.'
+
+  try:
+    resultado = una.criterioDeEficacia().compararCon(otra.criterioDeEficacia())
+  except TypeError:
+    return 'Las campañas seleccionadas no se pueden comparar entre sí.'
+
+  if resultado < 0:
+    return 'La campaña ' + otra.nombre() + ' es la más eficaz.'
+  if resultado == 0:
+    return 'Ambas campañas son igual de eficaces.'
+  if resultado > 0:
+    return 'La campaña ' + una.nombre() + ' es la más eficaz.'
+
 @app.route('/campanias/crear', methods=['GET', 'POST'])
 def crear_campania():
   # Mostrar formulario
@@ -98,7 +125,7 @@ def editar_campania(id):
           eficacia.medicion(request.form['medicion'])
 
     return redirect(url_for('campanias'))
-    
+
   else:
     campaniaStr = None
     for evento in eventos:
@@ -195,7 +222,7 @@ def cargarDatosDePrueba():
 
   # Campañas
   c = Campania('Recordatorios v1', '2015-05-01', '2015-06-01',
-               PorcentajeDeAprobacion(0))
+               PorcentajeDeAprobacion(75))
   c.agregarAlumno(a1)
   c.agregarAlumno(a2)
   e.agregarCampania(c)
