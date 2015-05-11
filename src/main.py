@@ -5,6 +5,7 @@ from flask import Flask, request, redirect, url_for, render_template
 from datetime import datetime, timedelta
 from app.evento import Evento, RepositorioDeEventos
 from app.campania import Campania
+from app.campania import Eficacia
 from app.mensaje import Mensaje, RepositorioDeMensajes
 from app.alumno import Alumno, RepositorioDeAlumnos
 from app.emisor_de_mensajes import EmisorDeMensajes
@@ -48,17 +49,26 @@ def crear_campania():
     eventosStr = []
     for evento in eventos:
       eventosStr.append({'nombre': evento.nombre(), 'id': str(evento)})
+
+    criteriosStr = []
+    subclases = Eficacia.__subclasses__()
+    for subclase in subclases():
+      criteriosStr.append({'nombre' : subclase.__name__, 'descripcion' : subclase__doc__})
+
     return render_template('crear_campania.html', eventos=eventosStr, 
-      alumnos=lista_de_alumnos)
+      alumnos=lista_de_alumnos, criterios=criteriosStr)
 
   # Guardar nueva campaña
   else:
+    subclases = Eficacia.__subclasses__()
+    for subclase in subclases():
+      if subclase.__name__ == criterio:
+        eficacia = subclase(0)
+
     campania = Campania(request.form['nombre'],
                         request.form['fechaInicio'],
-                        request.form['fechaFinal'])
-    eficacia = campania.eficacia()
-    eficacia.criterio(request.form['criterio'])
-    eficacia.medicion(0)
+                        request.form['fechaFinal'],
+                        eficacia)
 
     alumnos = RepositorioDeAlumnos.obtenerInstancia().alumnos()
     select_alumnos = request.form.getlist('alumnos')
