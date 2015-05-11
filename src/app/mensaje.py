@@ -1,5 +1,7 @@
 # coding: utf-8
 
+from datetime import datetime
+
 class Mensaje:
   def __init__(self, unaCampania, unaFecha, unContenido):
     self._campania = unaCampania
@@ -25,7 +27,7 @@ class Mensaje:
   def marcarComoEnviado(self):
     self._estado = MensajeEnviado(self)
 
-  def aceptar(unVisitadorDeMensajes):
+  def aceptar(self, unVisitadorDeMensajes):
     self._estado.aceptar(unVisitadorDeMensajes)
 
 ################################################################################
@@ -35,9 +37,8 @@ class VisitadorDeMensajesAEnviarAhora:
     self._mensajes = []
 
   def visitarMensajeNoEnviado(self, unMensajeNoEnviado):
-    # Pendiente: verificar que el mensaje no enviado requiera ser enviado ahora
-    # antes de agregarlo a _mensajes
-    self._mensajes.append(unMensajeEnviado)
+    if unMensajeNoEnviado.fecha() < datetime.now():
+      self._mensajes.append(unMensajeNoEnviado)
 
   def visitarMensajeEnviado(self, unMensajeEnviado):
     # No me interesan los mensajes enviados, así que no hago nada
@@ -82,6 +83,12 @@ class RepositorioDeMensajes:
 
   def mensajesAsignadosA(self, unaCampania):
     return filter(lambda m: m.campania() == unaCampania, self._mensajes)
+
+  def mensajesAEnviarAhora(self):
+    visitador = VisitadorDeMensajesAEnviarAhora()
+    for mensaje in self._mensajes:
+      mensaje.aceptar(visitador)
+    return visitador.mensajesAEnviarAhora()
 
   def agregarMensaje(self, unMensaje):
     self._mensajes.append(unMensaje)

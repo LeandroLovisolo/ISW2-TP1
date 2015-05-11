@@ -18,7 +18,7 @@ class Alumno:
 
   def telefono(self, unTelefono = None):
     if unTelefono is None:
-      return _telefono
+      return self._telefono
     else:
       self._telefono = unTelefono
 

@@ -2,10 +2,12 @@
 # coding: utf-8
 
 from flask import Flask, request, redirect, url_for, render_template
+from datetime import datetime, timedelta
 from app.evento import Evento, RepositorioDeEventos
 from app.campania import Campania
 from app.mensaje import Mensaje, RepositorioDeMensajes
 from app.alumno import Alumno, RepositorioDeAlumnos
+from app.emisor_de_mensajes import EmisorDeMensajes
 
 app = Flask(__name__)
 
@@ -80,7 +82,7 @@ def mensajes(id):
     if str(mensaje.campania()) == id:
       lista_de_mensajes += [{'fecha' : mensaje.fecha(),
                             'contenido' : mensaje.contenido()}]
-  
+
   return render_template('mensajes.html', mensajes=lista_de_mensajes, id=id, 
     nombre_campania=nombre_campania)
 
@@ -111,25 +113,44 @@ def crear_mensaje(id):
 
     return redirect(url_for('mensajes', id=str(campania)))
 
+################################################################################
+# Bootstrap de la aplicación                                                   #
+################################################################################
+
 def cargarDatosDePrueba():
   # Alumnos
-  r = RepositorioDeAlumnos.obtenerInstancia()
-  r.agregarAlumno(Alumno(11111111, 'Juancito', '15-0000-0000'))
-  r.agregarAlumno(Alumno(22222222, 'Pepito',   '15-1111-1111'))
-  r.agregarAlumno(Alumno(33333333, 'Anita',    '15-0303-456'))
+  a1 = Alumno(11111111, 'Juancito', '15-0000-0000')
+  a2 = Alumno(22222222, 'Pepito',   '15-1111-1111')
+  RepositorioDeAlumnos.obtenerInstancia().agregarAlumno(a1)
+  RepositorioDeAlumnos.obtenerInstancia().agregarAlumno(a2)
+  RepositorioDeAlumnos.obtenerInstancia().agregarAlumno(
+      Alumno(33333333, 'Anita', '15-0303-456'))
 
-  # Eventos y campañas
+  # Eventos
   e = Evento('Prueba de historia')
   RepositorioDeEventos.obtenerInstancia().agregarEvento(e)
-  e.agregarCampania(Campania('Recordatorios v1', '2015-05-01', '2015-06-01'))
-  e.agregarCampania(Campania('Recordatorios v2', '2015-05-01', '2015-06-01'))
   RepositorioDeEventos.obtenerInstancia().agregarEvento(
       Evento(u'Excursión a museo'))
 
+  # Campañas
+  c = Campania('Recordatorios v1', '2015-05-01', '2015-06-01')
+  c.agregarAlumno(a1)
+  c.agregarAlumno(a2)
+  e.agregarCampania(c)
+  e.agregarCampania(Campania('Recordatorios v2', '2015-05-01', '2015-06-01'))
+
+  # Mensajes
+  RepositorioDeMensajes.obtenerInstancia().agregarMensaje(
+      Mensaje(c, datetime.now() + timedelta(seconds=5), 'Primer mensaje'))
+  RepositorioDeMensajes.obtenerInstancia().agregarMensaje(
+      Mensaje(c, datetime.now() + timedelta(seconds=10), 'Segundo mensaje'))
+  RepositorioDeMensajes.obtenerInstancia().agregarMensaje(
+      Mensaje(c, datetime.now() + timedelta(seconds=15), 'Tercer mensaje'))
+
 def lanzarWebapp():
-  app.debug = True
   app.run()
 
 if __name__ == '__main__':
   cargarDatosDePrueba()
+  EmisorDeMensajes.obtenerInstancia() # Se crea tras la primera solicitud
   lanzarWebapp()
