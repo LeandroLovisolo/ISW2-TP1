@@ -3,11 +3,12 @@
 from repositorio_de_mensajes import RepositorioDeMensajes
 
 class Campania:
-  def __init__(self, unNombre, unaFechaInicio, unaFechaFinal):
+  def __init__(self, unNombre, unaFechaInicio, unaFechaFinal,
+               unCriterioDeEficacia):
     self._nombre = unNombre
     self._fechaInicio = unaFechaInicio
     self._fechaFinal = unaFechaFinal
-    self._eficacia = Eficacia("", 0)
+    self._criterioDeEficacia = unCriterioDeEficacia
     self._alumnos = []
 
   def nombre(self, unNombre = None):
@@ -40,8 +41,8 @@ class Campania:
   def quitarAlumno(self, unAlumno):
     self._alumnos.remove(unAlumno)
 
-  def eficacia(self):
-    return self._eficacia
+  def criterioDeEficacia(self):
+    return self._criterioDeEficacia
 
 ################################################################################
 
