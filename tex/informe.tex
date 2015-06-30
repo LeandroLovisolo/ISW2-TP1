@@ -679,6 +679,31 @@ el objeto en cuestión.
 El envío de mensajes es retratado en los diagramas relacionados en las secciones \ref{sec-envio1}, \ref{sec-envio2} y 
 \ref{obj-envio}.
 
+\subsection{Comparación de campañas y criterio de eficacia}
+Cada instancia de la clase \textit{Campaña} puede tener una instancia de la clase \textit{Medición} con la intención 
+de ser el resultado de la campaña. Además de este resultado, la instancia tendrá una instancia de 
+\textit{CriterioDeEficacia} que determinará el criterio para poder declarar la campaña como eficaz o no.
+
+Para realizar identificar la eficacia de una campaña, el objeto \textit{CriterioDeEficacia} tiene una instancia de la 
+clase \textit{Comparación} que, junto con la instancia de \textit{Medición} que posee el \textit{CriterioDeEficacia} 
+permitirá decidir utilizando el método \textit{comparar} si la campañana es eficaz o no.
+
+La idea tras tener la clase \textit{Comparación} es la de tener la responsabilidad de la comparación de mediciones 
+en un objeto que la represente, permitiendo además poder construir distintos tipos de comparaciones obteniendo distintos 
+matices de instancias de \textit{CriterioDeEficacia}.
+
+El resultado del método \textit{comparar} de la clase \textit{Comparación} devuelve un \textit{ResultadoDeComparación} 
+que junto a la interfaz \textit{VisitadorDeResultadosDeComparaciones} implementan el patron \textit{visitor}. El por qué 
+tras la utilización de este patron se debe a que consideramos que la interfaz provista por 
+\textit{VisitadorDeResultadosDeComparaciones} permite implementar objetos que realicen distintas acciones según el 
+resultado obtenido, delegando la responsabilidad al objeto que la implementa y conservando así la escencia del resultado 
+como objeto.
+
+Por último, la clase \textit{Comparador de campañas} tiene como objetivo realizar la comparación de dos campañas utilizando 
+lo descripto anteriormente y devolviendo un \textit{ResultadoDeComparación} para luego por ejemplo, 
+mostrarse por pantalla qué campaña fue más eficaz.
+
+
 \subsection{Diagramas de envío de mensajes}
 
 \subsubsection{Diagrama de secuencia - Parte 1}
