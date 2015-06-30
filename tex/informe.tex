@@ -498,7 +498,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \begin{tasks}
   \task{Diseño OO y creación de entidad Alumno, su colaboración con Campaña y objetos auxiliares}{3:30}
   \task{Prepoblado de la aplicación con alumnos de prueba}{1:00}
-  \task{Agregarle a la pantalla de creación de campaña una lista con los nombres de los alumnos del maestro (es decir, todos los alumnos en el sistema, ya que todavía el sistema no sabe de maestros), que permita marcar alumnos para incluirlos como destinatarios en la campaña}{2:00}
+  \task{Agregar a la pantalla de creación de campaña una lista con los nombres de los alumnos del maestro (es decir, todos los alumnos en el sistema, ya que todavía el sistema no sabe de maestros), que permita marcar alumnos para incluirlos como destinatarios en la campaña}{2:00}
 \end{tasks}
 
 
@@ -556,7 +556,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \begin{tasks}
   \task{Modificar pantalla de creación de campaña para soportar edición de campañas existentes}{2:00}
   \task{Crear pantalla de edición de campaña existente}{2:00}
-  \task{Modificar pantalla ABM de campañas mostrando título, criterio de eficacia y eficacia medida para cada item de la lista de campañas.}{2:00}
+  \task{Modificar pantalla ABM de campañas mostrando título, criterio de eficacia y eficacia medida para cada ítem de la lista de campañas.}{2:00}
   \task{Modificar pantalla ABM de campañas, de manera que al hacer click sobre una campaña existente, el usuario sea redirigido a la pantalla de edición de dicha campaña}{1:00}
   \task{Modificar pantalla de creación/edición de campaña agregando dos nuevos campos para el criterio de eficacia en lenguaje natural y el valor de eficacia observado, respectivamente}{2:00}
   \task{Modificar objeto Campaña reflejando la existencia de estos dos nuevos campos}{2:00}
@@ -647,17 +647,17 @@ Son los objetos encargados de administrar, proveer y mantener persistencia de ot
 el repositorio de mensajes mantiene y conoce todos los mensajes existentes. Puedo pedirle a este todos
 los mensajes y  los mensajes listos para enviarse, entre otros.
 
-La idea atras de estos repositorios fue la de desligar a los objetos de la responsabilidad de persistirse,
+La idea detrás de estos repositorios fue la de desligar a los objetos de la responsabilidad de persistirse,
 evitando impactos de cambio en cualquier modificación a la persistencia.
 
 \subsection{Mensajes enviados y sin enviar}
 Utilizamos el patron \textit{state} para definir el comportamiento del mensaje según si fue o no enviado.
 
 Se utiliza una instancia de la clase \textit{EstadoDeMensaje} la cual implementa los métodos relacionados al 
-cambio de fecha y contenido del mensaje, además del método \textit{aceptar} que usará el visitor descripto 
+cambio de fecha y contenido del mensaje, además del método \textit{aceptar} que usará el visitor descrito 
 posteriormente.
 
-Consideramos el uso de estados importante para mantener el caracter inmutable de un mensaje ya enviado.
+Consideramos el uso de estados importante para mantener el carácter inmutable de un mensaje ya enviado.
 
 \subsection{Envío de mensajes}
 El proceso de envío de mensajes comienza en el objeto \textit{EmisorDeMensajes}. 
@@ -686,7 +686,7 @@ de ser el resultado de la campaña. Además de este resultado, la instancia tend
 
 Para realizar identificar la eficacia de una campaña, el objeto \textit{CriterioDeEficacia} tiene una instancia de la 
 clase \textit{Comparación} que, junto con la instancia de \textit{Medición} que posee el \textit{CriterioDeEficacia} 
-permitirá decidir utilizando el método \textit{comparar} si la campañana es eficaz o no.
+permitirá decidir utilizando el método \textit{comparar} si la campaña es eficaz o no.
 
 La idea tras tener la clase \textit{Comparación} es la de tener la responsabilidad de la comparación de mediciones 
 en un objeto que la represente, permitiendo además poder construir distintos tipos de comparaciones obteniendo distintos 
@@ -696,16 +696,16 @@ El resultado del método \textit{comparar} de la clase \textit{Comparación} dev
 que junto a la interfaz \textit{VisitadorDeResultadosDeComparaciones} implementan el patron \textit{visitor}. El por qué 
 tras la utilización de este patron se debe a que consideramos que la interfaz provista por 
 \textit{VisitadorDeResultadosDeComparaciones} permite implementar objetos que realicen distintas acciones según el 
-resultado obtenido, delegando la responsabilidad al objeto que la implementa y conservando así la escencia del resultado 
+resultado obtenido, delegando la responsabilidad al objeto que la implementa y conservando así la esencia del resultado 
 como objeto.
 
 Por último, la clase \textit{Comparador de campañas} tiene como objetivo realizar la comparación de dos campañas utilizando 
-lo descripto anteriormente y devolviendo un \textit{ResultadoDeComparación} para luego por ejemplo, 
+lo descrito anteriormente y devolviendo un \textit{ResultadoDeComparación} para luego por ejemplo, 
 mostrarse por pantalla qué campaña fue más eficaz.
 
 \subsection{Credenciales y autor}
 Consideramos de importancia para el proyecto incluir la clase \textit{Credencial} que hace referencia al nombre de usuario y 
-contraseña que utilizaran directivos y maestros para acceder al sistema.
+contraseña que utilizarán directivos y maestros para acceder al sistema.
 
 Para representar los maestros y los directivos del mundo real, se se incluye la clase \textit{Autor} la cual hereda 
 sus métodos a \textit{Autor maestro} y a \textit{Autor directivo} los cuales serán como su nombre lo indica, autores 
