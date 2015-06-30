@@ -676,6 +676,11 @@ los mensajes de la campaña dependiendo a quienes interesa llegar la misma. Util
 proveer mutabilidad a la campaña en el sentido de poder cambiar el envío a alumnos y/o padres sin tener que destruir 
 el objeto en cuestión.
 
+El proceso termina cuando el \textit{EmisorDeMensajes} envia los SMS correspondientes usando \textit{EmisorDeSMS} 
+con el contenido de los mensajes y el teléfono provisto por los destinatarios. Los destinatarios devueltos 
+implementan la interfaz \textit{Destinatario}, esto se hace con el objetivo de proveer al emisor con solo los 
+datos necesarios, idependientemente de que tipo sea el receptor.
+
 El envío de mensajes es retratado en los diagramas relacionados en las secciones \ref{sec-envio1}, \ref{sec-envio2} y 
 \ref{obj-envio}.
 
@@ -715,6 +720,28 @@ el método \textit{destinatarios} que utilizando la \textit{PlanillaDeAsignació
 a los cuales puede asignar a una campaña. De esta manera, limitamos a los maestros a solo poder dirigirse a los alumnos 
 de su curso y le damos la libertad al directivo de elegir a cualquier alumno.
 
+\subsection{Alumnos y cursos}
+Incluimos en el diseño la clase \textit{Alumno} en representación de los alumnos en la vida real. Cada instancia de 
+\textit{Alumno} posee dos instancias de \textit{Padre} que representan los padres del mismo y ambas, tanto 
+\textit{Padre} como \textit{Alumno} implementan la interfaz \textit{Destinatario} que servirá luego, como puede 
+verse en el detalle de envío de mensajes, para indicar el número destinatario.
+
+Consideramos en el diseño a la clase \textit{Curso} ya que será la manera de obtener los alumnos para los distintos 
+emisores, restringiendo el público al que puedan llegar. Junto a \textit{Curso} y \textit{División} será posible 
+además mantener una relación entre estos objetos y la realidad.
+
+La clase \textit{Curso} mantiene el ID de los alumnos que pertenecen a su curso y en caso de 
+utilizarse el método \textit{alumnos}, este filtra los alumnos por ID del \textit{RepositorioDeAlumnos} y 
+devuelve las instancias de alumnos relacionadas.
+
+La \textit{PlanillaDeAsignaciónDeCursos} previamente mencionada en \textit{Credenciales y autor} contiene a qué 
+cursos cada maestro está asignado.
+
+\subsection{Eventos}
+Los eventos en la realidad son representados por el objeto \textit{Evento} el cuál posee una instancia de la clase 
+\textit{Autor} como el creador del evento al que le permite agregar y quitar campañas del mismo. El objeto 
+\textit{Evento} guarda las campañas que le pertenecen.
+
 \subsection{Diagramas de envío de mensajes}
 
 \subsubsection{Diagrama de secuencia - Parte 1}
@@ -732,5 +759,18 @@ de su curso y le damos la libertad al directivo de elegir a cualquier alumno.
 
 \grafico{diagramas/objetosMensaje.pdf}
 
+\subsection{Diagrama de posibles destinatarios de autor}
+
+\subsubsection{Diagrama de secuencia - Parte 1}
+\label{sec-destinatarios1}
+\grafico{diagramas/secuenciaPosiblesDestinatarios1.pdf}
+
+\subsubsection{Diagrama de secuencia - Parte 2}
+\label{sec-destinatarios2}
+\grafico{diagramas/secuenciaPosiblesDestinatarios2.pdf}
+
+\subsubsection{Diagrama de objetos}
+\label{obj-destinatarios}
+\grafico{diagramas/objetosPosiblesDestinatarios.pdf}
 
 \end{document}
