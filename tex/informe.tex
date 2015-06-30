@@ -703,6 +703,17 @@ Por último, la clase \textit{Comparador de campañas} tiene como objetivo reali
 lo descripto anteriormente y devolviendo un \textit{ResultadoDeComparación} para luego por ejemplo, 
 mostrarse por pantalla qué campaña fue más eficaz.
 
+\subsection{Credenciales y autor}
+Consideramos de importancia para el proyecto incluir la clase \textit{Credencial} que hace referencia al nombre de usuario y 
+contraseña que utilizaran directivos y maestros para acceder al sistema.
+
+Para representar los maestros y los directivos del mundo real, se se incluye la clase \textit{Autor} la cual hereda 
+sus métodos a \textit{Autor maestro} y a \textit{Autor directivo} los cuales serán como su nombre lo indica, autores 
+de eventos y campañas relacionadas a estos eventos. La diferencia importante entre \textit{Autor maestro} y 
+\textit{Autor directivo} es a quienes puede asignar como destinatarios de una campaña. Para esto, cada uno implementa 
+el método \textit{destinatarios} que utilizando la \textit{PlanillaDeAsignaciónDeCursos} obtendrá a los alumnos 
+a los cuales puede asignar a una campaña. De esta manera, limitamos a los maestros a solo poder dirigirse a los alumnos 
+de su curso y le damos la libertad al directivo de elegir a cualquier alumno.
 
 \subsection{Diagramas de envío de mensajes}
 
