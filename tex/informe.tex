@@ -642,17 +642,57 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \section{Justificación y explicación de diseño}
 
+\subsection{Repositorios}
+Son los objetos encargados de administrar, proveer y mantener persistencia de otros objetos. Por ejemplo,
+el repositorio de mensajes mantiene y conoce todos los mensajes existentes. Puedo pedirle a este todos
+los mensajes y  los mensajes listos para enviarse, entre otros.
+
+La idea atras de estos repositorios fue la de desligar a los objetos de la responsabilidad de persistirse,
+evitando impactos de cambio en cualquier modificación a la persistencia.
+
+\subsection{Mensajes enviados y sin enviar}
+Utilizamos el patron \textit{state} para definir el comportamiento del mensaje según si fue o no enviado.
+
+Se utiliza una instancia de la clase \textit{EstadoDeMensaje} la cual implementa los métodos relacionados al 
+cambio de fecha y contenido del mensaje, además del método \textit{aceptar} que usará el visitor descripto 
+posteriormente.
+
+Consideramos el uso de estados importante para mantener el caracter inmutable de un mensaje ya enviado.
+
+\subsection{Envío de mensajes}
+El proceso de envío de mensajes comienza en el objeto \textit{EmisorDeMensajes}. 
+Este objeto corre en un thread independiente donde cada una cantidad de tiempo determinada 
+llama a \textit{enviarMensajes()}. Este método se encarga de comunicarse con el \textit{RepositorioDeMensajes}
+para pedirle los mensajes listos para enviarse en ese momento.
+
+Para la elección de los mensajes listos para enviar, se implementa un estilo de \textit{filter} utilizando el
+patron \textit{visitor}. El objeto \textit{VisitadorDeMensajesAEnviarAhora} se pasa como parámetro al enviarle
+el mensaje \textit{aceptar} a los mensajes guardados en el repositorio, guardando en una colección en su interior
+los mensajes que deben ser enviados en el momento para posteriormente devolverlos al \textit{EmisorDeMensajes}.
+
+Luego de obtener los mensajes, el \textit{EmisorDeMensajes} pide los destinatarios para cada mensaje a su campaña.
+El objeto \textit{Campaña} implementa el patron \textit{strategy} con el fin de poder obtener los destinatarios de 
+los mensajes de la campaña dependiendo a quienes interesa llegar la misma. Utilizamos este patrón con el sentido de 
+proveer mutabilidad a la campaña en el sentido de poder cambiar el envío a alumnos y/o padres sin tener que destruir 
+el objeto en cuestión.
+
+El envío de mensajes es retratado en los diagramas relacionados en las secciones \ref{sec-envio1}, \ref{sec-envio2} y 
+\ref{obj-envio}.
+
 \subsection{Diagramas de envío de mensajes}
 
 \subsubsection{Diagrama de secuencia - Parte 1}
+\label{sec-envio1}
 
 \grafico{diagramas/secuenciaEnvioDeMensajes1.pdf}
 
 \subsubsection{Diagrama de secuencia - Parte 2}
+\label{sec-envio2}
 
 \grafico{diagramas/secuenciaEnvioDeMensajes2.pdf}
 
 \subsubsection{Diagrama de objetos}
+\label{obj-envio}
 
 \grafico{diagramas/objetosMensaje.pdf}
 
