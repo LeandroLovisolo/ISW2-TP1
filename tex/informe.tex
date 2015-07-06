@@ -379,7 +379,7 @@ ID & Story points\\
         {que sean recibidos en el momento adecuado por sus destinatarios}
 
   \story{19}{director, secretario o maestro}
-        {ingresar la eficacia de una campaña luego de su terminación}
+        {ingresar el resultado de una campaña luego de su terminación}
         {compararla con otras campañas similares}
 \end{stories}
 
@@ -491,7 +491,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \begin{criterios}
   \criterio{El maestro sólo debe poder seleccionar alumnos de los cursos en los que él es maestro.}
-  \criterio{El formulario no se envía si no se selecciona al menos un alumno.}
+  \criterio{Si no se selecciona al menos un alumno como destinatario, no se modificarán los mismos.}
   \criterio{Luego de enviado el formulario, se reemplaza la lista de destinatarios de la campaña con los alumnos seleccionados.}
 \end{criterios}
 
@@ -545,7 +545,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 
 \sprintstory{19}
             {director, secretario o maestro}
-            {ingresar la eficacia de una campaña luego de su terminación}
+            {ingresar el resultado de una campaña luego de su terminación}
             {compararla con otras campañas similares}
 
 \begin{criterios}
@@ -558,7 +558,7 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
   \task{Crear pantalla de edición de campaña existente}{2:00}
   \task{Modificar pantalla ABM de campañas mostrando título, criterio de eficacia y eficacia medida para cada ítem de la lista de campañas.}{2:00}
   \task{Modificar pantalla ABM de campañas, de manera que al hacer click sobre una campaña existente, el usuario sea redirigido a la pantalla de edición de dicha campaña}{1:00}
-  \task{Modificar pantalla de creación/edición de campaña agregando dos nuevos campos para el criterio de eficacia en lenguaje natural y el valor de eficacia observado, respectivamente}{2:00}
+  \task{Modificar pantalla de edición de campaña agregando dos nuevos campos para el criterio de eficacia en lenguaje natural y el valor de eficacia observado, respectivamente}{2:00}
   \task{Modificar objeto Campaña reflejando la existencia de estos dos nuevos campos}{2:00}
 \end{tasks}
 
@@ -619,6 +619,10 @@ Sin más, presentamos a continuación los user stories seleccionados para este s
 \subsection{Campaña}
 
 \grafico{diagramas/campania.pdf}
+
+\subsection{Campaña - Visitor}
+
+\grafico{diagramas/campaniaVisitor.pdf}
 
 
 \subsection{Mensaje}
@@ -728,6 +732,15 @@ como objeto.
 Por último, la clase \textit{Comparador de campañas} tiene como objetivo realizar la comparación de dos campañas utilizando 
 lo descrito anteriormente y devolviendo un \textit{ResultadoDeComparación} para luego por ejemplo, 
 mostrarse por pantalla qué campaña fue más eficaz.
+
+\subsection{Campaña y su visitor}
+Se tomó en cuenta en el diseño la posibilidad de que otros objetos o que la interfaz gráfica, pueda realizar distintas acciones 
+o mostrar información según si la campaña es de padres, alumnos o padres y alumnos. Para esto se diseñó una interfaz utilizando 
+el patrón visitor con el objetivo de que cualquier objeto que quiera realizar algo en base al tipo de la campaña no tenga que 
+lidiar con el estado interno de la misma.
+
+Un ejemplo concreto de la utilización del visitor puede ser un simple widget en la interfaz gráfica que muestre a quienes va 
+dirigida la misma.
 
 \subsection{Credenciales y autor}
 Consideramos de importancia para el proyecto incluir la clase \textit{Credencial} que hace referencia al nombre de usuario y 
